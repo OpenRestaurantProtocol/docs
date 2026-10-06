@@ -1,8 +1,8 @@
 site_name: Open Restaurant Protocol
 site_description: Padrão aberto para integrações do ecossistema Open Restaurant.
-site_url: https://openrestaurantprotocol.github.io/openrestaurantprotocol/
-repo_url: https://github.com/OpenRestaurantProtocol/openrestaurantprotocol
-repo_name: OpenRestaurantProtocol/openrestaurantprotocol
+site_url: https://openrestaurantprotocol.github.io/docs/
+repo_url: https://github.com/OpenRestaurantProtocol/docs
+repo_name: OpenRestaurantProtocol/docs
 theme:
   name: material
   language: pt
