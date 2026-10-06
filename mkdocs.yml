@@ -1,0 +1,47 @@
+site_name: Open Restaurant Protocol
+site_description: Padrão aberto para integrações do ecossistema Open Restaurant.
+site_url: https://openrestaurantprotocol.github.io/openrestaurantprotocol/
+repo_url: https://github.com/OpenRestaurantProtocol/openrestaurantprotocol
+repo_name: OpenRestaurantProtocol/openrestaurantprotocol
+theme:
+  name: material
+  language: pt
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: deep orange
+      accent: amber
+      toggle:
+        icon: material/weather-sunny
+        name: Alternar para modo escuro
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: deep orange
+      accent: amber
+      toggle:
+        icon: material/weather-night
+        name: Alternar para modo claro
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.indexes
+    - search.suggest
+    - search.highlight
+nav:
+  - Início: index.md
+  - Integrações:
+      - Toqan (MCP): integrations/toqan-mcp.md
+  - Autenticação:
+      - OAuth: auth/oauth.md
+markdown_extensions:
+  - admonition
+  - attr_list
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+plugins:
+  - search

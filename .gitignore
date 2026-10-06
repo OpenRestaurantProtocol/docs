@@ -1,0 +1,7 @@
+# Python / uv
+.venv/
+__pycache__/
+*.pyc
+
+# MkDocs build output
+site/
