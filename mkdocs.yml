@@ -39,6 +39,8 @@ nav:
       - Toqan (MCP): integrations/toqan-mcp.md
   - Autenticação:
       - OAuth: auth/oauth.md
+      - Requisitos do OAuth no Toqan: auth/toqan-oauth-requirements.md
+      - Como construir um MCP com OAuth: auth/toqan-mcp-oauth.md
 markdown_extensions:
   - admonition
   - attr_list
