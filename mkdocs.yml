@@ -3,21 +3,26 @@ site_description: Padrão aberto para integrações do ecossistema Open Restaura
 site_url: https://openrestaurantprotocol.github.io/docs/
 repo_url: https://github.com/OpenRestaurantProtocol/docs
 repo_name: OpenRestaurantProtocol/docs
+exclude_docs: |
+  diagrams/oauth/*.json
+  diagrams/oauth/*.mjs
 theme:
   name: material
   language: pt
+  logo: assets/icon.png
+  favicon: assets/icon.png
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: cyan
-      accent: cyan
+      primary: indigo
+      accent: blue
       toggle:
         icon: material/weather-sunny
         name: Alternar para modo escuro
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: cyan
-      accent: cyan
+      primary: indigo
+      accent: blue
       toggle:
         icon: material/weather-night
         name: Alternar para modo claro
@@ -37,14 +42,23 @@ nav:
 markdown_extensions:
   - admonition
   - attr_list
+  - tables
   - toc:
       permalink: true
   - pymdownx.details
+  - pymdownx.highlight:
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - pymdownx.tabbed:
       alternate_style: true
 plugins:

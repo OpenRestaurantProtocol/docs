@@ -1,3 +1,5 @@
+![Open Restaurant Protocol](assets/logo.webp){ width="480" }
+
 # Open Restaurant Protocol
 
 Bem-vindo à documentação oficial do **Open Restaurant Protocol** (ORP).
