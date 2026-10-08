@@ -36,18 +36,6 @@ Esta seção documenta o fluxo de **autenticação e autorização** usado para 
 8. **Toqan:** armazena os tokens da conexão com o parceiro.
 9. **Toqan → Usuário:** informa que o parceiro foi conectado.
 
-??? example "Exemplo de troca de code por token"
-    ```http title="POST /token"
-    POST /token HTTP/1.1
-    Content-Type: application/x-www-form-urlencoded
-
-    grant_type=authorization_code&
-    code=<authorization_code>&
-    redirect_uri=https://toqan.example/callback&
-    client_id=<client_id>&
-    code_verifier=<code_verifier>
-    ```
-
 ### 2. Pergunta sobre dados do parceiro
 
 10. **Usuário → Toqan:** envia um prompt que envolve dados do parceiro.
@@ -68,36 +56,6 @@ Esta seção documenta o fluxo de **autenticação e autorização** usado para 
 22. **DataBridge → MCP:** retorna os dados solicitados.
 23. **MCP → Toqan:** retorna o resultado da execução da tool.
 24. **Toqan → Usuário:** exibe a resposta com os dados das lojas.
-
-## Exemplos de chamadas ao MCP
-
-=== "listar_lojas"
-    ```text title="tool_call: listar_lojas"
-    Authorization: Bearer <access_token>
-
-    listar_lojas()
-    ```
-
-=== "buscar_dados"
-    ```text title="tool_call: buscar_dados(store_ids)"
-    Authorization: Bearer <access_token>
-
-    buscar_dados(store_ids=["<id1>", "<id2>"])
-    ```
-
-## Segurança
-
-!!! warning "PKCE obrigatório"
-    Para clientes públicos, o **PKCE é obrigatório**. Nunca use `authorization code` sem `code_verifier`/`code_challenge`.
-
-!!! warning "Validação de JWT a cada chamada"
-    O MCP deve validar assinatura, `iss`, `aud` e `exp` em **toda** chamada — não apenas na primeira.
-
-- **Cache de permissões com TTL curto**, para evitar consultas repetidas ao Auth-Service sem abrir mão de revogação rápida.
-- **Filtro por `store_ids` autorizados** no DataBridge — o MCP nunca consulta lojas fora do escopo do `sub`.
-
-!!! tip "Secrets"
-    Guarde secrets apenas em secret manager; nunca os versione no repositório.
 
 ## Referências
 
