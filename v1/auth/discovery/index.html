@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://openrestaurantprotocol.org/v1/auth/oauth/">
+        <link rel="canonical" href="https://openrestaurantprotocol.org/v1/auth/discovery/">
       
       
-        <link rel="prev" href="../..">
+        <link rel="prev" href="../oauth-requirements/">
       
       
-        <link rel="next" href="../oauth-requirements/">
+        <link rel="next" href="../mcp-oauth/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>OAuth - Open Restaurant Protocol</title>
+        <title>Discovery - Open Restaurant Protocol</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#fluxo-oauth" class="md-skip">
+        <a href="#discovery" class="md-skip">
           Ir para o conteúdo
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              OAuth
+              Discovery
             
           </span>
         </div>
@@ -239,7 +239,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+        <a href="../oauth/" class="md-tabs__link">
           
   
   
@@ -427,37 +427,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    OAuth
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../oauth/" class="md-nav__link">
         
   
   
@@ -473,109 +446,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Índice">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Índice
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#participantes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Participantes
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#diagrama-de-sequencia-interativo" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Diagrama de sequência interativo
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#etapas-do-fluxo" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Etapas do fluxo
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Etapas do fluxo">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-conexao-do-parceiro" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Conexão do parceiro
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-pergunta-sobre-dados-do-parceiro" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Pergunta sobre dados do parceiro
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-consulta-dos-dados" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Consulta dos dados
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#referencias" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Referências
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -613,10 +483,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../discovery/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Discovery
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -632,6 +529,70 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#rfc-8414-authorization-server-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RFC 8414 — Authorization Server Metadata
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rfc-9728-protected-resource-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RFC 9728 — Protected Resource Metadata
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dynamic-client-registration-rfc-7591" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dynamic Client Registration (RFC 7591)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Referências
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -859,10 +820,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#participantes" class="md-nav__link">
+  <a href="#rfc-8414-authorization-server-metadata" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Participantes
+        RFC 8414 — Authorization Server Metadata
       
     </span>
   </a>
@@ -870,10 +831,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#diagrama-de-sequencia-interativo" class="md-nav__link">
+  <a href="#rfc-9728-protected-resource-metadata" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Diagrama de sequência interativo
+        RFC 9728 — Protected Resource Metadata
       
     </span>
   </a>
@@ -881,52 +842,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#etapas-do-fluxo" class="md-nav__link">
+  <a href="#dynamic-client-registration-rfc-7591" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Etapas do fluxo
+        Dynamic Client Registration (RFC 7591)
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Etapas do fluxo">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-conexao-do-parceiro" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Conexão do parceiro
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-pergunta-sobre-dados-do-parceiro" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Pergunta sobre dados do parceiro
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-consulta-dos-dados" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Consulta dos dados
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -958,93 +880,77 @@
 
 
 
-<h1 id="fluxo-oauth">Fluxo OAuth<a class="headerlink" href="#fluxo-oauth" title="Permanent link">&para;</a></h1>
-<p>Esta seção documenta o fluxo de <strong>autenticação e autorização</strong> usado para conectar um <strong>Parceiro</strong> (software de restaurante) à <strong>Plataforma</strong> e permitir acesso seguro aos dados via MCP.</p>
-<h2 id="participantes">Participantes<a class="headerlink" href="#participantes" title="Permanent link">&para;</a></h2>
+<h1 id="discovery">Discovery<a class="headerlink" href="#discovery" title="Permanent link">&para;</a></h1>
+<p>Esta página consolida os mecanismos de <strong>descoberta automática</strong> (zero configuração manual) usados na integração OAuth/MCP entre um <strong>Parceiro</strong> (software de restaurante) e a <strong>Plataforma</strong>. Com eles, a plataforma descobre os endpoints do authorization server, o documento de metadados do recurso protegido e se auto-registra como client, sem troca manual de credenciais.</p>
+<h2 id="rfc-8414-authorization-server-metadata">RFC 8414 — Authorization Server Metadata<a class="headerlink" href="#rfc-8414-authorization-server-metadata" title="Permanent link">&para;</a></h2>
+<p>Para que a plataforma descubra o authorization server automaticamente, o parceiro expõe um documento de metadados (ex.: <code>/.well-known/oauth-authorization-server</code>) com, no mínimo:</p>
 <table>
 <thead>
 <tr>
-<th>Participante</th>
-<th>Descrição</th>
+<th>Campo</th>
+<th>Obrigatório?</th>
+<th>Observação</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Usuário</td>
-<td>Pessoa que opera a plataforma e conecta o parceiro</td>
+<td><code>issuer</code></td>
+<td>Sim</td>
+<td>Identificador do servidor de autorização</td>
 </tr>
 <tr>
-<td>Plataforma</td>
-<td>Agente que consome os dados via MCP</td>
+<td><code>authorization_endpoint</code></td>
+<td>Sim</td>
+<td>Endpoint de autorização (authorization code)</td>
 </tr>
 <tr>
-<td>Login (Parceiro)</td>
-<td>Página de login do software de restaurante</td>
+<td><code>token_endpoint</code></td>
+<td>Sim</td>
+<td>Endpoint de troca de code por token</td>
 </tr>
 <tr>
-<td>OAuth (Parceiro)</td>
-<td>Authorization server do parceiro</td>
+<td><code>scopes_supported</code></td>
+<td>Recomendado</td>
+<td>Lista de scopes aceitos</td>
 </tr>
 <tr>
-<td>Auth-Service (Parceiro)</td>
-<td>Serviço de autorização do parceiro</td>
+<td><code>response_types_supported</code></td>
+<td>Sim</td>
+<td>Deve incluir <code>code</code></td>
 </tr>
 <tr>
-<td>MCP</td>
-<td>Servidor MCP do ecossistema que expõe as tools</td>
+<td><code>grant_types_supported</code></td>
+<td>Sim</td>
+<td>Deve incluir <code>authorization_code</code> (e <code>refresh_token</code>)</td>
 </tr>
 <tr>
-<td>DataBridge</td>
-<td>Camada de acesso aos dados (executa as queries)</td>
+<td><code>token_endpoint_auth_methods_supported</code></td>
+<td>Sim</td>
+<td>Ex.: <code>client_secret_basic</code>, <code>client_secret_post</code>, <code>none</code> (para clientes públicos/PKCE)</td>
+</tr>
+<tr>
+<td><code>code_challenge_methods_supported</code></td>
+<td>Sim</td>
+<td>Deve incluir <code>S256</code> (PKCE)</td>
+</tr>
+<tr>
+<td><code>registration_endpoint</code></td>
+<td>Opcional</td>
+<td>Necessário somente se quiser suportar DCR</td>
 </tr>
 </tbody>
 </table>
-<blockquote>
-<p><strong>Nota:</strong> "Parceiro" representa qualquer software de restaurante integrado.</p>
-</blockquote>
-<h2 id="diagrama-de-sequencia-interativo">Diagrama de sequência interativo<a class="headerlink" href="#diagrama-de-sequencia-interativo" title="Permanent link">&para;</a></h2>
-<p><a href="../../diagrams/oauth/auth-flow.html" target="_blank">Abrir em tela cheia ↗</a></p>
-<iframe src="../../diagrams/oauth/auth-flow.html" width="100%" height="950" style="border: 1px solid var(--md-default-fg-color--lightest); border-radius: 6px;" loading="lazy" title="Diagrama de sequência interativo do fluxo OAuth"></iframe>
-
-<h2 id="etapas-do-fluxo">Etapas do fluxo<a class="headerlink" href="#etapas-do-fluxo" title="Permanent link">&para;</a></h2>
-<h3 id="1-conexao-do-parceiro">1. Conexão do parceiro<a class="headerlink" href="#1-conexao-do-parceiro" title="Permanent link">&para;</a></h3>
-<ol>
-<li><strong>Usuário → Plataforma:</strong> clica em "Conectar Parceiro".</li>
-<li><strong>Plataforma → Login:</strong> redireciona o usuário enviando <code>client_id</code>, <code>scopes</code> e os parâmetros do fluxo <strong>PKCE</strong>.</li>
-<li><strong>Usuário → Login:</strong> insere credenciais (email/senha) e realiza MFA se necessário.</li>
-<li><strong>Login → OAuth:</strong> valida as credenciais fornecidas.</li>
-<li><strong>OAuth → Plataforma:</strong> retorna um <strong>authorization code</strong> via callback.</li>
-<li><strong>Plataforma → OAuth:</strong> troca o authorization code por tokens usando o <code>code_verifier</code> do PKCE.</li>
-<li><strong>OAuth → Plataforma:</strong> retorna <code>access_token</code> (JWT) e <code>refresh_token</code>.</li>
-<li><strong>Plataforma:</strong> armazena os tokens da conexão com o parceiro.</li>
-<li><strong>Plataforma → Usuário:</strong> informa que o parceiro foi conectado.</li>
-</ol>
-<h3 id="2-pergunta-sobre-dados-do-parceiro">2. Pergunta sobre dados do parceiro<a class="headerlink" href="#2-pergunta-sobre-dados-do-parceiro" title="Permanent link">&para;</a></h3>
-<ol>
-<li><strong>Usuário → Plataforma:</strong> envia um prompt que envolve dados do parceiro.</li>
-<li><strong>Plataforma → MCP:</strong> executa <code>tool_call listar_lojas</code> com <code>Bearer JWT</code>.</li>
-<li><strong>MCP:</strong> valida o JWT (assinatura, <code>iss</code>, <code>aud</code>, <code>exp</code>).</li>
-<li><strong>MCP → Auth-Service:</strong> consulta lojas e permissões do usuário/sub.</li>
-<li><strong>Auth-Service → MCP:</strong> retorna <code>stores</code> e <code>permissions</code>.</li>
-<li><strong>MCP:</strong> armazena/cacheia as permissões por um <strong>TTL curto</strong>.</li>
-<li><strong>MCP → Plataforma:</strong> retorna a lista de lojas (<code>ids</code> e <code>names</code>).</li>
-</ol>
-<h3 id="3-consulta-dos-dados">3. Consulta dos dados<a class="headerlink" href="#3-consulta-dos-dados" title="Permanent link">&para;</a></h3>
-<ol>
-<li><strong>Plataforma → MCP:</strong> executa <code>tool_call buscar_dados(store_ids)</code> com <code>Bearer JWT</code>.</li>
-<li><strong>MCP:</strong> valida novamente o JWT (assinatura, <code>iss</code>, <code>aud</code>, <code>exp</code>).</li>
-<li><strong>MCP → Auth-Service:</strong> valida as permissões do <code>sub</code> para as lojas solicitadas (ou usa o cache).</li>
-<li><strong>Auth-Service → MCP:</strong> retorna as lojas e permissões.</li>
-<li><strong>MCP → DataBridge:</strong> executa as queries necessárias, filtradas pelos <code>store_ids</code> autorizados.</li>
-<li><strong>DataBridge → MCP:</strong> retorna os dados solicitados.</li>
-<li><strong>MCP → Plataforma:</strong> retorna o resultado da execução da tool.</li>
-<li><strong>Plataforma → Usuário:</strong> exibe a resposta com os dados das lojas.</li>
-</ol>
+<h2 id="rfc-9728-protected-resource-metadata">RFC 9728 — Protected Resource Metadata<a class="headerlink" href="#rfc-9728-protected-resource-metadata" title="Permanent link">&para;</a></h2>
+<p>A plataforma faz a descoberta do recurso protegido a partir da URL do MCP (ou de um spec OpenAPI/discovery): identifica a lista de authorization servers e os scopes suportados, depois baixa o <code>.well-known</code> do authorization server e lê os endpoints.</p>
+<p>Do lado do servidor MCP, o documento de metadados do recurso protegido (<code>/.well-known/oauth-protected-resource</code>) é publicado automaticamente quando se usa o <code>RemoteAuthProvider</code> do FastMCP, que declara os authorization servers e o <code>base_url</code> do MCP.</p>
+<h2 id="dynamic-client-registration-rfc-7591">Dynamic Client Registration (RFC 7591)<a class="headerlink" href="#dynamic-client-registration-rfc-7591" title="Permanent link">&para;</a></h2>
+<p>No fluxo de authorization code, o <strong>client OAuth é a plataforma</strong>, não o serviço do parceiro. Para a plataforma se autenticar sem troca manual de credenciais, o authorization server do parceiro pode expor <code>registration_endpoint</code> (RFC 7591) e suportar <strong>Dynamic Client Registration (DCR)</strong>: a plataforma se auto-registra como client e obtém <code>client_id</code>/<code>client_secret</code> automaticamente.</p>
+<p>Quando o authorization server <strong>não</strong> suporta DCR, o parceiro registra a plataforma como client no seu IdP manualmente e fornece <code>client_id</code>/<code>client_secret</code> e a URL de callback/redirect (fixa por ambiente da plataforma).</p>
 <h2 id="referencias">Referências<a class="headerlink" href="#referencias" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="https://datatracker.ietf.org/doc/html/rfc6749">RFC 6749 — OAuth 2.0</a></li>
-<li><a href="https://datatracker.ietf.org/doc/html/rfc7636">RFC 7636 — Proof Key for Code Exchange (PKCE)</a></li>
-<li><a href="https://datatracker.ietf.org/doc/html/rfc7519">RFC 7519 — JSON Web Token (JWT)</a></li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc8414">RFC 8414 — OAuth 2.0 Authorization Server Metadata</a></li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc9728">RFC 9728 — OAuth 2.0 Protected Resource Metadata</a></li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc7591">RFC 7591 — OAuth 2.0 Dynamic Client Registration Protocol</a></li>
 </ul>
 
 

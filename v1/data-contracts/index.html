@@ -10,31 +10,31 @@
       
       
       
-        <link rel="canonical" href="https://openrestaurantprotocol.org/v1/auth/oauth/">
+        <link rel="canonical" href="https://openrestaurantprotocol.org/v1/data-contracts/">
       
       
-        <link rel="prev" href="../..">
+        <link rel="prev" href="../auth/mcp-oauth/">
       
       
-        <link rel="next" href="../oauth-requirements/">
+        <link rel="next" href="../integrations/mcp/">
       
       
         
       
       
-      <link rel="icon" href="../../assets/icon.png">
+      <link rel="icon" href="../assets/icon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
-        <title>OAuth - Open Restaurant Protocol</title>
+        <title>Visão geral - Open Restaurant Protocol</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -53,7 +53,7 @@
       
     
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#fluxo-oauth" class="md-skip">
+        <a href="#contratos-de-dados" class="md-skip">
           Ir para o conteúdo
         </a>
       
@@ -96,9 +96,9 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
-    <a href="../.." title="Open Restaurant Protocol" class="md-header__button md-logo" aria-label="Open Restaurant Protocol" data-md-component="logo">
+    <a href=".." title="Open Restaurant Protocol" class="md-header__button md-logo" aria-label="Open Restaurant Protocol" data-md-component="logo">
       
-  <img src="../../assets/icon.png" alt="logo">
+  <img src="../assets/icon.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              OAuth
+              Visão geral
             
           </span>
         </div>
@@ -216,7 +216,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../.." class="md-tabs__link">
+      <a href=".." class="md-tabs__link">
         
   
   
@@ -233,13 +233,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../auth/oauth/" class="md-tabs__link">
           
   
   
@@ -257,11 +255,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../data-contracts/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
           
   
   
@@ -283,7 +283,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../integrations/mcp/" class="md-tabs__link">
+        <a href="../integrations/mcp/" class="md-tabs__link">
           
   
   
@@ -319,9 +319,9 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegação" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Open Restaurant Protocol" class="md-nav__button md-logo" aria-label="Open Restaurant Protocol" data-md-component="logo">
+    <a href=".." title="Open Restaurant Protocol" class="md-nav__button md-logo" aria-label="Open Restaurant Protocol" data-md-component="logo">
       
-  <img src="../../assets/icon.png" alt="logo">
+  <img src="../assets/icon.png" alt="logo">
 
     </a>
     Open Restaurant Protocol
@@ -336,7 +336,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href=".." class="md-nav__link">
         
   
   
@@ -360,10 +360,8 @@
       
   
   
-    
   
   
-  
     
     
       
@@ -379,22 +377,19 @@
     
     
       
-        
-        
-      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
             
   
   
@@ -412,7 +407,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -427,37 +422,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    OAuth
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../auth/oauth/" class="md-nav__link">
         
   
   
@@ -473,109 +441,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Índice">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Índice
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#participantes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Participantes
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#diagrama-de-sequencia-interativo" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Diagrama de sequência interativo
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#etapas-do-fluxo" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Etapas do fluxo
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Etapas do fluxo">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-conexao-do-parceiro" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Conexão do parceiro
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-pergunta-sobre-dados-do-parceiro" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Pergunta sobre dados do parceiro
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-consulta-dos-dados" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Consulta dos dados
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#referencias" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Referências
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -588,7 +453,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../oauth-requirements/" class="md-nav__link">
+      <a href="../auth/oauth-requirements/" class="md-nav__link">
         
   
   
@@ -616,7 +481,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../discovery/" class="md-nav__link">
+      <a href="../auth/discovery/" class="md-nav__link">
         
   
   
@@ -644,7 +509,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../mcp-oauth/" class="md-nav__link">
+      <a href="../auth/mcp-oauth/" class="md-nav__link">
         
   
   
@@ -676,6 +541,8 @@
       
   
   
+    
+  
   
   
     
@@ -689,20 +556,23 @@
     
     
       
+        
+        
+      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../data-contracts/" class="md-nav__link ">
+            <a href="./" class="md-nav__link md-nav__link--active">
               
   
   
@@ -721,7 +591,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -804,7 +674,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../integrations/mcp/" class="md-nav__link">
+      <a href="../integrations/mcp/" class="md-nav__link">
         
   
   
@@ -859,10 +729,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#participantes" class="md-nav__link">
+  <a href="#visao-geral" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Participantes
+        Visão geral
       
     </span>
   </a>
@@ -870,10 +740,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#diagrama-de-sequencia-interativo" class="md-nav__link">
+  <a href="#template-de-um-contrato-de-dominio" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Diagrama de sequência interativo
+        Template de um contrato de domínio
       
     </span>
   </a>
@@ -881,52 +751,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#etapas-do-fluxo" class="md-nav__link">
+  <a href="#versionamento-do-contrato" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Etapas do fluxo
+        Versionamento do contrato
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Etapas do fluxo">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-conexao-do-parceiro" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Conexão do parceiro
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-pergunta-sobre-dados-do-parceiro" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Pergunta sobre dados do parceiro
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-consulta-dos-dados" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Consulta dos dados
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -958,93 +789,43 @@
 
 
 
-<h1 id="fluxo-oauth">Fluxo OAuth<a class="headerlink" href="#fluxo-oauth" title="Permanent link">&para;</a></h1>
-<p>Esta seção documenta o fluxo de <strong>autenticação e autorização</strong> usado para conectar um <strong>Parceiro</strong> (software de restaurante) à <strong>Plataforma</strong> e permitir acesso seguro aos dados via MCP.</p>
-<h2 id="participantes">Participantes<a class="headerlink" href="#participantes" title="Permanent link">&para;</a></h2>
+<h1 id="contratos-de-dados">Contratos de Dados<a class="headerlink" href="#contratos-de-dados" title="Permanent link">&para;</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Em desenvolvimento</p>
+<p>Esta seção ainda não tem contratos de domínio publicados. O conteúdo abaixo descreve o template que cada contrato de domínio deverá seguir.</p>
+</div>
+<h2 id="visao-geral">Visão geral<a class="headerlink" href="#visao-geral" title="Permanent link">&para;</a></h2>
+<p>Um <strong>contrato de dados</strong> define a estrutura que um domínio de dados (por exemplo, um tipo de recurso exposto via MCP) deve seguir ao ser compartilhado com a plataforma. Cada domínio publica seu próprio contrato, com seus próprios campos, tipos e regras de versionamento.</p>
+<h2 id="template-de-um-contrato-de-dominio">Template de um contrato de domínio<a class="headerlink" href="#template-de-um-contrato-de-dominio" title="Permanent link">&para;</a></h2>
+<p>Todo contrato de domínio deve declarar os campos que expõe, usando a seguinte estrutura:</p>
 <table>
 <thead>
 <tr>
-<th>Participante</th>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Obrigatório</th>
 <th>Descrição</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Usuário</td>
-<td>Pessoa que opera a plataforma e conecta o parceiro</td>
-</tr>
-<tr>
-<td>Plataforma</td>
-<td>Agente que consome os dados via MCP</td>
-</tr>
-<tr>
-<td>Login (Parceiro)</td>
-<td>Página de login do software de restaurante</td>
-</tr>
-<tr>
-<td>OAuth (Parceiro)</td>
-<td>Authorization server do parceiro</td>
-</tr>
-<tr>
-<td>Auth-Service (Parceiro)</td>
-<td>Serviço de autorização do parceiro</td>
-</tr>
-<tr>
-<td>MCP</td>
-<td>Servidor MCP do ecossistema que expõe as tools</td>
-</tr>
-<tr>
-<td>DataBridge</td>
-<td>Camada de acesso aos dados (executa as queries)</td>
+<td><code>&lt;campo&gt;</code></td>
+<td><code>&lt;tipo&gt;</code></td>
+<td>Sim/Não</td>
+<td>Descrição do campo</td>
 </tr>
 </tbody>
 </table>
-<blockquote>
-<p><strong>Nota:</strong> "Parceiro" representa qualquer software de restaurante integrado.</p>
-</blockquote>
-<h2 id="diagrama-de-sequencia-interativo">Diagrama de sequência interativo<a class="headerlink" href="#diagrama-de-sequencia-interativo" title="Permanent link">&para;</a></h2>
-<p><a href="../../diagrams/oauth/auth-flow.html" target="_blank">Abrir em tela cheia ↗</a></p>
-<iframe src="../../diagrams/oauth/auth-flow.html" width="100%" height="950" style="border: 1px solid var(--md-default-fg-color--lightest); border-radius: 6px;" loading="lazy" title="Diagrama de sequência interativo do fluxo OAuth"></iframe>
-
-<h2 id="etapas-do-fluxo">Etapas do fluxo<a class="headerlink" href="#etapas-do-fluxo" title="Permanent link">&para;</a></h2>
-<h3 id="1-conexao-do-parceiro">1. Conexão do parceiro<a class="headerlink" href="#1-conexao-do-parceiro" title="Permanent link">&para;</a></h3>
-<ol>
-<li><strong>Usuário → Plataforma:</strong> clica em "Conectar Parceiro".</li>
-<li><strong>Plataforma → Login:</strong> redireciona o usuário enviando <code>client_id</code>, <code>scopes</code> e os parâmetros do fluxo <strong>PKCE</strong>.</li>
-<li><strong>Usuário → Login:</strong> insere credenciais (email/senha) e realiza MFA se necessário.</li>
-<li><strong>Login → OAuth:</strong> valida as credenciais fornecidas.</li>
-<li><strong>OAuth → Plataforma:</strong> retorna um <strong>authorization code</strong> via callback.</li>
-<li><strong>Plataforma → OAuth:</strong> troca o authorization code por tokens usando o <code>code_verifier</code> do PKCE.</li>
-<li><strong>OAuth → Plataforma:</strong> retorna <code>access_token</code> (JWT) e <code>refresh_token</code>.</li>
-<li><strong>Plataforma:</strong> armazena os tokens da conexão com o parceiro.</li>
-<li><strong>Plataforma → Usuário:</strong> informa que o parceiro foi conectado.</li>
-</ol>
-<h3 id="2-pergunta-sobre-dados-do-parceiro">2. Pergunta sobre dados do parceiro<a class="headerlink" href="#2-pergunta-sobre-dados-do-parceiro" title="Permanent link">&para;</a></h3>
-<ol>
-<li><strong>Usuário → Plataforma:</strong> envia um prompt que envolve dados do parceiro.</li>
-<li><strong>Plataforma → MCP:</strong> executa <code>tool_call listar_lojas</code> com <code>Bearer JWT</code>.</li>
-<li><strong>MCP:</strong> valida o JWT (assinatura, <code>iss</code>, <code>aud</code>, <code>exp</code>).</li>
-<li><strong>MCP → Auth-Service:</strong> consulta lojas e permissões do usuário/sub.</li>
-<li><strong>Auth-Service → MCP:</strong> retorna <code>stores</code> e <code>permissions</code>.</li>
-<li><strong>MCP:</strong> armazena/cacheia as permissões por um <strong>TTL curto</strong>.</li>
-<li><strong>MCP → Plataforma:</strong> retorna a lista de lojas (<code>ids</code> e <code>names</code>).</li>
-</ol>
-<h3 id="3-consulta-dos-dados">3. Consulta dos dados<a class="headerlink" href="#3-consulta-dos-dados" title="Permanent link">&para;</a></h3>
-<ol>
-<li><strong>Plataforma → MCP:</strong> executa <code>tool_call buscar_dados(store_ids)</code> com <code>Bearer JWT</code>.</li>
-<li><strong>MCP:</strong> valida novamente o JWT (assinatura, <code>iss</code>, <code>aud</code>, <code>exp</code>).</li>
-<li><strong>MCP → Auth-Service:</strong> valida as permissões do <code>sub</code> para as lojas solicitadas (ou usa o cache).</li>
-<li><strong>Auth-Service → MCP:</strong> retorna as lojas e permissões.</li>
-<li><strong>MCP → DataBridge:</strong> executa as queries necessárias, filtradas pelos <code>store_ids</code> autorizados.</li>
-<li><strong>DataBridge → MCP:</strong> retorna os dados solicitados.</li>
-<li><strong>MCP → Plataforma:</strong> retorna o resultado da execução da tool.</li>
-<li><strong>Plataforma → Usuário:</strong> exibe a resposta com os dados das lojas.</li>
-</ol>
+<p>Cada contrato deve acompanhar um exemplo de payload no formato JSON:</p>
+<div class="language-json highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"&lt;campo&gt;"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;valor&gt;"</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="versionamento-do-contrato">Versionamento do contrato<a class="headerlink" href="#versionamento-do-contrato" title="Permanent link">&para;</a></h2>
+<p>Cada contrato de domínio declara sua própria versão, independente das demais. Quando um contrato sofre uma mudança incompatível, uma nova versão deve ser publicada, e a anterior permanece acessível.</p>
 <h2 id="referencias">Referências<a class="headerlink" href="#referencias" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="https://datatracker.ietf.org/doc/html/rfc6749">RFC 6749 — OAuth 2.0</a></li>
-<li><a href="https://datatracker.ietf.org/doc/html/rfc7636">RFC 7636 — Proof Key for Code Exchange (PKCE)</a></li>
-<li><a href="https://datatracker.ietf.org/doc/html/rfc7519">RFC 7519 — JSON Web Token (JWT)</a></li>
+<li>Model Context Protocol — <a href="https://modelcontextprotocol.io/docs/concepts/resources">Resources</a></li>
 </ul>
 
 
@@ -1101,10 +882,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "Mais 1 nesta p\u00e1gina", "search.result.more.other": "Mais # nesta p\u00e1gina", "search.result.none": "Nenhum resultado encontrado", "search.result.one": "1 resultado encontrado", "search.result.other": "# resultados encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "search.suggest", "search.highlight"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "Mais 1 nesta p\u00e1gina", "search.result.more.other": "Mais # nesta p\u00e1gina", "search.result.none": "Nenhum resultado encontrado", "search.result.one": "1 resultado encontrado", "search.result.other": "# resultados encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

@@ -2,22 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://openrestaurantprotocol.org/v1/</loc>
-         <lastmod>2026-10-08</lastmod>
+         <lastmod>2026-10-09</lastmod>
+    </url>
+    <url>
+         <loc>https://openrestaurantprotocol.org/v1/auth/discovery/</loc>
+         <lastmod>2026-10-09</lastmod>
     </url>
     <url>
          <loc>https://openrestaurantprotocol.org/v1/auth/mcp-oauth/</loc>
-         <lastmod>2026-10-08</lastmod>
+         <lastmod>2026-10-09</lastmod>
     </url>
     <url>
          <loc>https://openrestaurantprotocol.org/v1/auth/oauth-requirements/</loc>
-         <lastmod>2026-10-08</lastmod>
+         <lastmod>2026-10-09</lastmod>
     </url>
     <url>
          <loc>https://openrestaurantprotocol.org/v1/auth/oauth/</loc>
-         <lastmod>2026-10-08</lastmod>
+         <lastmod>2026-10-09</lastmod>
+    </url>
+    <url>
+         <loc>https://openrestaurantprotocol.org/v1/data-contracts/</loc>
+         <lastmod>2026-10-09</lastmod>
     </url>
     <url>
          <loc>https://openrestaurantprotocol.org/v1/integrations/mcp/</loc>
-         <lastmod>2026-10-08</lastmod>
+         <lastmod>2026-10-09</lastmod>
     </url>
 </urlset>
