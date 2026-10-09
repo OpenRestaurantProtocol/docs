@@ -1,11 +1,10 @@
 site_name: Open Restaurant Protocol
 site_description: Padrão aberto para integrações do ecossistema Open Restaurant.
 site_url: https://openrestaurantprotocol.org/
-repo_url: https://github.com/OpenRestaurantProtocol/docs
-repo_name: OpenRestaurantProtocol/docs
 exclude_docs: |
   diagrams/oauth/*.json
   diagrams/oauth/*.mjs
+  changes/**
 theme:
   name: material
   language: pt
@@ -14,15 +13,15 @@ theme:
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: indigo
-      accent: blue
+      primary: black
+      accent: indigo
       toggle:
         icon: material/weather-sunny
         name: Alternar para modo escuro
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: indigo
-      accent: blue
+      primary: black
+      accent: indigo
       toggle:
         icon: material/weather-night
         name: Alternar para modo claro
@@ -35,12 +34,15 @@ theme:
     - search.highlight
 nav:
   - Início: index.md
-  - Integrações:
-      - Toqan (MCP): integrations/toqan-mcp.md
   - Autenticação:
       - OAuth: auth/oauth.md
-      - Requisitos do OAuth no Toqan: auth/toqan-oauth-requirements.md
-      - Como construir um MCP com OAuth: auth/toqan-mcp-oauth.md
+      - Requisitos do OAuth: auth/oauth-requirements.md
+      - Discovery: auth/discovery.md
+      - Como construir um MCP com OAuth: auth/mcp-oauth.md
+  - Contratos de Dados:
+      - Visão geral: data-contracts/index.md
+  - Integrações:
+      - MCP: integrations/mcp.md
 markdown_extensions:
   - admonition
   - attr_list
@@ -65,3 +67,7 @@ markdown_extensions:
       alternate_style: true
 plugins:
   - search
+  - mike
+extra:
+  version:
+    provider: mike

@@ -1,13 +1,13 @@
-# Conectando no Toqan via MCP
+# Integração via MCP
 
-Esta seção documenta como conectar no **Toqan** de forma **segura** usando o protocolo MCP (Model Context Protocol).
+Esta seção documenta como conectar um serviço à plataforma usando o protocolo MCP (Model Context Protocol).
 
 !!! info "Contexto"
-    O MCP expõe as tools do ecossistema (por exemplo, `listar_lojas` e `buscar_dados`) para o Toqan. Toda chamada é autenticada com **Bearer JWT** e validada antes de tocar no DataBridge — veja o [fluxo OAuth](../auth/oauth.md).
+    O MCP expõe as tools do ecossistema (por exemplo, `listar_lojas` e `buscar_dados`) para a plataforma. Toda chamada é autenticada com **Bearer JWT** e validada antes de tocar no DataBridge — veja o [fluxo OAuth](../auth/oauth.md).
 
 ## Pré-requisitos
 
-- [ ] Credencial / token do Toqan
+- [ ] Credencial / token
 - [ ] Endpoint do servidor MCP
 - [ ] Cliente MCP configurado
 
@@ -21,8 +21,8 @@ Esta seção documenta como conectar no **Toqan** de forma **segura** usando o p
     ```json title="mcp_config.json"
     {
       "mcpServers": {
-        "toqan": {
-          "url": "https://mcp.example.com/toqan"
+        "meu-servidor": {
+          "url": "https://mcp.example.com/meu-servidor"
         }
       }
     }
@@ -38,5 +38,5 @@ Esta seção documenta como conectar no **Toqan** de forma **segura** usando o p
 
 ## Referências
 
-- [ ] Documentação oficial do Toqan
+- [Discovery OAuth/MCP](../auth/discovery.md)
 - [ ] Especificação do MCP

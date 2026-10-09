@@ -9,8 +9,8 @@
     "animation": "trace"
   },
   "participants": [
-    { "id": "user", "type": "external", "label": "Toqan User", "sublabel": "operator" },
-    { "id": "toqan", "type": "backend", "label": "Toqan", "sublabel": "agent" },
+    { "id": "user", "type": "external", "label": "User", "sublabel": "operator" },
+    { "id": "platform", "type": "backend", "label": "Platform", "sublabel": "agent" },
     { "id": "login", "type": "frontend", "label": "Login (Partner)", "sublabel": "login page" },
     { "id": "oauth", "type": "security", "label": "OAuth (Partner)", "sublabel": "authorization server" },
     { "id": "auth", "type": "backend", "label": "Auth-Service", "sublabel": "authorization (Partner)" },
@@ -23,35 +23,35 @@
     { "from": 855, "to": 1175, "label": "Data Query" }
   ],
   "messages": [
-    { "id": "m01", "from": "user", "to": "toqan", "y": 178, "label": "Connect Partner", "variant": "emphasis" },
-    { "id": "m02", "from": "toqan", "to": "login", "y": 218, "label": "redirect (client_id, scopes, PKCE)", "variant": "default" },
+    { "id": "m01", "from": "user", "to": "platform", "y": 178, "label": "Connect Partner", "variant": "emphasis" },
+    { "id": "m02", "from": "platform", "to": "login", "y": 218, "label": "redirect (client_id, scopes, PKCE)", "variant": "default" },
     { "id": "m03", "from": "user", "to": "login", "y": 258, "label": "credentials + MFA", "variant": "default" },
     { "id": "m04", "from": "login", "to": "oauth", "y": 298, "label": "validate credentials", "variant": "security" },
-    { "id": "m05", "from": "oauth", "to": "toqan", "y": 338, "label": "authorization code (callback)", "variant": "return" },
-    { "id": "m06", "from": "toqan", "to": "oauth", "y": 378, "label": "exchange code for tokens (code_verifier)", "variant": "security" },
-    { "id": "m07", "from": "oauth", "to": "toqan", "y": 418, "label": "access_token + refresh_token", "variant": "return" },
-    { "id": "m08", "from": "toqan", "to": "user", "y": 498, "label": "partner connected", "variant": "return" },
-    { "id": "m09", "from": "user", "to": "toqan", "y": 560, "label": "prompt about partner data", "variant": "emphasis" },
-    { "id": "m10", "from": "toqan", "to": "mcp", "y": 600, "label": "list_stores + Bearer JWT", "variant": "emphasis" },
+    { "id": "m05", "from": "oauth", "to": "platform", "y": 338, "label": "authorization code (callback)", "variant": "return" },
+    { "id": "m06", "from": "platform", "to": "oauth", "y": 378, "label": "exchange code for tokens (code_verifier)", "variant": "security" },
+    { "id": "m07", "from": "oauth", "to": "platform", "y": 418, "label": "access_token + refresh_token", "variant": "return" },
+    { "id": "m08", "from": "platform", "to": "user", "y": 498, "label": "partner connected", "variant": "return" },
+    { "id": "m09", "from": "user", "to": "platform", "y": 560, "label": "prompt about partner data", "variant": "emphasis" },
+    { "id": "m10", "from": "platform", "to": "mcp", "y": 600, "label": "list_stores + Bearer JWT", "variant": "emphasis" },
     { "id": "m11", "from": "mcp", "to": "auth", "y": 680, "label": "query stores and permissions", "variant": "security" },
     { "id": "m12", "from": "auth", "to": "mcp", "y": 720, "label": "stores + permissions", "variant": "return" },
-    { "id": "m13", "from": "mcp", "to": "toqan", "y": 800, "label": "store list (ids, names)", "variant": "return" },
-    { "id": "m14", "from": "toqan", "to": "mcp", "y": 885, "label": "fetch_data(store_ids) + Bearer JWT", "variant": "emphasis" },
+    { "id": "m13", "from": "mcp", "to": "platform", "y": 800, "label": "store list (ids, names)", "variant": "return" },
+    { "id": "m14", "from": "platform", "to": "mcp", "y": 885, "label": "fetch_data(store_ids) + Bearer JWT", "variant": "emphasis" },
     { "id": "m15", "from": "mcp", "to": "auth", "y": 965, "label": "validate subject permissions", "variant": "security" },
     { "id": "m16", "from": "auth", "to": "mcp", "y": 1005, "label": "stores + permissions", "variant": "return" },
     { "id": "m17", "from": "mcp", "to": "bridge", "y": 1045, "label": "queries filtered by store_ids", "variant": "emphasis" },
     { "id": "m18", "from": "bridge", "to": "mcp", "y": 1085, "label": "requested data", "variant": "return" },
-    { "id": "m19", "from": "mcp", "to": "toqan", "y": 1125, "label": "tool result", "variant": "return" },
-    { "id": "m20", "from": "toqan", "to": "user", "y": 1165, "label": "response with data", "variant": "return" }
+    { "id": "m19", "from": "mcp", "to": "platform", "y": 1125, "label": "tool result", "variant": "return" },
+    { "id": "m20", "from": "platform", "to": "user", "y": 1165, "label": "response with data", "variant": "return" }
   ],
   "activations": [
-    { "participant": "toqan", "from": 173, "to": 503, "type": "backend" },
+    { "participant": "platform", "from": 173, "to": 503, "type": "backend" },
     { "participant": "login", "from": 213, "to": 303, "type": "frontend" },
     { "participant": "oauth", "from": 293, "to": 423, "type": "security" },
-    { "participant": "toqan", "from": 555, "to": 805, "type": "backend" },
+    { "participant": "platform", "from": 555, "to": 805, "type": "backend" },
     { "participant": "mcp", "from": 595, "to": 805, "type": "backend" },
     { "participant": "auth", "from": 675, "to": 725, "type": "backend" },
-    { "participant": "toqan", "from": 880, "to": 1170, "type": "backend" },
+    { "participant": "platform", "from": 880, "to": 1170, "type": "backend" },
     { "participant": "mcp", "from": 880, "to": 1130, "type": "backend" },
     { "participant": "auth", "from": 960, "to": 1010, "type": "backend" },
     { "participant": "bridge", "from": 1040, "to": 1090, "type": "database" }
@@ -62,7 +62,7 @@
       "title": "OAuth + PKCE Connection",
       "items": [
         "The partner authenticates the user and issues an authorization code",
-        "Toqan exchanges the code for tokens using the PKCE code_verifier",
+        "The platform exchanges the code for tokens using the PKCE code_verifier",
         "The access_token (JWT) authenticates every subsequent call"
       ]
     },
@@ -81,7 +81,7 @@
       "items": [
         "DataBridge runs queries filtered by authorized store_ids",
         "The MCP never queries stores outside the subject's scope",
-        "Toqan returns the response to the user"
+        "The platform returns the response to the user"
       ]
     }
   ]

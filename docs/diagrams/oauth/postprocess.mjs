@@ -37,7 +37,7 @@ function edgeY(id) {
 // Self-loops to draw, each sitting in the vertical gap between `after`
 // (message above) and `before` (message below).
 const loops = [
-  { participant: 'toqan', after: 'm07', before: 'm08', label: 'stores connection tokens' },
+  { participant: 'platform', after: 'm07', before: 'm08', label: 'stores connection tokens' },
   { participant: 'mcp',   after: 'm10', before: 'm11', label: 'validates JWT' },
   { participant: 'mcp',   after: 'm12', before: 'm13', label: 'caches permissions (short TTL)' },
   { participant: 'mcp',   after: 'm14', before: 'm15', label: 'validates JWT' },
