@@ -11,15 +11,44 @@ A autenticação, a emissão de token e o fornecimento do userinfo são responsa
 
 ## O que você precisa fornecer
 
-> Para o fluxo completo de descoberta (RFC 8414, RFC 9728 e Dynamic Client Registration), veja a página de [Discovery](discovery.md).
-
 ### 1. Authorization code + PKCE
 
 - Grant: **authorization code**.
 - **PKCE** obrigatório (método `S256`), com `code_challenge` e `code_verifier`.
 - Emita **refresh token** junto com o access token.
 
-### 2. Endpoint de userinfo (OIDC)
+### 2. Descoberta e credenciais do client
+
+#### 2.1 Metadados de descoberta (RFC 8414)
+
+Para que a plataforma descubra seu authorization server automaticamente (sem configuração manual), exponha um documento de metadados (ex.: `/.well-known/oauth-authorization-server`) com, no mínimo:
+
+| Campo | Obrigatório? | Observação |
+|---|---|---|
+| `issuer` | Sim | Identificador do servidor de autorização |
+| `authorization_endpoint` | Sim | Endpoint de autorização (authorization code) |
+| `token_endpoint` | Sim | Endpoint de troca de code por token |
+| `scopes_supported` | Recomendado | Lista de scopes aceitos |
+| `response_types_supported` | Sim | Deve incluir `code` |
+| `grant_types_supported` | Sim | Deve incluir `authorization_code` (e `refresh_token`) |
+| `token_endpoint_auth_methods_supported` | Sim | Ex.: `client_secret_basic`, `client_secret_post`, `none` (para clientes públicos/PKCE) |
+| `code_challenge_methods_supported` | Sim | Deve incluir `S256` (PKCE) |
+| `registration_endpoint` | Opcional | Necessário somente se quiser suportar DCR |
+
+#### 2.2 Dynamic Client Registration (RFC 7591)
+
+No fluxo de authorization code, o **client OAuth é a plataforma**, não o seu serviço. Para que a plataforma consiga se autenticar, existem dois caminhos: DCR (recomendado) e registro manual.
+
+Se o seu authorization server expuser `registration_endpoint` (RFC 7591) e suportar **Dynamic Client Registration (DCR)**, a plataforma se auto-registra como client e obtém `client_id`/`client_secret` sem nenhuma troca manual de credenciais.
+
+#### 2.3 Alternativa: registro manual
+
+Se o seu authorization server não suportar DCR, registre a plataforma como client no seu IdP e nos envie:
+
+- **`client_id`** e **`client_secret`** (o `client_secret` é obrigatório no fluxo típico com client confidencial).
+- **URL de callback/redirect**: essa URL é fixa por ambiente da plataforma. Solicite o valor ao time da plataforma antes de registrar o client no seu IdP. Sem esse registro, o redirect do fluxo de autorização falha.
+
+### 3. Endpoint de userinfo (OIDC)
 
 Além de emitir tokens, você precisa expor um endpoint de **userinfo** (OIDC). É com ele que a plataforma recupera a identidade do usuário e, principalmente, a lista de **lojas** e o **perfil/roles de acesso** da conta.
 
@@ -53,19 +82,6 @@ Exemplo resumido:
 ```
 
 > É a partir da lista de lojas e do perfil/roles que a plataforma determina quais lojas o usuário pode acessar. A validação do token e a consulta ao userinfo são responsabilidade da plataforma; você só precisa expor o endpoint.
-
-### 3. Credenciais do client
-
-No fluxo de authorization code, o **client OAuth é a plataforma**, não o seu serviço. Para que a plataforma consiga se autenticar, existem dois caminhos: DCR (recomendado) e registro manual.
-
-> O registro automático via Dynamic Client Registration (DCR) está detalhado na página de [Discovery](discovery.md).
-
-#### Alternativa: registro manual
-
-Se o seu authorization server não suportar DCR, registre a plataforma como client no seu IdP e nos envie:
-
-- **`client_id`** e **`client_secret`** (o `client_secret` é obrigatório no fluxo típico com client confidencial).
-- **URL de callback/redirect**: essa URL é fixa por ambiente da plataforma. Solicite o valor ao time da plataforma antes de registrar o client no seu IdP. Sem esse registro, o redirect do fluxo de autorização falha.
 
 ## Informações que você precisa fornecer
 

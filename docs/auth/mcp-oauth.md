@@ -17,9 +17,13 @@ A autorização por loja/recurso vive no seu servidor, não na plataforma.
 
 ## O que o seu MCP precisa expor
 
-> Para o detalhamento completo dos metadados RFC 8414 (authorization server) e RFC 9728 (protected resource), veja a página de [Discovery](discovery.md).
+### 1. Metadados do recurso protegido (RFC 9728)
 
-### 1. Grant de authorization code + PKCE
+A plataforma faz a descoberta do recurso protegido a partir da URL do MCP (ou de um spec OpenAPI/discovery): identifica a lista de authorization servers e os scopes suportados, depois baixa o `.well-known` do authorization server e lê os endpoints.
+
+Do lado do servidor MCP, o documento de metadados do recurso protegido (`/.well-known/oauth-protected-resource`) deve declarar os authorization servers e o `base_url` do MCP. Com FastMCP, o `RemoteAuthProvider` publica esse documento automaticamente (veja o exemplo no final desta página).
+
+### 2. Grant de authorization code + PKCE
 
 O fluxo de autorização usa o grant de **authorization code** com **PKCE** (não confundir com client credentials, que é outro grant).
 
@@ -28,7 +32,7 @@ Requisitos obrigatórios no seu authorization server:
 - Suporte a PKCE (`S256`), incluindo `code_challenge` e `code_verifier`.
 - Emissão de **refresh token** junto com o access token.
 
-### 2. Contrato de validação do token
+### 3. Contrato de validação do token
 
 A plataforma orquestra o fluxo completo: inicia a autorização, processa o callback, armazena o token, faz refresh e revogação. Do seu lado, o que importa é:
 

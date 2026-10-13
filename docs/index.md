@@ -26,6 +26,6 @@ O **Open Restaurant Protocol** (ORP) define como sistemas se conectam e trocam d
 ## Learn More
 
 - [Autenticação](auth/oauth.md) — o fluxo OAuth e os requisitos para integrar.
-- [Discovery](auth/discovery.md) — descoberta automática de authorization servers e recursos protegidos.
+- [Requisitos do OAuth](auth/oauth-requirements.md) — descoberta, autorização e credenciais do client.
 - [Contratos de Dados](data-contracts/index.md) — a estrutura de um contrato de domínio.
 - [Integrações](integrations/mcp.md) — como conectar via MCP.

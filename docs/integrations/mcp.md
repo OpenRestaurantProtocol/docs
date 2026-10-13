@@ -38,5 +38,5 @@ Esta seção documenta como conectar um serviço à plataforma usando o protocol
 
 ## Referências
 
-- [Discovery OAuth/MCP](../auth/discovery.md)
+- [Requisitos do OAuth](../auth/oauth-requirements.md)
 - [ ] Especificação do MCP
