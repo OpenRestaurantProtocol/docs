@@ -1091,6 +1091,10 @@ O que você entrega: o authorization server pronto, um endpoint de userinfo e as
 </ul>
 <h3 id="3-endpoint-de-userinfo-oidc">3. Endpoint de userinfo (OIDC)<a class="headerlink" href="#3-endpoint-de-userinfo-oidc" title="Permanent link">&para;</a></h3>
 <p>Além de emitir tokens, você precisa expor um endpoint de <strong>userinfo</strong> (OIDC). É com ele que a plataforma recupera a identidade do usuário e, principalmente, a lista de <strong>lojas</strong> e o <strong>perfil/roles de acesso</strong> da conta.</p>
+<p>No mínimo, o endpoint deve aceitar o header de autorização com o <strong>token do usuário</strong>:</p>
+<div class="language-text highlight"><pre><span></span><code>Authorization: Bearer &lt;access_token&gt;
+</code></pre></div>
+<p>A plataforma envia esse header a cada chamada. Seu endpoint deve validar o token (assinatura, <code>iss</code>, <code>aud</code>, <code>exp</code>) e usar o <code>sub</code> para identificar a conta antes de responder.</p>
 <p>O endpoint deve retornar, no mínimo:</p>
 <ul>
 <li><code>sub</code>: identificador único do usuário.</li>
