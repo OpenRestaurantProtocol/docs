@@ -52,6 +52,14 @@ Se o seu authorization server não suportar DCR, registre a plataforma como clie
 
 Além de emitir tokens, você precisa expor um endpoint de **userinfo** (OIDC). É com ele que a plataforma recupera a identidade do usuário e, principalmente, a lista de **lojas** e o **perfil/roles de acesso** da conta.
 
+No mínimo, o endpoint deve aceitar o header de autorização com o **token do usuário**:
+
+```
+Authorization: Bearer <access_token>
+```
+
+A plataforma envia esse header a cada chamada. Seu endpoint deve validar o token (assinatura, `iss`, `aud`, `exp`) e usar o `sub` para identificar a conta antes de responder.
+
 O endpoint deve retornar, no mínimo:
 
 - `sub`: identificador único do usuário.
