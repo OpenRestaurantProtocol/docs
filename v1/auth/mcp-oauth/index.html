@@ -13,7 +13,7 @@
         <link rel="canonical" href="https://openrestaurantprotocol.org/v1/auth/mcp-oauth/">
       
       
-        <link rel="prev" href="../discovery/">
+        <link rel="prev" href="../oauth-requirements/">
       
       
         <link rel="next" href="../../data-contracts/">
@@ -373,8 +373,6 @@
       
         
       
-        
-      
     
     
     
@@ -483,34 +481,6 @@
                 
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../discovery/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Discovery
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
     
   
   
@@ -597,10 +567,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-grant-de-authorization-code-pkce" class="md-nav__link">
+  <a href="#1-metadados-do-recurso-protegido-rfc-9728" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Grant de authorization code + PKCE
+        1. Metadados do recurso protegido (RFC 9728)
       
     </span>
   </a>
@@ -608,10 +578,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-contrato-de-validacao-do-token" class="md-nav__link">
+  <a href="#2-grant-de-authorization-code-pkce" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Contrato de validação do token
+        2. Grant de authorization code + PKCE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-contrato-de-validacao-do-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Contrato de validação do token
       
     </span>
   </a>
@@ -871,10 +852,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-grant-de-authorization-code-pkce" class="md-nav__link">
+  <a href="#1-metadados-do-recurso-protegido-rfc-9728" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Grant de authorization code + PKCE
+        1. Metadados do recurso protegido (RFC 9728)
       
     </span>
   </a>
@@ -882,10 +863,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-contrato-de-validacao-do-token" class="md-nav__link">
+  <a href="#2-grant-de-authorization-code-pkce" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Contrato de validação do token
+        2. Grant de authorization code + PKCE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-contrato-de-validacao-do-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Contrato de validação do token
       
     </span>
   </a>
@@ -952,17 +944,17 @@ Escopo deste doc: o lado do servidor MCP e o que ele precisa expor para a plataf
 </ol>
 <p>A autorização por loja/recurso vive no seu servidor, não na plataforma.</p>
 <h2 id="o-que-o-seu-mcp-precisa-expor">O que o seu MCP precisa expor<a class="headerlink" href="#o-que-o-seu-mcp-precisa-expor" title="Permanent link">&para;</a></h2>
-<blockquote>
-<p>Para o detalhamento completo dos metadados RFC 8414 (authorization server) e RFC 9728 (protected resource), veja a página de <a href="../discovery/">Discovery</a>.</p>
-</blockquote>
-<h3 id="1-grant-de-authorization-code-pkce">1. Grant de authorization code + PKCE<a class="headerlink" href="#1-grant-de-authorization-code-pkce" title="Permanent link">&para;</a></h3>
+<h3 id="1-metadados-do-recurso-protegido-rfc-9728">1. Metadados do recurso protegido (RFC 9728)<a class="headerlink" href="#1-metadados-do-recurso-protegido-rfc-9728" title="Permanent link">&para;</a></h3>
+<p>A plataforma faz a descoberta do recurso protegido a partir da URL do MCP (ou de um spec OpenAPI/discovery): identifica a lista de authorization servers e os scopes suportados, depois baixa o <code>.well-known</code> do authorization server e lê os endpoints.</p>
+<p>Do lado do servidor MCP, o documento de metadados do recurso protegido (<code>/.well-known/oauth-protected-resource</code>) deve declarar os authorization servers e o <code>base_url</code> do MCP. Com FastMCP, o <code>RemoteAuthProvider</code> publica esse documento automaticamente (veja o exemplo no final desta página).</p>
+<h3 id="2-grant-de-authorization-code-pkce">2. Grant de authorization code + PKCE<a class="headerlink" href="#2-grant-de-authorization-code-pkce" title="Permanent link">&para;</a></h3>
 <p>O fluxo de autorização usa o grant de <strong>authorization code</strong> com <strong>PKCE</strong> (não confundir com client credentials, que é outro grant).</p>
 <p>Requisitos obrigatórios no seu authorization server:</p>
 <ul>
 <li>Suporte a PKCE (<code>S256</code>), incluindo <code>code_challenge</code> e <code>code_verifier</code>.</li>
 <li>Emissão de <strong>refresh token</strong> junto com o access token.</li>
 </ul>
-<h3 id="2-contrato-de-validacao-do-token">2. Contrato de validação do token<a class="headerlink" href="#2-contrato-de-validacao-do-token" title="Permanent link">&para;</a></h3>
+<h3 id="3-contrato-de-validacao-do-token">3. Contrato de validação do token<a class="headerlink" href="#3-contrato-de-validacao-do-token" title="Permanent link">&para;</a></h3>
 <p>A plataforma orquestra o fluxo completo: inicia a autorização, processa o callback, armazena o token, faz refresh e revogação. Do seu lado, o que importa é:</p>
 <ul>
 <li>A cada request, a plataforma injeta o header <code>Authorization: Bearer &lt;access_token&gt;</code>.</li>
