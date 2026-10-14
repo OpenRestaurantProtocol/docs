@@ -10,11 +10,22 @@ Esta seção documenta o fluxo de **autenticação e autorização** usado para 
 | Plataforma | Agente que consome os dados via MCP |
 | Login (Parceiro) | Página de login do software de restaurante |
 | OAuth (Parceiro) | Authorization server do parceiro |
-| Auth-Service (Parceiro) | Serviço de autorização do parceiro |
 | MCP | Servidor MCP do ecossistema que expõe as tools |
-| DataBridge | Camada de acesso aos dados (executa as queries) |
+| DataBridge (Parceiro) | Camada de acesso aos dados do parceiro (executa as queries) |
 
-> **Nota:** "Parceiro" representa qualquer software de restaurante integrado.
+!!! note "Parceiro"
+    "Parceiro" representa qualquer software de restaurante integrado. DataBridge é um componente do lado do parceiro, não da plataforma.
+
+## Como a plataforma obtém o OAuth antes do fluxo
+
+Antes do fluxo de autorização, a plataforma precisa descobrir os endpoints do authorization server e as credenciais do client. Há três cenários:
+
+- **Sem metadados de descoberta** → **configuração manual**: o parceiro informa os endpoints e as credenciais (`client_id`/`client_secret`) explicitamente.
+- **Com metadados + DCR** → **fluxo automático**: a plataforma lê os metadados (RFC 8414) e se auto-registra como client (RFC 7591). Nada é trocado manualmente.
+- **Com metadados, sem DCR** → **descoberta automática dos endpoints**, mas as credenciais (`client_id`/`client_secret`) são informadas manualmente.
+
+!!! info
+    Os requisitos do authorization server são os mesmos em todos os cenários. Veja [Requisitos do OAuth](oauth-requirements.md) para o detalhamento completo.
 
 ## Diagrama de sequência interativo
 
@@ -39,23 +50,21 @@ Esta seção documenta o fluxo de **autenticação e autorização** usado para 
 ### 2. Pergunta sobre dados do parceiro
 
 10. **Usuário → Plataforma:** envia um prompt que envolve dados do parceiro.
-11. **Plataforma → MCP:** executa `tool_call listar_lojas` com `Bearer JWT`.
+11. **Plataforma → MCP:** executa uma tool — no exemplo, `listar_lojas` — com `Bearer JWT`.
 12. **MCP:** valida o JWT (assinatura, `iss`, `aud`, `exp`).
-13. **MCP → Auth-Service:** consulta lojas e permissões do usuário/sub.
-14. **Auth-Service → MCP:** retorna `stores` e `permissions`.
-15. **MCP:** armazena/cacheia as permissões por um **TTL curto**.
-16. **MCP → Plataforma:** retorna a lista de lojas (`ids` e `names`).
+13. **MCP → OAuth (Parceiro):** chama `GET /userinfo` com o Bearer token para obter o contexto de autorização do usuário (identidade + permissões).
+14. **OAuth (Parceiro) → MCP:** retorna `sub`, `email` e `profile_permissions`.
+15. **MCP:** aplica a lógica de autorização — determina quais lojas/recursos o usuário pode acessar.
+16. **MCP → Plataforma:** retorna a lista de lojas autorizadas.
 
 ### 3. Consulta dos dados
 
-17. **Plataforma → MCP:** executa `tool_call buscar_dados(store_ids)` com `Bearer JWT`.
-18. **MCP:** valida novamente o JWT (assinatura, `iss`, `aud`, `exp`).
-19. **MCP → Auth-Service:** valida as permissões do `sub` para as lojas solicitadas (ou usa o cache).
-20. **Auth-Service → MCP:** retorna as lojas e permissões.
-21. **MCP → DataBridge:** executa as queries necessárias, filtradas pelos `store_ids` autorizados.
-22. **DataBridge → MCP:** retorna os dados solicitados.
-23. **MCP → Plataforma:** retorna o resultado da execução da tool.
-24. **Plataforma → Usuário:** exibe a resposta com os dados das lojas.
+17. **Plataforma → MCP:** executa `tool_call buscar_dados(merchant_ids)` com `Bearer JWT`.
+18. **MCP:** valida o JWT (assinatura, `iss`, `aud`, `exp`) e verifica o escopo de autorização do usuário.
+19. **MCP → DataBridge (Parceiro):** executa as queries necessárias no armazenamento de dados do parceiro, filtradas pelos `merchant_ids` autorizados.
+20. **DataBridge → MCP:** retorna os dados solicitados.
+21. **MCP → Plataforma:** retorna o resultado da execução da tool.
+22. **Plataforma → Usuário:** exibe a resposta com os dados das lojas.
 
 ## Referências
 

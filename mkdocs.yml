@@ -38,6 +38,10 @@ nav:
       - OAuth: auth/oauth.md
       - Requisitos do OAuth: auth/oauth-requirements.md
       - Como construir um MCP com OAuth: auth/mcp-oauth.md
+  - Autorização:
+      - Visão geral: authz/index.md
+      - Userinfo (OIDC): authz/userinfo.md
+      - Lojas: authz/merchants.md
   - Contratos de Dados:
       - Visão geral: data-contracts/index.md
   - Integrações:

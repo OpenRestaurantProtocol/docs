@@ -1,7 +1,9 @@
 # Como construir um MCP com OAuth
 
-> Público: quem vai construir (ou adaptar) um servidor MCP que será consumido pela plataforma e precisa autenticar via OAuth.
-> Escopo deste doc: o lado do servidor MCP e o que ele precisa expor para a plataforma conseguir autenticar e injetar o token.
+!!! info "Público"
+    Quem vai construir (ou adaptar) um servidor MCP que será consumido pela plataforma e precisa autenticar via OAuth.
+
+    Escopo deste doc: o lado do servidor MCP e o que ele precisa expor para a plataforma conseguir autenticar e injetar o token.
 
 ## Visão geral
 
@@ -19,9 +21,18 @@ A autorização por loja/recurso vive no seu servidor, não na plataforma.
 
 ### 1. Metadados do recurso protegido (RFC 9728)
 
-A plataforma faz a descoberta do recurso protegido a partir da URL do MCP (ou de um spec OpenAPI/discovery): identifica a lista de authorization servers e os scopes suportados, depois baixa o `.well-known` do authorization server e lê os endpoints.
+A descoberta acontece em **dois estágios**. Primeiro a plataforma descobre o **recurso protegido** (o seu MCP/API) via RFC 9728; só depois, a partir da lista de authorization servers publicada ali, ela busca os metadados do authorization server (RFC 8414). Ou seja, o documento do recurso protegido é o ponto de entrada da autenticação.
 
-Do lado do servidor MCP, o documento de metadados do recurso protegido (`/.well-known/oauth-protected-resource`) deve declarar os authorization servers e o `base_url` do MCP. Com FastMCP, o `RemoteAuthProvider` publica esse documento automaticamente (veja o exemplo no final desta página).
+O documento de metadados do recurso protegido deve ser publicado em `/.well-known/oauth-protected-resource` com, no mínimo:
+
+| Campo | Obrigatório? | Observação |
+|---|---|---|
+| `resource` | Sim | Identificador canônico do recurso protegido (a URL do MCP) |
+| `authorization_servers` | Sim | Lista não vazia de authorization servers do recurso |
+
+Se o endpoint direto não estiver disponível, a plataforma faz um request sem token para o MCP. Uma resposta `401` com o header `WWW-Authenticate: Bearer resource_metadata="..."` é esperada e serve como sinal de descoberta (não é um erro de integração). A plataforma então busca a URL indicada. Se não houver nem endpoint direto nem `resource_metadata`, a autodescoberta não é possível.
+
+Com FastMCP, o `RemoteAuthProvider` publica esse documento automaticamente (veja o exemplo no final desta página).
 
 ### 2. Grant de authorization code + PKCE
 
@@ -42,6 +53,12 @@ A plataforma orquestra o fluxo completo: inicia a autorização, processa o call
 
 O seu servidor MCP deve validar o token em toda chamada e responder `401` quando ele for inválido ou expirado. É esse comportamento que aciona o mecanismo de refresh da plataforma.
 
+Para o MCP validar o token como JWT, o authorization server precisa garantir a compatibilidade:
+
+- Publicar o `jwks_uri` (as chaves públicas de assinatura do token).
+- Emitir tokens com `issuer` e `audience` consistentes com o que o MCP espera.
+- Garantir que o `iss` do token corresponda ao `issuer` do metadata (RFC 8414).
+
 ## Escopo de credenciais: por usuário vs. compartilhado
 
 O servidor MCP tem um campo `credential_scope` com dois valores:
@@ -51,7 +68,11 @@ O servidor MCP tem um campo `credential_scope` com dois valores:
 
 Para listar lojas com o token do usuário, configure `credential_scope: user`.
 
-## Exemplo: MCP server em Python com FastMCP
+## Exemplos por linguagem
+
+Os exemplos abaixo são ilustrativos e focados no contrato do MCP: publicar o RFC 9728, validar o `Authorization: Bearer` e responder `401` corretamente.
+
+### Python (FastMCP)
 
 O lado do MCP server em Python usa [FastMCP](https://gofastmcp.com) com `RemoteAuthProvider`, que publica o `/.well-known/oauth-protected-resource` (RFC 9728) automaticamente:
 
@@ -75,5 +96,39 @@ auth = RemoteAuthProvider(
 
 mcp = FastMCP(name="Lojas", auth=auth)
 ```
+
+### Go (ilustrativo)
+
+Exemplo conceitual em Go, cobrindo apenas o que o MCP precisa expor e validar (sem dependência de lib específica):
+
+```go
+// 1. Publicar o metadata do recurso protegido (RFC 9728)
+mux.HandleFunc("/.well-known/oauth-protected-resource", func(w http.ResponseWriter, r *http.Request) {
+    json.NewEncoder(w).Encode(map[string]any{
+        "resource":              "https://seu-mcp.com",
+        "authorization_servers": []string{"https://auth.suaempresa.com"},
+    })
+})
+
+// 2. Validar o JWT em toda chamada protegida (jwks_uri + issuer + audience)
+func authMiddleware(next http.Handler) http.Handler {
+    return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+        token := strings.TrimPrefix(r.Header.Get("Authorization"), "Bearer ")
+
+        claims, err := validateJWT(token)
+        if err != nil {
+            w.Header().Set("WWW-Authenticate", `Bearer resource_metadata="https://seu-mcp.com/.well-known/oauth-protected-resource"`)
+            http.Error(w, "unauthorized", http.StatusUnauthorized)
+            return
+        }
+
+        ctx := context.WithValue(r.Context(), claimsKey{}, claims)
+        next.ServeHTTP(w, r.WithContext(ctx))
+    })
+}
+```
+
+!!! note
+    Outras linguagens seguem o mesmo contrato: publicar o RFC 9728, validar o `Authorization: Bearer` e responder `401` quando o token for inválido ou expirado.
 
 As credenciais `client_id`/`client_secret` não entram aqui. O client OAuth é a plataforma (veja os [requisitos do OAuth](oauth-requirements.md)). O MCP server valida o token via JWKS ou, se preferir, via introspection.

@@ -71,23 +71,25 @@ for (const loop of loops) {
 // Shift a message label (and its mask rect) horizontally by `delta` px.
 // Negative = left, positive = right.
 function shiftLabel(labelText, delta) {
+  const escaped = labelText.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   const blockRe = new RegExp(
-    `<g data-detail="context">\\s*<rect x="([\\d.]+)" ([^>]*)/>\\s*<text x="([\\d.]+)" ([^>]*)>${labelText}</text>\\s*</g>`
+    `<g data-detail="context">\\s*<rect x="([\\d.]+)" ([^>]*)/>\\s*<text x="([\\d.]+)" ([^>]*)>${escaped}</text>\\s*</g>`,
+    'g'
   );
-  const m = html.match(blockRe);
-  if (!m) {
+  let found = false;
+  html = html.replace(blockRe, (match, rectX, rectRest, textX, textRest) => {
+    found = true;
+    const newRectX = parseFloat(rectX) + delta;
+    const newTextX = parseFloat(textX) + delta;
+    return `<g data-detail="context">\n          <rect x="${newRectX}" ${rectRest}/>\n          <text x="${newTextX}" ${textRest}>${labelText}</text>\n        </g>`;
+  });
+  if (!found) {
     console.error(`SKIP label shift: "${labelText}" block not found`);
-    return;
   }
-  const rectX = parseFloat(m[1]) + delta;
-  const textX = parseFloat(m[3]) + delta;
-  const replacement = `<g data-detail="context">\n          <rect x="${rectX}" ${m[2]}/>\n          <text x="${textX}" ${m[4]}>${labelText}</text>\n        </g>`;
-  html = html.replace(blockRe, replacement);
 }
 
-shiftLabel('query stores and permissions', -18);
-shiftLabel('validate subject permissions', -18);
-shiftLabel('queries filtered by store_ids', 20);
+shiftLabel('GET /userinfo + Bearer JWT', -18);
+shiftLabel('queries filtered by merchant_ids', 20);
 
 writeFileSync(file, html, 'utf8');
 console.log(`postprocessed ${file}`);

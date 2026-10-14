@@ -1,7 +1,7 @@
 # Contratos de Dados
 
 !!! warning "Em desenvolvimento"
-    Esta seção ainda não tem contratos de domínio publicados. O conteúdo abaixo descreve o template que cada contrato de domínio deverá seguir.
+    Esta seção é reservada para contratos de domínios de negócio (ex.: pedidos, cardápio, avaliações). Nenhum contrato foi publicado ainda.
 
 ## Visão geral
 
