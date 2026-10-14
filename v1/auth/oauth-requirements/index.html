@@ -1488,18 +1488,19 @@
 <p>Se o authorization server expuser <code>registration_endpoint</code> (RFC 7591) e suportar <strong>Dynamic Client Registration (DCR)</strong>, a plataforma se auto-registra como client e obtém <code>client_id</code>/<code>client_secret</code> sem nenhuma troca manual de credenciais. No DCR, a plataforma também informa seus próprios <code>redirect_uris</code> no payload de registro, então você não precisa fazer o allowlist manual da URL de callback.</p>
 <p><strong>Sem DCR</strong> (registro manual):</p>
 <ul>
-<li>Publicar metadata RFC 8414 + expor <code>/userinfo</code>.</li>
+<li>Publicar metadata RFC 8414.</li>
 <li>Entregar <code>client_id</code>/<code>client_secret</code> manualmente.</li>
 <li>Fazer o allowlist manual da URL de callback no IdP.</li>
 </ul>
 <p><strong>Com DCR</strong> (recomendado):</p>
 <ul>
-<li>Publicar metadata RFC 8414 + <code>registration_endpoint</code> + expor <code>/userinfo</code>.</li>
+<li>Publicar metadata RFC 8414 + <code>registration_endpoint</code>.</li>
 <li>A plataforma registra o client automaticamente (credenciais + <code>redirect_uris</code>). Nada a trocar manualmente.</li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>O DCR <strong>não</strong> elimina a necessidade de publicar metadata e userinfo. Ele só automatiza as credenciais do client e o allowlist da callback. O DCR só é possível se o seu IdP expuser o <code>registration_endpoint</code> (RFC 7591); sem ele, use o registro manual.</p>
+<p>O DCR <strong>não</strong> elimina a necessidade de publicar metadata. Ele só automatiza as credenciais do client e o allowlist da callback. O DCR só é possível se o seu IdP expuser o <code>registration_endpoint</code> (RFC 7591); sem ele, use o registro manual.</p>
+<p>O userinfo é uma camada separada (identidade/autorização), não um requisito de autenticação. Veja <a href="../../authz/userinfo/">Userinfo (OIDC)</a>.</p>
 </div>
 <h2 id="caminho-2-configuracao-manual">Caminho 2 — Configuração manual<a class="headerlink" href="#caminho-2-configuracao-manual" title="Permanent link">&para;</a></h2>
 <p>Quando a autodescoberta não é possível (por exemplo, o MCP não publica os metadados, ou é preciso usar um client já registrado), você entrega explicitamente as informações de OAuth. Você precisa fornecer:</p>
