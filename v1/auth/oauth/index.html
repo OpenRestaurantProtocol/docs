@@ -261,6 +261,28 @@
     
     
       <li class="md-tabs__item">
+        <a href="../../authz/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Autorização
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
         <a href="../../data-contracts/" class="md-tabs__link">
           
   
@@ -499,6 +521,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#como-a-plataforma-obtem-o-oauth-antes-do-fluxo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Como a plataforma obtém o OAuth antes do fluxo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#diagrama-de-sequencia-interativo" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -655,6 +688,10 @@
           
         
       
+        
+      
+        
+      
     
     
     
@@ -669,6 +706,136 @@
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../authz/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Autorização
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Autorização
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../authz/userinfo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Userinfo (OIDC)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../authz/merchants/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lojas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
         
           
           <div class="md-nav__link md-nav__container">
@@ -691,8 +858,8 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -735,10 +902,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
             
   
   
@@ -756,8 +923,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -833,6 +1000,17 @@
     <span class="md-ellipsis">
       
         Participantes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#como-a-plataforma-obtem-o-oauth-antes-do-fluxo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Como a plataforma obtém o OAuth antes do fluxo
       
     </span>
   </a>
@@ -956,22 +1134,30 @@
 <td>Authorization server do parceiro</td>
 </tr>
 <tr>
-<td>Auth-Service (Parceiro)</td>
-<td>Serviço de autorização do parceiro</td>
-</tr>
-<tr>
 <td>MCP</td>
 <td>Servidor MCP do ecossistema que expõe as tools</td>
 </tr>
 <tr>
-<td>DataBridge</td>
-<td>Camada de acesso aos dados (executa as queries)</td>
+<td>DataBridge (Parceiro)</td>
+<td>Camada de acesso aos dados do parceiro (executa as queries)</td>
 </tr>
 </tbody>
 </table>
-<blockquote>
-<p><strong>Nota:</strong> "Parceiro" representa qualquer software de restaurante integrado.</p>
-</blockquote>
+<div class="admonition note">
+<p class="admonition-title">Parceiro</p>
+<p>"Parceiro" representa qualquer software de restaurante integrado. DataBridge é um componente do lado do parceiro, não da plataforma.</p>
+</div>
+<h2 id="como-a-plataforma-obtem-o-oauth-antes-do-fluxo">Como a plataforma obtém o OAuth antes do fluxo<a class="headerlink" href="#como-a-plataforma-obtem-o-oauth-antes-do-fluxo" title="Permanent link">&para;</a></h2>
+<p>Antes do fluxo de autorização, a plataforma precisa descobrir os endpoints do authorization server e as credenciais do client. Há três cenários:</p>
+<ul>
+<li><strong>Sem metadados de descoberta</strong> → <strong>configuração manual</strong>: o parceiro informa os endpoints e as credenciais (<code>client_id</code>/<code>client_secret</code>) explicitamente.</li>
+<li><strong>Com metadados + DCR</strong> → <strong>fluxo automático</strong>: a plataforma lê os metadados (RFC 8414) e se auto-registra como client (RFC 7591). Nada é trocado manualmente.</li>
+<li><strong>Com metadados, sem DCR</strong> → <strong>descoberta automática dos endpoints</strong>, mas as credenciais (<code>client_id</code>/<code>client_secret</code>) são informadas manualmente.</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Os requisitos do authorization server são os mesmos em todos os cenários. Veja <a href="../oauth-requirements/">Requisitos do OAuth</a> para o detalhamento completo.</p>
+</div>
 <h2 id="diagrama-de-sequencia-interativo">Diagrama de sequência interativo<a class="headerlink" href="#diagrama-de-sequencia-interativo" title="Permanent link">&para;</a></h2>
 <p><a href="../../diagrams/oauth/auth-flow.html" target="_blank">Abrir em tela cheia ↗</a></p>
 <iframe src="../../diagrams/oauth/auth-flow.html" width="100%" height="950" style="border: 1px solid var(--md-default-fg-color--lightest); border-radius: 6px;" loading="lazy" title="Diagrama de sequência interativo do fluxo OAuth"></iframe>
@@ -992,20 +1178,18 @@
 <h3 id="2-pergunta-sobre-dados-do-parceiro">2. Pergunta sobre dados do parceiro<a class="headerlink" href="#2-pergunta-sobre-dados-do-parceiro" title="Permanent link">&para;</a></h3>
 <ol>
 <li><strong>Usuário → Plataforma:</strong> envia um prompt que envolve dados do parceiro.</li>
-<li><strong>Plataforma → MCP:</strong> executa <code>tool_call listar_lojas</code> com <code>Bearer JWT</code>.</li>
+<li><strong>Plataforma → MCP:</strong> executa uma tool — no exemplo, <code>listar_lojas</code> — com <code>Bearer JWT</code>.</li>
 <li><strong>MCP:</strong> valida o JWT (assinatura, <code>iss</code>, <code>aud</code>, <code>exp</code>).</li>
-<li><strong>MCP → Auth-Service:</strong> consulta lojas e permissões do usuário/sub.</li>
-<li><strong>Auth-Service → MCP:</strong> retorna <code>stores</code> e <code>permissions</code>.</li>
-<li><strong>MCP:</strong> armazena/cacheia as permissões por um <strong>TTL curto</strong>.</li>
-<li><strong>MCP → Plataforma:</strong> retorna a lista de lojas (<code>ids</code> e <code>names</code>).</li>
+<li><strong>MCP → OAuth (Parceiro):</strong> chama <code>GET /userinfo</code> com o Bearer token para obter o contexto de autorização do usuário (identidade + permissões).</li>
+<li><strong>OAuth (Parceiro) → MCP:</strong> retorna <code>sub</code>, <code>email</code> e <code>profile_permissions</code>.</li>
+<li><strong>MCP:</strong> aplica a lógica de autorização — determina quais lojas/recursos o usuário pode acessar.</li>
+<li><strong>MCP → Plataforma:</strong> retorna a lista de lojas autorizadas.</li>
 </ol>
 <h3 id="3-consulta-dos-dados">3. Consulta dos dados<a class="headerlink" href="#3-consulta-dos-dados" title="Permanent link">&para;</a></h3>
 <ol>
-<li><strong>Plataforma → MCP:</strong> executa <code>tool_call buscar_dados(store_ids)</code> com <code>Bearer JWT</code>.</li>
-<li><strong>MCP:</strong> valida novamente o JWT (assinatura, <code>iss</code>, <code>aud</code>, <code>exp</code>).</li>
-<li><strong>MCP → Auth-Service:</strong> valida as permissões do <code>sub</code> para as lojas solicitadas (ou usa o cache).</li>
-<li><strong>Auth-Service → MCP:</strong> retorna as lojas e permissões.</li>
-<li><strong>MCP → DataBridge:</strong> executa as queries necessárias, filtradas pelos <code>store_ids</code> autorizados.</li>
+<li><strong>Plataforma → MCP:</strong> executa <code>tool_call buscar_dados(merchant_ids)</code> com <code>Bearer JWT</code>.</li>
+<li><strong>MCP:</strong> valida o JWT (assinatura, <code>iss</code>, <code>aud</code>, <code>exp</code>) e verifica o escopo de autorização do usuário.</li>
+<li><strong>MCP → DataBridge (Parceiro):</strong> executa as queries necessárias no armazenamento de dados do parceiro, filtradas pelos <code>merchant_ids</code> autorizados.</li>
 <li><strong>DataBridge → MCP:</strong> retorna os dados solicitados.</li>
 <li><strong>MCP → Plataforma:</strong> retorna o resultado da execução da tool.</li>
 <li><strong>Plataforma → Usuário:</strong> exibe a resposta com os dados das lojas.</li>
