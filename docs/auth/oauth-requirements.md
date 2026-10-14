@@ -124,17 +124,19 @@ Se o authorization server expuser `registration_endpoint` (RFC 7591) e suportar 
 
 **Sem DCR** (registro manual):
 
-- Publicar metadata RFC 8414 + expor `/userinfo`.
+- Publicar metadata RFC 8414.
 - Entregar `client_id`/`client_secret` manualmente.
 - Fazer o allowlist manual da URL de callback no IdP.
 
 **Com DCR** (recomendado):
 
-- Publicar metadata RFC 8414 + `registration_endpoint` + expor `/userinfo`.
+- Publicar metadata RFC 8414 + `registration_endpoint`.
 - A plataforma registra o client automaticamente (credenciais + `redirect_uris`). Nada a trocar manualmente.
 
 !!! note
-    O DCR **não** elimina a necessidade de publicar metadata e userinfo. Ele só automatiza as credenciais do client e o allowlist da callback. O DCR só é possível se o seu IdP expuser o `registration_endpoint` (RFC 7591); sem ele, use o registro manual.
+    O DCR **não** elimina a necessidade de publicar metadata. Ele só automatiza as credenciais do client e o allowlist da callback. O DCR só é possível se o seu IdP expuser o `registration_endpoint` (RFC 7591); sem ele, use o registro manual.
+
+    O userinfo é uma camada separada (identidade/autorização), não um requisito de autenticação. Veja [Userinfo (OIDC)](../authz/userinfo.md).
 
 ## Caminho 2 — Configuração manual
 
