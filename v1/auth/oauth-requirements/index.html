@@ -1,12 +1,12 @@
 
 <!doctype html>
-<html lang="pt" class="no-js">
+<html lang="en" class="no-js">
   <head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Padrão aberto para integrações do ecossistema Open Restaurant.">
+        <meta name="description" content="Open standard for integrations in the Open Restaurant ecosystem.">
       
       
       
@@ -20,6 +20,10 @@
       
       
         
+          <link rel="alternate" href="./" hreflang="en">
+        
+          <link rel="alternate" href="../../pt/auth/oauth-requirements/" hreflang="pt">
+        
       
       
       <link rel="icon" href="../../assets/icon.png">
@@ -27,7 +31,7 @@
     
     
       
-        <title>Requisitos do OAuth - Open Restaurant Protocol</title>
+        <title>OAuth Requirements - Open Restaurant Protocol</title>
       
     
     
@@ -78,8 +82,8 @@
     <div data-md-component="skip">
       
         
-        <a href="#requisitos-do-oauth-para-integracao" class="md-skip">
-          Ir para o conteúdo
+        <a href="#oauth-requirements-for-integration" class="md-skip">
+          Skip to content
         </a>
       
     </div>
@@ -95,7 +99,7 @@
       
 
 <header class="md-header" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+  <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../.." title="Open Restaurant Protocol" class="md-header__button md-logo" aria-label="Open Restaurant Protocol" data-md-component="logo">
       
   <img src="../../assets/icon.png" alt="logo">
@@ -115,7 +119,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Requisitos do OAuth
+              OAuth Requirements
             
           </span>
         </div>
@@ -128,9 +132,9 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Alternar para modo escuro"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
     
-      <label class="md-header__button md-icon" title="Alternar para modo escuro" for="__palette_1" hidden>
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
       </label>
     
@@ -138,9 +142,9 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Alternar para modo claro"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
     
-      <label class="md-header__button md-icon" title="Alternar para modo claro" for="__palette_0" hidden>
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
       </label>
     
@@ -151,6 +155,32 @@
     
       <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../pt/auth/oauth-requirements/" hreflang="pt" class="md-select__link">
+              Português
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
     
     
       
@@ -163,16 +193,16 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
       </label>
-      <nav class="md-search__options" aria-label="Pesquisar">
+      <nav class="md-search__options" aria-label="Search">
         
-        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
           
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
@@ -185,7 +215,7 @@
       <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
-            Inicializando a pesquisa
+            Initializing search
           </div>
           <ol class="md-search-result__list" role="presentation"></ol>
         </div>
@@ -206,7 +236,7 @@
         
           
             
-<nav class="md-tabs" aria-label="Abas" data-md-component="tabs">
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
   <div class="md-grid">
     <ul class="md-tabs__list">
       
@@ -222,7 +252,7 @@
   
     
   
-  Início
+  Home
 
       </a>
     </li>
@@ -245,7 +275,7 @@
   
     
   
-  Autenticação
+  Authentication
 
         </a>
       </li>
@@ -267,7 +297,7 @@
   
     
   
-  Autorização
+  Authorization
 
         </a>
       </li>
@@ -289,7 +319,7 @@
   
     
   
-  Contratos de Dados
+  Data Contracts
 
         </a>
       </li>
@@ -311,7 +341,7 @@
   
     
   
-  Integrações
+  Integrations
 
         </a>
       </li>
@@ -339,7 +369,7 @@
   
 
 
-<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegação" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="Open Restaurant Protocol" class="md-nav__button md-logo" aria-label="Open Restaurant Protocol" data-md-component="logo">
       
@@ -365,7 +395,7 @@
   <span class="md-ellipsis">
     
   
-    Início
+    Home
   
 
     
@@ -421,7 +451,7 @@
   <span class="md-ellipsis">
     
   
-    Autenticação
+    Authentication
   
 
     
@@ -437,7 +467,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Autenticação
+    Authentication
   
 
           </label>
@@ -494,7 +524,7 @@
   <span class="md-ellipsis">
     
   
-    Requisitos do OAuth
+    OAuth Requirements
   
 
     
@@ -512,7 +542,7 @@
   <span class="md-ellipsis">
     
   
-    Requisitos do OAuth
+    OAuth Requirements
   
 
     
@@ -524,7 +554,7 @@
       
         
 
-<nav class="md-nav md-nav--secondary" aria-label="Índice">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
   
@@ -533,15 +563,15 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Índice
+      Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#resumo-rapido" class="md-nav__link">
+  <a href="#quick-summary" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Resumo rápido
+        Quick summary
       
     </span>
   </a>
@@ -549,10 +579,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#visao-geral" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Visão geral
+        Overview
       
     </span>
   </a>
@@ -560,10 +590,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#glossario-rapido" class="md-nav__link">
+  <a href="#quick-glossary" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Glossário rápido
+        Quick glossary
       
     </span>
   </a>
@@ -571,22 +601,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#o-que-e-igual-nos-dois-caminhos" class="md-nav__link">
+  <a href="#what-is-the-same-in-both-paths" class="md-nav__link">
     <span class="md-ellipsis">
       
-        O que é igual nos dois caminhos
+        What is the same in both paths
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="O que é igual nos dois caminhos">
+    <nav class="md-nav" aria-label="What is the same in both paths">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#no-authorization-server-authorization-code-pkce" class="md-nav__link">
+  <a href="#on-the-authorization-server-authorization-code-pkce" class="md-nav__link">
     <span class="md-ellipsis">
       
-        No authorization server — authorization code + PKCE
+        On the authorization server — authorization code + PKCE
       
     </span>
   </a>
@@ -594,10 +624,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#no-authorization-server-idp-endpoint-de-userinfo-oidc" class="md-nav__link">
+  <a href="#on-the-authorization-server-idp-userinfo-endpoint-oidc" class="md-nav__link">
     <span class="md-ellipsis">
       
-        No authorization server / IdP — endpoint de userinfo (OIDC)
+        On the authorization server / IdP — userinfo endpoint (OIDC)
       
     </span>
   </a>
@@ -610,22 +640,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#caminho-1-autodescoberta-recomendado" class="md-nav__link">
+  <a href="#path-1-auto-discovery-recommended" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Caminho 1 — Autodescoberta (recomendado)
+        Path 1 — Auto-discovery (recommended)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Caminho 1 — Autodescoberta (recomendado)">
+    <nav class="md-nav" aria-label="Path 1 — Auto-discovery (recommended)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-metadados-do-authorization-server-rfc-8414-sempre" class="md-nav__link">
+  <a href="#1-authorization-server-metadata-rfc-8414-always" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Metadados do authorization server (RFC 8414) — sempre
+        1. Authorization server metadata (RFC 8414) — always
       
     </span>
   </a>
@@ -633,10 +663,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-metadados-do-recurso-protegido-rfc-9728-somente-se-houver-mcp" class="md-nav__link">
+  <a href="#2-protected-resource-metadata-rfc-9728-only-if-there-is-an-mcp" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Metadados do recurso protegido (RFC 9728) — somente se houver MCP
+        2. Protected resource metadata (RFC 9728) — only if there is an MCP
       
     </span>
   </a>
@@ -644,10 +674,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-dynamic-client-registration-rfc-7591-recomendado-para-as-credenciais" class="md-nav__link">
+  <a href="#3-dynamic-client-registration-rfc-7591-recommended-for-credentials" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Dynamic Client Registration (RFC 7591) — recomendado para as credenciais
+        3. Dynamic Client Registration (RFC 7591) — recommended for credentials
       
     </span>
   </a>
@@ -660,10 +690,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#caminho-2-configuracao-manual" class="md-nav__link">
+  <a href="#path-2-manual-configuration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Caminho 2 — Configuração manual
+        Path 2 — Manual configuration
       
     </span>
   </a>
@@ -671,10 +701,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#regras-de-validacao" class="md-nav__link">
+  <a href="#validation-rules" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Regras de validação
+        Validation rules
       
     </span>
   </a>
@@ -682,10 +712,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#o-que-nao-e-suportado" class="md-nav__link">
+  <a href="#what-is-not-supported" class="md-nav__link">
     <span class="md-ellipsis">
       
-        O que não é suportado
+        What is not supported
       
     </span>
   </a>
@@ -693,10 +723,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#checklist-de-validacao-antes-da-integracao" class="md-nav__link">
+  <a href="#validation-checklist-before-integration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Checklist de validação antes da integração
+        Validation checklist before integration
       
     </span>
   </a>
@@ -715,10 +745,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#responsabilidades" class="md-nav__link">
+  <a href="#responsibilities" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Responsabilidades
+        Responsibilities
       
     </span>
   </a>
@@ -748,7 +778,7 @@
   <span class="md-ellipsis">
     
   
-    Como construir um MCP com OAuth
+    Building an MCP with OAuth
   
 
     
@@ -810,7 +840,7 @@
   <span class="md-ellipsis">
     
   
-    Autorização
+    Authorization
   
 
     
@@ -832,7 +862,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Autorização
+    Authorization
   
 
           </label>
@@ -882,7 +912,7 @@
   <span class="md-ellipsis">
     
   
-    Lojas
+    Merchants
   
 
     
@@ -940,7 +970,7 @@
   <span class="md-ellipsis">
     
   
-    Contratos de Dados
+    Data Contracts
   
 
     
@@ -957,7 +987,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Contratos de Dados
+    Data Contracts
   
 
           </label>
@@ -1006,7 +1036,7 @@
   <span class="md-ellipsis">
     
   
-    Integrações
+    Integrations
   
 
     
@@ -1022,7 +1052,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Integrações
+    Integrations
   
 
           </label>
@@ -1076,7 +1106,7 @@
                   <div class="md-sidebar__inner">
                     
 
-<nav class="md-nav md-nav--secondary" aria-label="Índice">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
   
@@ -1085,15 +1115,15 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Índice
+      Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#resumo-rapido" class="md-nav__link">
+  <a href="#quick-summary" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Resumo rápido
+        Quick summary
       
     </span>
   </a>
@@ -1101,10 +1131,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#visao-geral" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Visão geral
+        Overview
       
     </span>
   </a>
@@ -1112,10 +1142,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#glossario-rapido" class="md-nav__link">
+  <a href="#quick-glossary" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Glossário rápido
+        Quick glossary
       
     </span>
   </a>
@@ -1123,22 +1153,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#o-que-e-igual-nos-dois-caminhos" class="md-nav__link">
+  <a href="#what-is-the-same-in-both-paths" class="md-nav__link">
     <span class="md-ellipsis">
       
-        O que é igual nos dois caminhos
+        What is the same in both paths
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="O que é igual nos dois caminhos">
+    <nav class="md-nav" aria-label="What is the same in both paths">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#no-authorization-server-authorization-code-pkce" class="md-nav__link">
+  <a href="#on-the-authorization-server-authorization-code-pkce" class="md-nav__link">
     <span class="md-ellipsis">
       
-        No authorization server — authorization code + PKCE
+        On the authorization server — authorization code + PKCE
       
     </span>
   </a>
@@ -1146,10 +1176,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#no-authorization-server-idp-endpoint-de-userinfo-oidc" class="md-nav__link">
+  <a href="#on-the-authorization-server-idp-userinfo-endpoint-oidc" class="md-nav__link">
     <span class="md-ellipsis">
       
-        No authorization server / IdP — endpoint de userinfo (OIDC)
+        On the authorization server / IdP — userinfo endpoint (OIDC)
       
     </span>
   </a>
@@ -1162,22 +1192,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#caminho-1-autodescoberta-recomendado" class="md-nav__link">
+  <a href="#path-1-auto-discovery-recommended" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Caminho 1 — Autodescoberta (recomendado)
+        Path 1 — Auto-discovery (recommended)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Caminho 1 — Autodescoberta (recomendado)">
+    <nav class="md-nav" aria-label="Path 1 — Auto-discovery (recommended)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-metadados-do-authorization-server-rfc-8414-sempre" class="md-nav__link">
+  <a href="#1-authorization-server-metadata-rfc-8414-always" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Metadados do authorization server (RFC 8414) — sempre
+        1. Authorization server metadata (RFC 8414) — always
       
     </span>
   </a>
@@ -1185,10 +1215,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-metadados-do-recurso-protegido-rfc-9728-somente-se-houver-mcp" class="md-nav__link">
+  <a href="#2-protected-resource-metadata-rfc-9728-only-if-there-is-an-mcp" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Metadados do recurso protegido (RFC 9728) — somente se houver MCP
+        2. Protected resource metadata (RFC 9728) — only if there is an MCP
       
     </span>
   </a>
@@ -1196,10 +1226,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-dynamic-client-registration-rfc-7591-recomendado-para-as-credenciais" class="md-nav__link">
+  <a href="#3-dynamic-client-registration-rfc-7591-recommended-for-credentials" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Dynamic Client Registration (RFC 7591) — recomendado para as credenciais
+        3. Dynamic Client Registration (RFC 7591) — recommended for credentials
       
     </span>
   </a>
@@ -1212,10 +1242,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#caminho-2-configuracao-manual" class="md-nav__link">
+  <a href="#path-2-manual-configuration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Caminho 2 — Configuração manual
+        Path 2 — Manual configuration
       
     </span>
   </a>
@@ -1223,10 +1253,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#regras-de-validacao" class="md-nav__link">
+  <a href="#validation-rules" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Regras de validação
+        Validation rules
       
     </span>
   </a>
@@ -1234,10 +1264,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#o-que-nao-e-suportado" class="md-nav__link">
+  <a href="#what-is-not-supported" class="md-nav__link">
     <span class="md-ellipsis">
       
-        O que não é suportado
+        What is not supported
       
     </span>
   </a>
@@ -1245,10 +1275,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#checklist-de-validacao-antes-da-integracao" class="md-nav__link">
+  <a href="#validation-checklist-before-integration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Checklist de validação antes da integração
+        Validation checklist before integration
       
     </span>
   </a>
@@ -1267,10 +1297,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#responsabilidades" class="md-nav__link">
+  <a href="#responsibilities" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Responsabilidades
+        Responsibilities
       
     </span>
   </a>
@@ -1294,157 +1324,157 @@
 
 
 
-<h1 id="requisitos-do-oauth-para-integracao">Requisitos do OAuth para integração<a class="headerlink" href="#requisitos-do-oauth-para-integracao" title="Permanent link">&para;</a></h1>
+<h1 id="oauth-requirements-for-integration">OAuth requirements for integration<a class="headerlink" href="#oauth-requirements-for-integration" title="Permanent link">&para;</a></h1>
 <div class="admonition info">
-<p class="admonition-title">Público</p>
-<p>Empresas que querem integrar seu MCP/dados à plataforma e precisam construir o authorization server (OAuth) do lado delas.</p>
-<p>O que esta página responde: <strong>o que o seu OAuth precisa ter para conseguir conectar à plataforma.</strong></p>
+<p class="admonition-title">Audience</p>
+<p>Companies that want to integrate their MCP/data with the platform and need to build the authorization server (OAuth) on their side.</p>
+<p>What this page answers: <strong>what your OAuth needs to have in order to connect to the platform.</strong></p>
 </div>
-<h2 id="resumo-rapido">Resumo rápido<a class="headerlink" href="#resumo-rapido" title="Permanent link">&para;</a></h2>
-<p>Para integrar, você vai precisar de:</p>
+<h2 id="quick-summary">Quick summary<a class="headerlink" href="#quick-summary" title="Permanent link">&para;</a></h2>
+<p>To integrate, you will need:</p>
 <ul>
-<li>Um <strong>authorization server</strong> (OAuth 2.0 / OIDC) com metadados <strong>RFC 8414</strong>.</li>
-<li>Suporte a <strong>authorization code + PKCE</strong> e emissão de <strong>refresh token</strong>.</li>
-<li>Um endpoint de <strong>userinfo</strong> (OIDC) com identidade e perfil/roles.</li>
-<li>Se houver <strong>MCP</strong>: metadados do recurso protegido (<strong>RFC 9728</strong>).</li>
-<li>(Opcional) <strong>DCR</strong> (RFC 7591) para registro automático do client.</li>
+<li>An <strong>authorization server</strong> (OAuth 2.0 / OIDC) with <strong>RFC 8414</strong> metadata.</li>
+<li>Support for <strong>authorization code + PKCE</strong> and issuing a <strong>refresh token</strong>.</li>
+<li>A <strong>userinfo</strong> endpoint (OIDC) with identity and profile/roles.</li>
+<li>If there is an <strong>MCP</strong>: protected resource metadata (<strong>RFC 9728</strong>).</li>
+<li>(Optional) <strong>DCR</strong> (RFC 7591) for automatic client registration.</li>
 </ul>
-<h2 id="visao-geral">Visão geral<a class="headerlink" href="#visao-geral" title="Permanent link">&para;</a></h2>
-<p>A sua empresa constrói e opera um <strong>authorization server</strong> (OAuth 2.0 / OIDC) que autentica os usuários e emite tokens. A plataforma atua como <em>client</em> desse authorization server: descobre os endpoints, conduz o usuário pelo fluxo de autorização e guarda o token resultante. De posse do token, o <strong>MCP</strong> consulta o endpoint de <strong>userinfo</strong> do authorization server para descobrir a identidade e o perfil de acesso da conta.</p>
-<p>Existem <strong>dois caminhos</strong> para conectar o seu OAuth à plataforma. Eles diferem apenas em <em>como</em> a plataforma obtém as informações. <strong>Os requisitos do authorization server são os mesmos</strong> nos dois casos. A base obrigatória está na seção <a href="#o-que-e-igual-nos-dois-caminhos">O que é igual nos dois caminhos</a>.</p>
-<h2 id="glossario-rapido">Glossário rápido<a class="headerlink" href="#glossario-rapido" title="Permanent link">&para;</a></h2>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>Your company builds and operates an <strong>authorization server</strong> (OAuth 2.0 / OIDC) that authenticates users and issues tokens. The platform acts as a <em>client</em> of that authorization server: it discovers the endpoints, guides the user through the authorization flow, and stores the resulting token. With the token in hand, the <strong>MCP</strong> queries the authorization server's <strong>userinfo</strong> endpoint to discover the identity and access profile of the account.</p>
+<p>There are <strong>two paths</strong> to connect your OAuth to the platform. They differ only in <em>how</em> the platform obtains the information. <strong>The authorization server requirements are the same</strong> in both cases. The mandatory baseline is in the <a href="#what-is-the-same-in-both-paths">What is the same in both paths</a> section.</p>
+<h2 id="quick-glossary">Quick glossary<a class="headerlink" href="#quick-glossary" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>Termo</th>
-<th>Significado</th>
+<th>Term</th>
+<th>Meaning</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>issuer</code></td>
-<td>Identificador do authorization server</td>
+<td>Authorization server identifier</td>
 </tr>
 <tr>
 <td><code>resource</code></td>
-<td>Identificador do MCP / recurso protegido</td>
+<td>MCP / protected resource identifier</td>
 </tr>
 <tr>
 <td>PRM</td>
-<td>Protected Resource Metadata (RFC 9728) — metadados do recurso protegido</td>
+<td>Protected Resource Metadata (RFC 9728) — protected resource metadata</td>
 </tr>
 <tr>
 <td>DCR</td>
-<td>Dynamic Client Registration (RFC 7591) — registro automático do client</td>
+<td>Dynamic Client Registration (RFC 7591) — automatic client registration</td>
 </tr>
 <tr>
 <td>userinfo</td>
-<td>Endpoint OIDC que retorna identidade e perfil do usuário</td>
+<td>OIDC endpoint that returns the user's identity and profile</td>
 </tr>
 <tr>
 <td>callback URL</td>
-<td>URL de redirecionamento para onde o browser volta após o login</td>
+<td>Redirect URL where the browser returns after login</td>
 </tr>
 </tbody>
 </table>
-<h2 id="o-que-e-igual-nos-dois-caminhos">O que é igual nos dois caminhos<a class="headerlink" href="#o-que-e-igual-nos-dois-caminhos" title="Permanent link">&para;</a></h2>
-<p>Independente do caminho escolhido, estes requisitos são obrigatórios. Estão organizados por onde cada um é implementado:</p>
-<h3 id="no-authorization-server-authorization-code-pkce">No authorization server — authorization code + PKCE<a class="headerlink" href="#no-authorization-server-authorization-code-pkce" title="Permanent link">&para;</a></h3>
+<h2 id="what-is-the-same-in-both-paths">What is the same in both paths<a class="headerlink" href="#what-is-the-same-in-both-paths" title="Permanent link">&para;</a></h2>
+<p>Regardless of the chosen path, these requirements are mandatory. They are organized by where each one is implemented:</p>
+<h3 id="on-the-authorization-server-authorization-code-pkce">On the authorization server — authorization code + PKCE<a class="headerlink" href="#on-the-authorization-server-authorization-code-pkce" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Grant: <strong>authorization code</strong>.</li>
-<li><strong>PKCE</strong> obrigatório (método <code>S256</code>), com <code>code_challenge</code> e <code>code_verifier</code>.</li>
-<li>Emitir <strong>refresh token</strong> junto com o access token.</li>
+<li><strong>PKCE</strong> is mandatory (<code>S256</code> method), with <code>code_challenge</code> and <code>code_verifier</code>.</li>
+<li>Issue a <strong>refresh token</strong> together with the access token.</li>
 </ul>
-<h3 id="no-authorization-server-idp-endpoint-de-userinfo-oidc">No authorization server / IdP — endpoint de userinfo (OIDC)<a class="headerlink" href="#no-authorization-server-idp-endpoint-de-userinfo-oidc" title="Permanent link">&para;</a></h3>
-<p>O OAuth por si só entrega um token, mas <strong>não</strong> responde "quem é esse usuário" nem "o que ele pode acessar". Isso é papel do <strong>userinfo</strong> (OpenID Connect). O authorization server deve expor um endpoint de <strong>userinfo</strong> que retorna, no mínimo:</p>
+<h3 id="on-the-authorization-server-idp-userinfo-endpoint-oidc">On the authorization server / IdP — userinfo endpoint (OIDC)<a class="headerlink" href="#on-the-authorization-server-idp-userinfo-endpoint-oidc" title="Permanent link">&para;</a></h3>
+<p>OAuth by itself delivers a token, but it does <strong>not</strong> answer "who is this user" nor "what can they access". That is the role of <strong>userinfo</strong> (OpenID Connect). The authorization server must expose a <strong>userinfo</strong> endpoint that returns, at minimum:</p>
 <ul>
-<li><code>sub</code>: identificador único do usuário.</li>
-<li><code>email</code> (ou outro identificador de contato).</li>
-<li>Perfil e roles de acesso da conta.</li>
+<li><code>sub</code>: unique user identifier.</li>
+<li><code>email</code> (or another contact identifier).</li>
+<li>Access profile and roles of the account.</li>
 </ul>
-<p>A plataforma usa o userinfo como <strong>contexto de autorização</strong>: é a partir dele que se determina quais lojas/recursos o usuário pode acessar. O contrato completo (request com <code>Authorization: Bearer</code>, exemplo de resposta e responsabilidades) está na página <a href="../../authz/userinfo/">Userinfo (OIDC)</a>.</p>
+<p>The platform uses userinfo as the <strong>authorization context</strong>: it is from it that it determines which merchants/resources the user can access. The full contract (request with <code>Authorization: Bearer</code>, response example and responsibilities) is on the <a href="../../authz/userinfo/">Userinfo (OIDC)</a> page.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>A lista de lojas que o usuário pode acessar é um dado de domínio, não identidade. Veja <a href="../../authz/merchants/">Lojas</a>.</p>
+<p>The list of merchants the user can access is domain data, not identity. See <a href="../../authz/merchants/">Merchants</a>.</p>
 </div>
-<h2 id="caminho-1-autodescoberta-recomendado">Caminho 1 — Autodescoberta (recomendado)<a class="headerlink" href="#caminho-1-autodescoberta-recomendado" title="Permanent link">&para;</a></h2>
-<p>Nesse caminho, o seu authorization server <strong>publica metadados</strong> e a plataforma descobre os endpoints automaticamente. Você não precisa configurar endpoints manualmente.</p>
-<h3 id="1-metadados-do-authorization-server-rfc-8414-sempre">1. Metadados do authorization server (RFC 8414) — sempre<a class="headerlink" href="#1-metadados-do-authorization-server-rfc-8414-sempre" title="Permanent link">&para;</a></h3>
-<p>O authorization server publica um documento de metadados derivado do <code>issuer</code>. Na descoberta, você pode informar a URL base do authorization server (o <code>issuer</code>, ex.: <code>https://auth.suaempresa.com</code>) ou a URL do documento diretamente. A partir do <code>issuer</code>, a plataforma deriva o caminho:</p>
-<div class="language-text highlight"><pre><span></span><code>https://auth.suaempresa.com/.well-known/oauth-authorization-server
+<h2 id="path-1-auto-discovery-recommended">Path 1 — Auto-discovery (recommended)<a class="headerlink" href="#path-1-auto-discovery-recommended" title="Permanent link">&para;</a></h2>
+<p>In this path, your authorization server <strong>publishes metadata</strong> and the platform discovers the endpoints automatically. You don't need to configure endpoints manually.</p>
+<h3 id="1-authorization-server-metadata-rfc-8414-always">1. Authorization server metadata (RFC 8414) — always<a class="headerlink" href="#1-authorization-server-metadata-rfc-8414-always" title="Permanent link">&para;</a></h3>
+<p>The authorization server publishes a metadata document derived from the <code>issuer</code>. During discovery, you can provide the authorization server's base URL (the <code>issuer</code>, e.g. <code>https://auth.yourcompany.com</code>) or the document URL directly. From the <code>issuer</code>, the platform derives the path:</p>
+<div class="language-text highlight"><pre><span></span><code>https://auth.yourcompany.com/.well-known/oauth-authorization-server
 </code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">OpenID Connect</p>
-<p>Providers OpenID Connect podem ser descobertos pelo caminho alternativo <code>/.well-known/openid-configuration</code>, que a plataforma também aceita.</p>
+<p>OpenID Connect providers can be discovered via the alternative path <code>/.well-known/openid-configuration</code>, which the platform also accepts.</p>
 </div>
-<p>Com, no mínimo, os seguintes campos:</p>
+<p>With, at minimum, the following fields:</p>
 <table>
 <thead>
 <tr>
-<th>Campo</th>
-<th>Obrigatório?</th>
-<th>Observação</th>
+<th>Field</th>
+<th>Required?</th>
+<th>Notes</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>issuer</code></td>
-<td>Sim</td>
-<td>Identificador do servidor de autorização</td>
+<td>Yes</td>
+<td>Authorization server identifier</td>
 </tr>
 <tr>
 <td><code>authorization_endpoint</code></td>
-<td>Sim</td>
-<td>Endpoint de autorização (authorization code)</td>
+<td>Yes</td>
+<td>Authorization endpoint (authorization code)</td>
 </tr>
 <tr>
 <td><code>token_endpoint</code></td>
-<td>Sim</td>
-<td>Endpoint de troca de code por token</td>
+<td>Yes</td>
+<td>Code-for-token exchange endpoint</td>
 </tr>
 <tr>
 <td><code>revocation_endpoint</code></td>
-<td>Opcional</td>
-<td>Endpoint de revogação de token (RFC 7009)</td>
+<td>Optional</td>
+<td>Token revocation endpoint (RFC 7009)</td>
 </tr>
 <tr>
 <td><code>scopes_supported</code></td>
-<td>Recomendado</td>
-<td>Lista de scopes aceitos (ex.: <code>openid</code>, <code>profile</code>, <code>menus:read</code>)</td>
+<td>Recommended</td>
+<td>List of accepted scopes (e.g. <code>openid</code>, <code>profile</code>, <code>menus:read</code>)</td>
 </tr>
 <tr>
 <td><code>response_types_supported</code></td>
-<td>Sim</td>
-<td>Deve incluir <code>code</code></td>
+<td>Yes</td>
+<td>Must include <code>code</code></td>
 </tr>
 <tr>
 <td><code>grant_types_supported</code></td>
-<td>Sim</td>
-<td>Deve incluir <code>authorization_code</code> (e <code>refresh_token</code>)</td>
+<td>Yes</td>
+<td>Must include <code>authorization_code</code> (and <code>refresh_token</code>)</td>
 </tr>
 <tr>
 <td><code>token_endpoint_auth_methods_supported</code></td>
-<td>Sim</td>
-<td>Ex.: <code>client_secret_basic</code>, <code>client_secret_post</code>, <code>none</code> (para clientes públicos/PKCE)</td>
+<td>Yes</td>
+<td>E.g. <code>client_secret_basic</code>, <code>client_secret_post</code>, <code>none</code> (for public/PKCE clients)</td>
 </tr>
 <tr>
 <td><code>code_challenge_methods_supported</code></td>
-<td>Sim</td>
-<td>Deve incluir <code>S256</code> (PKCE)</td>
+<td>Yes</td>
+<td>Must include <code>S256</code> (PKCE)</td>
 </tr>
 <tr>
 <td><code>registration_endpoint</code></td>
-<td>Opcional</td>
-<td>Necessário somente se quiser suportar DCR</td>
+<td>Optional</td>
+<td>Required only if you want to support DCR</td>
 </tr>
 </tbody>
 </table>
-<p>Exemplo de conteúdo:</p>
+<p>Content example:</p>
 <div class="language-json highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">"issuer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://auth.suaempresa.com"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"authorization_endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://auth.suaempresa.com/oauth/authorize"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"token_endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://auth.suaempresa.com/oauth/token"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"registration_endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://auth.suaempresa.com/oauth/register"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"issuer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://auth.yourcompany.com"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"authorization_endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://auth.yourcompany.com/oauth/authorize"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"token_endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://auth.yourcompany.com/oauth/token"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"registration_endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://auth.yourcompany.com/oauth/register"</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">"scopes_supported"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"openid"</span><span class="p">,</span><span class="w"> </span><span class="s2">"profile"</span><span class="p">,</span><span class="w"> </span><span class="s2">"menus:read"</span><span class="p">],</span>
 <span class="w">  </span><span class="nt">"response_types_supported"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"code"</span><span class="p">],</span>
 <span class="w">  </span><span class="nt">"grant_types_supported"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"authorization_code"</span><span class="p">,</span><span class="w"> </span><span class="s2">"refresh_token"</span><span class="p">],</span>
@@ -1453,160 +1483,160 @@
 <span class="p">}</span>
 </code></pre></div>
 <div class="admonition info">
-<p class="admonition-title">Quem acessa e quando</p>
-<p>Esse documento é acessado pela <strong>plataforma</strong>, uma única vez na descoberta (e guardado em cache). O usuário final <strong>não</strong> acessa esse caminho diretamente. No login, o browser é redirecionado para o <code>authorization_endpoint</code> que a plataforma já descobriu.</p>
+<p class="admonition-title">Who accesses it and when</p>
+<p>This document is accessed by the <strong>platform</strong>, once during discovery (and cached). The end user does <strong>not</strong> access this path directly. At login, the browser is redirected to the <code>authorization_endpoint</code> that the platform has already discovered.</p>
 </div>
-<h3 id="2-metadados-do-recurso-protegido-rfc-9728-somente-se-houver-mcp">2. Metadados do recurso protegido (RFC 9728) — somente se houver MCP<a class="headerlink" href="#2-metadados-do-recurso-protegido-rfc-9728-somente-se-houver-mcp" title="Permanent link">&para;</a></h3>
-<p>Se a integração envolve um <strong>MCP</strong>, o MCP publica um documento de metadados do recurso protegido em <code>/.well-known/oauth-protected-resource</code>, apontando para o authorization server. A plataforma usa isso para descobrir automaticamente <strong>qual</strong> authorization server protege aquele MCP, sem que você precise informar a URL manualmente ao cadastrar o MCP.</p>
+<h3 id="2-protected-resource-metadata-rfc-9728-only-if-there-is-an-mcp">2. Protected resource metadata (RFC 9728) — only if there is an MCP<a class="headerlink" href="#2-protected-resource-metadata-rfc-9728-only-if-there-is-an-mcp" title="Permanent link">&para;</a></h3>
+<p>If the integration involves an <strong>MCP</strong>, the MCP publishes a protected resource metadata document at <code>/.well-known/oauth-protected-resource</code>, pointing to the authorization server. The platform uses this to automatically discover <strong>which</strong> authorization server protects that MCP, without you needing to provide the URL manually when registering the MCP.</p>
 <table>
 <thead>
 <tr>
-<th>Campo</th>
-<th>Obrigatório?</th>
-<th>Observação</th>
+<th>Field</th>
+<th>Required?</th>
+<th>Notes</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>resource</code></td>
-<td>Sim</td>
-<td>Identificador canônico do recurso protegido (a URL do MCP). O host raiz (<code>/</code>) cobre qualquer path do mesmo host; um path específico não cobre subpaths arbitrários</td>
+<td>Yes</td>
+<td>Canonical identifier of the protected resource (the MCP URL). The root host (<code>/</code>) covers any path on the same host; a specific path does not cover arbitrary subpaths</td>
 </tr>
 <tr>
 <td><code>authorization_servers</code></td>
-<td>Sim</td>
-<td>Lista não vazia de authorization servers do recurso</td>
+<td>Yes</td>
+<td>Non-empty list of the resource's authorization servers</td>
 </tr>
 </tbody>
 </table>
-<p>Se esse endpoint não estiver disponível, a plataforma pode obter o metadata a partir do header <code>WWW-Authenticate: resource_metadata=...</code> retornado em respostas <code>401</code>. Se nenhum dos dois estiver presente, a plataforma não consegue descobrir o authorization server a partir do MCP. Nesse caso, informe a URL do authorization server manualmente.</p>
+<p>If this endpoint is not available, the platform can obtain the metadata from the <code>WWW-Authenticate: resource_metadata=...</code> header returned in <code>401</code> responses. If neither is present, the platform cannot discover the authorization server from the MCP. In that case, provide the authorization server URL manually.</p>
 <div class="admonition tip">
 <p class="admonition-title">FastMCP</p>
-<p>Com FastMCP, o <code>RemoteAuthProvider</code> publica esse documento automaticamente. Veja <a href="../mcp-oauth/">Como construir um MCP com OAuth</a>.</p>
+<p>With FastMCP, <code>RemoteAuthProvider</code> publishes this document automatically. See <a href="../mcp-oauth/">Building an MCP with OAuth</a>.</p>
 </div>
-<h3 id="3-dynamic-client-registration-rfc-7591-recomendado-para-as-credenciais">3. Dynamic Client Registration (RFC 7591) — recomendado para as credenciais<a class="headerlink" href="#3-dynamic-client-registration-rfc-7591-recomendado-para-as-credenciais" title="Permanent link">&para;</a></h3>
-<p>Se o authorization server expuser <code>registration_endpoint</code> (RFC 7591) e suportar <strong>Dynamic Client Registration (DCR)</strong>, a plataforma se auto-registra como client e obtém <code>client_id</code>/<code>client_secret</code> sem nenhuma troca manual de credenciais. No DCR, a plataforma também informa seus próprios <code>redirect_uris</code> no payload de registro, então você não precisa fazer o allowlist manual da URL de callback.</p>
-<p><strong>Sem DCR</strong> (registro manual):</p>
+<h3 id="3-dynamic-client-registration-rfc-7591-recommended-for-credentials">3. Dynamic Client Registration (RFC 7591) — recommended for credentials<a class="headerlink" href="#3-dynamic-client-registration-rfc-7591-recommended-for-credentials" title="Permanent link">&para;</a></h3>
+<p>If the authorization server exposes <code>registration_endpoint</code> (RFC 7591) and supports <strong>Dynamic Client Registration (DCR)</strong>, the platform self-registers as a client and obtains <code>client_id</code>/<code>client_secret</code> with no manual credential exchange. With DCR, the platform also provides its own <code>redirect_uris</code> in the registration payload, so you don't need to manually allowlist the callback URL.</p>
+<p><strong>Without DCR</strong> (manual registration):</p>
 <ul>
-<li>Publicar metadata RFC 8414.</li>
-<li>Entregar <code>client_id</code>/<code>client_secret</code> manualmente.</li>
-<li>Fazer o allowlist manual da URL de callback no IdP.</li>
+<li>Publish RFC 8414 metadata.</li>
+<li>Provide <code>client_id</code>/<code>client_secret</code> manually.</li>
+<li>Manually allowlist the callback URL in the IdP.</li>
 </ul>
-<p><strong>Com DCR</strong> (recomendado):</p>
+<p><strong>With DCR</strong> (recommended):</p>
 <ul>
-<li>Publicar metadata RFC 8414 + <code>registration_endpoint</code>.</li>
-<li>A plataforma registra o client automaticamente (credenciais + <code>redirect_uris</code>). Nada a trocar manualmente.</li>
+<li>Publish RFC 8414 metadata + <code>registration_endpoint</code>.</li>
+<li>The platform registers the client automatically (credentials + <code>redirect_uris</code>). Nothing to exchange manually.</li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>O DCR <strong>não</strong> elimina a necessidade de publicar metadata. Ele só automatiza as credenciais do client e o allowlist da callback. O DCR só é possível se o seu IdP expuser o <code>registration_endpoint</code> (RFC 7591); sem ele, use o registro manual.</p>
-<p>O userinfo é uma camada separada (identidade/autorização), não um requisito de autenticação. Veja <a href="../../authz/userinfo/">Userinfo (OIDC)</a>.</p>
+<p>DCR does <strong>not</strong> eliminate the need to publish metadata. It only automates the client credentials and the callback allowlist. DCR is only possible if your IdP exposes the <code>registration_endpoint</code> (RFC 7591); without it, use manual registration.</p>
+<p>Userinfo is a separate layer (identity/authorization), not an authentication requirement. See <a href="../../authz/userinfo/">Userinfo (OIDC)</a>.</p>
 </div>
-<h2 id="caminho-2-configuracao-manual">Caminho 2 — Configuração manual<a class="headerlink" href="#caminho-2-configuracao-manual" title="Permanent link">&para;</a></h2>
-<p>Quando a autodescoberta não é possível (por exemplo, o MCP não publica os metadados, ou é preciso usar um client já registrado), você entrega explicitamente as informações de OAuth. Você precisa fornecer:</p>
+<h2 id="path-2-manual-configuration">Path 2 — Manual configuration<a class="headerlink" href="#path-2-manual-configuration" title="Permanent link">&para;</a></h2>
+<p>When auto-discovery is not possible (for example, the MCP does not publish the metadata, or you need to use an already-registered client), you explicitly provide the OAuth information. You need to provide:</p>
 <ul>
-<li><strong>Endpoints do authorization server</strong>: <code>authorization_endpoint</code> e <code>token_endpoint</code> (e <code>revocation_endpoint</code>, se houver).</li>
-<li><strong><code>client_id</code></strong> e <strong><code>client_secret</code></strong> (o <code>client_secret</code> é obrigatório no fluxo típico com client confidencial).</li>
-<li><strong>URL de callback/redirect</strong>: veja o bloco abaixo.</li>
-<li><strong>Escopos (scopes)</strong> que devem ser solicitados no fluxo (não há um conjunto fixo; você define os seus; ex.: <code>openid</code>, <code>profile</code>, <code>menus:read</code>).</li>
+<li><strong>Authorization server endpoints</strong>: <code>authorization_endpoint</code> and <code>token_endpoint</code> (and <code>revocation_endpoint</code>, if any).</li>
+<li><strong><code>client_id</code></strong> and <strong><code>client_secret</code></strong> (the <code>client_secret</code> is mandatory in the typical confidential client flow).</li>
+<li><strong>Callback/redirect URL</strong>: see the block below.</li>
+<li><strong>Scopes</strong> that must be requested in the flow (there is no fixed set; you define yours; e.g. <code>openid</code>, <code>profile</code>, <code>menus:read</code>).</li>
 </ul>
 <div class="admonition warning">
-<p class="admonition-title">URL de callback (redirect_uri)</p>
-<p>A URL de callback <strong>não é inventada por você</strong>. Ela é fornecida pela plataforma (é fixa por ambiente). Você deve:</p>
+<p class="admonition-title">Callback URL (redirect_uri)</p>
+<p>The callback URL is <strong>not invented by you</strong>. It is provided by the platform (it is fixed per environment). You must:</p>
 <ol>
-<li>Obter a URL de callback da plataforma.</li>
-<li>Cadastrá-la nas URIs de redirecionamento permitidas do seu IdP (allowlist).</li>
-<li>Sem esse cadastro, o redirect do fluxo de autorização <strong>falha</strong>.</li>
+<li>Obtain the callback URL from the platform.</li>
+<li>Register it in your IdP's allowed redirect URIs (allowlist).</li>
+<li>Without this registration, the authorization flow redirect <strong>fails</strong>.</li>
 </ol>
-<p>No fluxo com DCR, essa etapa é automática (a plataforma informa os <code>redirect_uris</code> no registro).</p>
+<p>In the DCR flow, this step is automatic (the platform provides the <code>redirect_uris</code> in the registration).</p>
 </div>
-<p>A configuração na plataforma é feita por nós, a partir das informações que você fornecer. <a href="#">Entre em contato</a> para dar início à integração.</p>
-<h2 id="regras-de-validacao">Regras de validação<a class="headerlink" href="#regras-de-validacao" title="Permanent link">&para;</a></h2>
-<p>Algumas regras operacionais fazem a descoberta falhar se não forem cumpridas. Antes de publicar, garanta:</p>
+<p>The configuration on the platform is done by us, based on the information you provide. <a href="#">Contact us</a> to start the integration.</p>
+<h2 id="validation-rules">Validation rules<a class="headerlink" href="#validation-rules" title="Permanent link">&para;</a></h2>
+<p>Some operational rules make discovery fail if not met. Before publishing, ensure:</p>
 <ul>
-<li><strong>HTTPS obrigatório</strong>: os documentos de metadados (RFC 8414 e RFC 9728) devem ser servidos por <strong>HTTPS</strong> (a RFC 8414 exige o scheme <code>https</code>). HTTP simples não é aceito para descoberta.</li>
-<li><strong><code>issuer</code> consistente</strong>: o valor de <code>issuer</code> no metadata deve ser <strong>idêntico</strong> ao identificador usado para buscar o documento (RFC 8414 §3.3), ou compartilhar o <strong>mesmo domínio registrável</strong> (ex.: <code>mcp.exemplo.com</code> e <code>auth.exemplo.com</code>). Um <code>issuer</code> em domínio totalmente diferente faz a descoberta falhar (previne ataques de mix-up).</li>
-<li><strong><code>resource</code> cobre a URL real</strong>: no metadata do recurso protegido (RFC 9728), o <code>resource</code> deve cobrir a URL do MCP. O host raiz cobre qualquer path do mesmo host; um path específico não cobre subpaths arbitrários.</li>
+<li><strong>Mandatory HTTPS</strong>: metadata documents (RFC 8414 and RFC 9728) must be served over <strong>HTTPS</strong> (RFC 8414 requires the <code>https</code> scheme). Plain HTTP is not accepted for discovery.</li>
+<li><strong>Consistent <code>issuer</code></strong>: the <code>issuer</code> value in the metadata must be <strong>identical</strong> to the identifier used to fetch the document (RFC 8414 §3.3), or share the <strong>same registrable domain</strong> (e.g. <code>mcp.example.com</code> and <code>auth.example.com</code>). An <code>issuer</code> on a completely different domain makes discovery fail (prevents mix-up attacks).</li>
+<li><strong><code>resource</code> covers the real URL</strong>: in the protected resource metadata (RFC 9728), the <code>resource</code> must cover the MCP URL. The root host covers any path on the same host; a specific path does not cover arbitrary subpaths.</li>
 </ul>
-<h2 id="o-que-nao-e-suportado">O que não é suportado<a class="headerlink" href="#o-que-nao-e-suportado" title="Permanent link">&para;</a></h2>
+<h2 id="what-is-not-supported">What is not supported<a class="headerlink" href="#what-is-not-supported" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Apenas o grant <strong>authorization code + PKCE</strong> é usado para autenticação de usuário. Grants como <code>client_credentials</code> não fazem parte deste fluxo.</li>
-<li>Sem metadados de descoberta <strong>e</strong> sem DCR, a configuração manual é obrigatória.</li>
+<li>Only the <strong>authorization code + PKCE</strong> grant is used for user authentication. Grants such as <code>client_credentials</code> are not part of this flow.</li>
+<li>Without discovery metadata <strong>and</strong> without DCR, manual configuration is mandatory.</li>
 </ul>
-<h2 id="checklist-de-validacao-antes-da-integracao">Checklist de validação antes da integração<a class="headerlink" href="#checklist-de-validacao-antes-da-integracao" title="Permanent link">&para;</a></h2>
-<p>Antes de tentar conectar, confirme cada item:</p>
+<h2 id="validation-checklist-before-integration">Validation checklist before integration<a class="headerlink" href="#validation-checklist-before-integration" title="Permanent link">&para;</a></h2>
+<p>Before attempting to connect, confirm each item:</p>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>GET /.well-known/oauth-protected-resource</code> retorna <code>resource</code> e <code>authorization_servers</code> (se houver MCP).</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>GET /.well-known/oauth-authorization-server</code> retorna os campos obrigatórios da RFC 8414.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> O <code>issuer</code> do metadata coincide com o identificador usado para buscar o documento, ou compartilha o mesmo domínio registrável.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>code_challenge_methods_supported</code> contém <code>S256</code>.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> O fluxo emite <strong>refresh token</strong>.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> O <code>/userinfo</code> responde com identidade e perfil/roles.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> O fluxo testa PKCE (<code>code_challenge</code>/<code>code_verifier</code>).</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> O refresh de token funciona (access token expirado → renovação via refresh token).</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Sem DCR: <code>client_id</code>/<code>client_secret</code> e a URL de callback foram registrados no IdP.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Com DCR: <code>registration_endpoint</code> acessível e o registro de client é bem-sucedido.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> O MCP consegue validar o token (JWKS/<code>issuer</code>/<code>audience</code> compatíveis. Veja <a href="../mcp-oauth/">Como construir um MCP com OAuth</a>).</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>GET /.well-known/oauth-protected-resource</code> returns <code>resource</code> and <code>authorization_servers</code> (if there is an MCP).</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>GET /.well-known/oauth-authorization-server</code> returns the mandatory RFC 8414 fields.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> The metadata <code>issuer</code> matches the identifier used to fetch the document, or shares the same registrable domain.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>code_challenge_methods_supported</code> contains <code>S256</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> The flow issues a <strong>refresh token</strong>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> The <code>/userinfo</code> responds with identity and profile/roles.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> The flow tests PKCE (<code>code_challenge</code>/<code>code_verifier</code>).</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Token refresh works (expired access token → renewal via refresh token).</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Without DCR: <code>client_id</code>/<code>client_secret</code> and the callback URL are registered in the IdP.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> With DCR: <code>registration_endpoint</code> is accessible and client registration succeeds.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> The MCP can validate the token (JWKS/<code>issuer</code>/<code>audience</code> compatible. See <a href="../mcp-oauth/">Building an MCP with OAuth</a>).</li>
 </ul>
 <h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>Descoberta falha (404 no <code>/.well-known</code>)</strong>: confirme que o documento está em HTTPS e no caminho correto derivado do <code>issuer</code>.</li>
-<li><strong><code>issuer</code> não bate</strong>: o <code>issuer</code> do metadata precisa ser idêntico ao identificador usado na busca, ou compartilhar o mesmo domínio registrável (RFC 8414 §3.3).</li>
-<li><strong>Redirect falha</strong>: a URL de callback não foi cadastrada no allowlist do IdP.</li>
-<li><strong><code>401</code> no <code>/userinfo</code></strong>: o token apresentado não é válido, está expirado, ou o <code>aud</code> não corresponde ao esperado. Verifique <code>iss</code>, <code>aud</code> e a assinatura.</li>
-<li><strong><code>audience</code> inválido no JWT</strong>: o <code>aud</code> do token não bate com o que o MCP espera. Alinhe o <code>audience</code> do authorization server com o MCP.</li>
-<li><strong><code>401</code> nas chamadas do MCP</strong>: o token não é válido para o MCP. Verifique <code>iss</code>, <code>aud</code> e o <code>jwks_uri</code> do authorization server.</li>
+<li><strong>Discovery fails (404 on <code>/.well-known</code>)</strong>: confirm the document is served over HTTPS and at the correct path derived from the <code>issuer</code>.</li>
+<li><strong><code>issuer</code> mismatch</strong>: the metadata <code>issuer</code> must be identical to the identifier used in the lookup, or share the same registrable domain (RFC 8414 §3.3).</li>
+<li><strong>Redirect fails</strong>: the callback URL was not registered in the IdP allowlist.</li>
+<li><strong><code>401</code> on <code>/userinfo</code></strong>: the presented token is invalid, expired, or the <code>aud</code> does not match the expected value. Check <code>iss</code>, <code>aud</code> and the signature.</li>
+<li><strong>Invalid <code>audience</code> in the JWT</strong>: the token <code>aud</code> does not match what the MCP expects. Align the authorization server's <code>audience</code> with the MCP.</li>
+<li><strong><code>401</code> on MCP calls</strong>: the token is not valid for the MCP. Check <code>iss</code>, <code>aud</code> and the authorization server's <code>jwks_uri</code>.</li>
 </ul>
-<h2 id="responsabilidades">Responsabilidades<a class="headerlink" href="#responsabilidades" title="Permanent link">&para;</a></h2>
+<h2 id="responsibilities">Responsibilities<a class="headerlink" href="#responsibilities" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>Responsabilidade</th>
-<th>Quem faz</th>
+<th>Responsibility</th>
+<th>Who does it</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Construir/operar o authorization server</td>
-<td>Sua empresa</td>
+<td>Build/operate the authorization server</td>
+<td>Your company</td>
 </tr>
 <tr>
-<td>Publicar metadados RFC 8414 (authorization server)</td>
-<td>Sua empresa</td>
+<td>Publish RFC 8414 metadata (authorization server)</td>
+<td>Your company</td>
 </tr>
 <tr>
-<td>Publicar protected resource metadata RFC 9728 (MCP)</td>
-<td>Quem opera o MCP</td>
+<td>Publish RFC 9728 protected resource metadata (MCP)</td>
+<td>Whoever operates the MCP</td>
 </tr>
 <tr>
-<td>Expor endpoint de userinfo (identidade + perfil/roles)</td>
-<td>Sua empresa</td>
+<td>Expose the userinfo endpoint (identity + profile/roles)</td>
+<td>Your company</td>
 </tr>
 <tr>
-<td>Autenticar o usuário e emitir tokens</td>
-<td>Sua empresa</td>
+<td>Authenticate the user and issue tokens</td>
+<td>Your company</td>
 </tr>
 <tr>
-<td>Descoberta do authorization server (autodescoberta)</td>
-<td>Plataforma</td>
+<td>Authorization server discovery (auto-discovery)</td>
+<td>Platform</td>
 </tr>
 <tr>
-<td>Guardar e criptografar o token</td>
-<td>Plataforma</td>
+<td>Store and encrypt the token</td>
+<td>Platform</td>
 </tr>
 <tr>
-<td>Consultar o endpoint de userinfo com o token e interpretar perfil/lojas</td>
+<td>Query the userinfo endpoint with the token and interpret profile/merchants</td>
 <td>MCP</td>
 </tr>
 <tr>
-<td>Injetar <code>Authorization: Bearer</code> e fazer refresh</td>
-<td>Plataforma</td>
+<td>Inject <code>Authorization: Bearer</code> and refresh</td>
+<td>Platform</td>
 </tr>
 </tbody>
 </table>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>O authorization server e o MCP podem ser operados pela mesma empresa ou por empresas diferentes. O RFC 8414 e o userinfo são responsabilidade de quem opera o authorization server; o RFC 9728 é de quem opera o MCP.</p>
+<p>The authorization server and the MCP can be operated by the same company or by different companies. RFC 8414 and userinfo are the responsibility of whoever operates the authorization server; RFC 9728 is the responsibility of whoever operates the MCP.</p>
 </div>
 
 
@@ -1631,7 +1661,7 @@
           <button type="button" class="md-top md-icon" data-md-component="top" hidden>
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
-  Voltar ao topo
+  Back to top
 </button>
         
       </main>
@@ -1663,7 +1693,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "Mais 1 nesta p\u00e1gina", "search.result.more.other": "Mais # nesta p\u00e1gina", "search.result.none": "Nenhum resultado encontrado", "search.result.one": "1 resultado encontrado", "search.result.other": "# resultados encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>

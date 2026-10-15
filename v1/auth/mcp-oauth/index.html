@@ -1,12 +1,12 @@
 
 <!doctype html>
-<html lang="pt" class="no-js">
+<html lang="en" class="no-js">
   <head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Padrão aberto para integrações do ecossistema Open Restaurant.">
+        <meta name="description" content="Open standard for integrations in the Open Restaurant ecosystem.">
       
       
       
@@ -20,6 +20,10 @@
       
       
         
+          <link rel="alternate" href="./" hreflang="en">
+        
+          <link rel="alternate" href="../../pt/auth/mcp-oauth/" hreflang="pt">
+        
       
       
       <link rel="icon" href="../../assets/icon.png">
@@ -27,7 +31,7 @@
     
     
       
-        <title>Como construir um MCP com OAuth - Open Restaurant Protocol</title>
+        <title>Building an MCP with OAuth - Open Restaurant Protocol</title>
       
     
     
@@ -78,8 +82,8 @@
     <div data-md-component="skip">
       
         
-        <a href="#como-construir-um-mcp-com-oauth" class="md-skip">
-          Ir para o conteúdo
+        <a href="#building-an-mcp-with-oauth" class="md-skip">
+          Skip to content
         </a>
       
     </div>
@@ -95,7 +99,7 @@
       
 
 <header class="md-header" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+  <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../.." title="Open Restaurant Protocol" class="md-header__button md-logo" aria-label="Open Restaurant Protocol" data-md-component="logo">
       
   <img src="../../assets/icon.png" alt="logo">
@@ -115,7 +119,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Como construir um MCP com OAuth
+              Building an MCP with OAuth
             
           </span>
         </div>
@@ -128,9 +132,9 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Alternar para modo escuro"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
     
-      <label class="md-header__button md-icon" title="Alternar para modo escuro" for="__palette_1" hidden>
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
       </label>
     
@@ -138,9 +142,9 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Alternar para modo claro"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
     
-      <label class="md-header__button md-icon" title="Alternar para modo claro" for="__palette_0" hidden>
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
       </label>
     
@@ -151,6 +155,32 @@
     
       <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../pt/auth/mcp-oauth/" hreflang="pt" class="md-select__link">
+              Português
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
     
     
       
@@ -163,16 +193,16 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
       </label>
-      <nav class="md-search__options" aria-label="Pesquisar">
+      <nav class="md-search__options" aria-label="Search">
         
-        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
           
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
@@ -185,7 +215,7 @@
       <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
-            Inicializando a pesquisa
+            Initializing search
           </div>
           <ol class="md-search-result__list" role="presentation"></ol>
         </div>
@@ -206,7 +236,7 @@
         
           
             
-<nav class="md-tabs" aria-label="Abas" data-md-component="tabs">
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
   <div class="md-grid">
     <ul class="md-tabs__list">
       
@@ -222,7 +252,7 @@
   
     
   
-  Início
+  Home
 
       </a>
     </li>
@@ -245,7 +275,7 @@
   
     
   
-  Autenticação
+  Authentication
 
         </a>
       </li>
@@ -267,7 +297,7 @@
   
     
   
-  Autorização
+  Authorization
 
         </a>
       </li>
@@ -289,7 +319,7 @@
   
     
   
-  Contratos de Dados
+  Data Contracts
 
         </a>
       </li>
@@ -311,7 +341,7 @@
   
     
   
-  Integrações
+  Integrations
 
         </a>
       </li>
@@ -339,7 +369,7 @@
   
 
 
-<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegação" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="Open Restaurant Protocol" class="md-nav__button md-logo" aria-label="Open Restaurant Protocol" data-md-component="logo">
       
@@ -365,7 +395,7 @@
   <span class="md-ellipsis">
     
   
-    Início
+    Home
   
 
     
@@ -421,7 +451,7 @@
   <span class="md-ellipsis">
     
   
-    Autenticação
+    Authentication
   
 
     
@@ -437,7 +467,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Autenticação
+    Authentication
   
 
           </label>
@@ -485,7 +515,7 @@
   <span class="md-ellipsis">
     
   
-    Requisitos do OAuth
+    OAuth Requirements
   
 
     
@@ -522,7 +552,7 @@
   <span class="md-ellipsis">
     
   
-    Como construir um MCP com OAuth
+    Building an MCP with OAuth
   
 
     
@@ -540,7 +570,7 @@
   <span class="md-ellipsis">
     
   
-    Como construir um MCP com OAuth
+    Building an MCP with OAuth
   
 
     
@@ -552,7 +582,7 @@
       
         
 
-<nav class="md-nav md-nav--secondary" aria-label="Índice">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
   
@@ -561,15 +591,15 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Índice
+      Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#visao-geral" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Visão geral
+        Overview
       
     </span>
   </a>
@@ -577,22 +607,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#o-que-o-seu-mcp-precisa-expor" class="md-nav__link">
+  <a href="#what-your-mcp-needs-to-expose" class="md-nav__link">
     <span class="md-ellipsis">
       
-        O que o seu MCP precisa expor
+        What your MCP needs to expose
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="O que o seu MCP precisa expor">
+    <nav class="md-nav" aria-label="What your MCP needs to expose">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-metadados-do-recurso-protegido-rfc-9728" class="md-nav__link">
+  <a href="#1-protected-resource-metadata-rfc-9728" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Metadados do recurso protegido (RFC 9728)
+        1. Protected resource metadata (RFC 9728)
       
     </span>
   </a>
@@ -600,10 +630,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-grant-de-authorization-code-pkce" class="md-nav__link">
+  <a href="#2-authorization-code-pkce-grant" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Grant de authorization code + PKCE
+        2. Authorization code + PKCE grant
       
     </span>
   </a>
@@ -611,10 +641,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-contrato-de-validacao-do-token" class="md-nav__link">
+  <a href="#3-token-validation-contract" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Contrato de validação do token
+        3. Token validation contract
       
     </span>
   </a>
@@ -627,10 +657,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#escopo-de-credenciais-por-usuario-vs-compartilhado" class="md-nav__link">
+  <a href="#credential-scope-per-user-vs-shared" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Escopo de credenciais: por usuário vs. compartilhado
+        Credential scope: per-user vs. shared
       
     </span>
   </a>
@@ -638,15 +668,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#exemplos-por-linguagem" class="md-nav__link">
+  <a href="#examples-by-language" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Exemplos por linguagem
+        Examples by language
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Exemplos por linguagem">
+    <nav class="md-nav" aria-label="Examples by language">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -661,10 +691,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#go-ilustrativo" class="md-nav__link">
+  <a href="#go-illustrative" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Go (ilustrativo)
+        Go (illustrative)
       
     </span>
   </a>
@@ -733,7 +763,7 @@
   <span class="md-ellipsis">
     
   
-    Autorização
+    Authorization
   
 
     
@@ -755,7 +785,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Autorização
+    Authorization
   
 
           </label>
@@ -805,7 +835,7 @@
   <span class="md-ellipsis">
     
   
-    Lojas
+    Merchants
   
 
     
@@ -863,7 +893,7 @@
   <span class="md-ellipsis">
     
   
-    Contratos de Dados
+    Data Contracts
   
 
     
@@ -880,7 +910,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Contratos de Dados
+    Data Contracts
   
 
           </label>
@@ -929,7 +959,7 @@
   <span class="md-ellipsis">
     
   
-    Integrações
+    Integrations
   
 
     
@@ -945,7 +975,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Integrações
+    Integrations
   
 
           </label>
@@ -999,7 +1029,7 @@
                   <div class="md-sidebar__inner">
                     
 
-<nav class="md-nav md-nav--secondary" aria-label="Índice">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
   
@@ -1008,15 +1038,15 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Índice
+      Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#visao-geral" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Visão geral
+        Overview
       
     </span>
   </a>
@@ -1024,22 +1054,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#o-que-o-seu-mcp-precisa-expor" class="md-nav__link">
+  <a href="#what-your-mcp-needs-to-expose" class="md-nav__link">
     <span class="md-ellipsis">
       
-        O que o seu MCP precisa expor
+        What your MCP needs to expose
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="O que o seu MCP precisa expor">
+    <nav class="md-nav" aria-label="What your MCP needs to expose">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-metadados-do-recurso-protegido-rfc-9728" class="md-nav__link">
+  <a href="#1-protected-resource-metadata-rfc-9728" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Metadados do recurso protegido (RFC 9728)
+        1. Protected resource metadata (RFC 9728)
       
     </span>
   </a>
@@ -1047,10 +1077,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-grant-de-authorization-code-pkce" class="md-nav__link">
+  <a href="#2-authorization-code-pkce-grant" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Grant de authorization code + PKCE
+        2. Authorization code + PKCE grant
       
     </span>
   </a>
@@ -1058,10 +1088,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-contrato-de-validacao-do-token" class="md-nav__link">
+  <a href="#3-token-validation-contract" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Contrato de validação do token
+        3. Token validation contract
       
     </span>
   </a>
@@ -1074,10 +1104,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#escopo-de-credenciais-por-usuario-vs-compartilhado" class="md-nav__link">
+  <a href="#credential-scope-per-user-vs-shared" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Escopo de credenciais: por usuário vs. compartilhado
+        Credential scope: per-user vs. shared
       
     </span>
   </a>
@@ -1085,15 +1115,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#exemplos-por-linguagem" class="md-nav__link">
+  <a href="#examples-by-language" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Exemplos por linguagem
+        Examples by language
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Exemplos por linguagem">
+    <nav class="md-nav" aria-label="Examples by language">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1108,10 +1138,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#go-ilustrativo" class="md-nav__link">
+  <a href="#go-illustrative" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Go (ilustrativo)
+        Go (illustrative)
       
     </span>
   </a>
@@ -1140,118 +1170,118 @@
 
 
 
-<h1 id="como-construir-um-mcp-com-oauth">Como construir um MCP com OAuth<a class="headerlink" href="#como-construir-um-mcp-com-oauth" title="Permanent link">&para;</a></h1>
+<h1 id="building-an-mcp-with-oauth">Building an MCP with OAuth<a class="headerlink" href="#building-an-mcp-with-oauth" title="Permanent link">&para;</a></h1>
 <div class="admonition info">
-<p class="admonition-title">Público</p>
-<p>Quem vai construir (ou adaptar) um servidor MCP que será consumido pela plataforma e precisa autenticar via OAuth.</p>
-<p>Escopo deste doc: o lado do servidor MCP e o que ele precisa expor para a plataforma conseguir autenticar e injetar o token.</p>
+<p class="admonition-title">Audience</p>
+<p>Whoever will build (or adapt) an MCP server that will be consumed by the platform and needs to authenticate via OAuth.</p>
+<p>Scope of this doc: the MCP server side and what it needs to expose for the platform to authenticate and inject the token.</p>
 </div>
-<h2 id="visao-geral">Visão geral<a class="headerlink" href="#visao-geral" title="Permanent link">&para;</a></h2>
-<p>A plataforma não guarda a lista de lojas/recursos que o usuário pode acessar. Ela é o transportador do token do usuário. O fluxo é:</p>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>The platform does not store the list of merchants/resources the user can access. It is the transporter of the user's token. The flow is:</p>
 <ol>
-<li>A plataforma descobre o authorization server do MCP (via metadados).</li>
-<li>O usuário completa o fluxo de autorização (authorization code + PKCE).</li>
-<li>A plataforma guarda o access token (e o refresh token) do usuário, criptografado.</li>
-<li>A cada chamada de tool, a plataforma injeta <code>Authorization: Bearer &lt;access_token&gt;</code>.</li>
-<li>O seu MCP/API usa esse token para decidir quais lojas/recursos o usuário pode acessar e responde somente isso.</li>
+<li>The platform discovers the MCP's authorization server (via metadata).</li>
+<li>The user completes the authorization flow (authorization code + PKCE).</li>
+<li>The platform stores the user's access token (and refresh token), encrypted.</li>
+<li>On each tool call, the platform injects <code>Authorization: Bearer &lt;access_token&gt;</code>.</li>
+<li>Your MCP/API uses that token to decide which merchants/resources the user can access and responds only with that.</li>
 </ol>
-<p>A autorização por loja/recurso vive no seu servidor, não na plataforma.</p>
-<h2 id="o-que-o-seu-mcp-precisa-expor">O que o seu MCP precisa expor<a class="headerlink" href="#o-que-o-seu-mcp-precisa-expor" title="Permanent link">&para;</a></h2>
-<h3 id="1-metadados-do-recurso-protegido-rfc-9728">1. Metadados do recurso protegido (RFC 9728)<a class="headerlink" href="#1-metadados-do-recurso-protegido-rfc-9728" title="Permanent link">&para;</a></h3>
-<p>A descoberta acontece em <strong>dois estágios</strong>. Primeiro a plataforma descobre o <strong>recurso protegido</strong> (o seu MCP/API) via RFC 9728; só depois, a partir da lista de authorization servers publicada ali, ela busca os metadados do authorization server (RFC 8414). Ou seja, o documento do recurso protegido é o ponto de entrada da autenticação.</p>
-<p>O documento de metadados do recurso protegido deve ser publicado em <code>/.well-known/oauth-protected-resource</code> com, no mínimo:</p>
+<p>Merchant/resource authorization lives on your server, not on the platform.</p>
+<h2 id="what-your-mcp-needs-to-expose">What your MCP needs to expose<a class="headerlink" href="#what-your-mcp-needs-to-expose" title="Permanent link">&para;</a></h2>
+<h3 id="1-protected-resource-metadata-rfc-9728">1. Protected resource metadata (RFC 9728)<a class="headerlink" href="#1-protected-resource-metadata-rfc-9728" title="Permanent link">&para;</a></h3>
+<p>Discovery happens in <strong>two stages</strong>. First the platform discovers the <strong>protected resource</strong> (your MCP/API) via RFC 9728; only then, from the list of authorization servers published there, it fetches the authorization server metadata (RFC 8414). In other words, the protected resource document is the entry point for authentication.</p>
+<p>The protected resource metadata document must be published at <code>/.well-known/oauth-protected-resource</code> with, at minimum:</p>
 <table>
 <thead>
 <tr>
-<th>Campo</th>
-<th>Obrigatório?</th>
-<th>Observação</th>
+<th>Field</th>
+<th>Required?</th>
+<th>Notes</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>resource</code></td>
-<td>Sim</td>
-<td>Identificador canônico do recurso protegido (a URL do MCP)</td>
+<td>Yes</td>
+<td>Canonical identifier of the protected resource (the MCP URL)</td>
 </tr>
 <tr>
 <td><code>authorization_servers</code></td>
-<td>Sim</td>
-<td>Lista não vazia de authorization servers do recurso</td>
+<td>Yes</td>
+<td>Non-empty list of the resource's authorization servers</td>
 </tr>
 </tbody>
 </table>
-<p>Se o endpoint direto não estiver disponível, a plataforma faz um request sem token para o MCP. Uma resposta <code>401</code> com o header <code>WWW-Authenticate: Bearer resource_metadata="..."</code> é esperada e serve como sinal de descoberta (não é um erro de integração). A plataforma então busca a URL indicada. Se não houver nem endpoint direto nem <code>resource_metadata</code>, a autodescoberta não é possível.</p>
-<p>Com FastMCP, o <code>RemoteAuthProvider</code> publica esse documento automaticamente (veja o exemplo no final desta página).</p>
-<h3 id="2-grant-de-authorization-code-pkce">2. Grant de authorization code + PKCE<a class="headerlink" href="#2-grant-de-authorization-code-pkce" title="Permanent link">&para;</a></h3>
-<p>O fluxo de autorização usa o grant de <strong>authorization code</strong> com <strong>PKCE</strong> (não confundir com client credentials, que é outro grant).</p>
-<p>Requisitos obrigatórios no seu authorization server:</p>
+<p>If the direct endpoint is not available, the platform makes a tokenless request to the MCP. A <code>401</code> response with the <code>WWW-Authenticate: Bearer resource_metadata="..."</code> header is expected and serves as a discovery signal (it is not an integration error). The platform then fetches the indicated URL. If there is neither a direct endpoint nor <code>resource_metadata</code>, auto-discovery is not possible.</p>
+<p>With FastMCP, <code>RemoteAuthProvider</code> publishes this document automatically (see the example at the end of this page).</p>
+<h3 id="2-authorization-code-pkce-grant">2. Authorization code + PKCE grant<a class="headerlink" href="#2-authorization-code-pkce-grant" title="Permanent link">&para;</a></h3>
+<p>The authorization flow uses the <strong>authorization code</strong> grant with <strong>PKCE</strong> (not to be confused with client credentials, which is another grant).</p>
+<p>Mandatory requirements on your authorization server:</p>
 <ul>
-<li>Suporte a PKCE (<code>S256</code>), incluindo <code>code_challenge</code> e <code>code_verifier</code>.</li>
-<li>Emissão de <strong>refresh token</strong> junto com o access token.</li>
+<li>PKCE support (<code>S256</code>), including <code>code_challenge</code> and <code>code_verifier</code>.</li>
+<li>Issue a <strong>refresh token</strong> together with the access token.</li>
 </ul>
-<h3 id="3-contrato-de-validacao-do-token">3. Contrato de validação do token<a class="headerlink" href="#3-contrato-de-validacao-do-token" title="Permanent link">&para;</a></h3>
-<p>A plataforma orquestra o fluxo completo: inicia a autorização, processa o callback, armazena o token, faz refresh e revogação. Do seu lado, o que importa é:</p>
+<h3 id="3-token-validation-contract">3. Token validation contract<a class="headerlink" href="#3-token-validation-contract" title="Permanent link">&para;</a></h3>
+<p>The platform orchestrates the full flow: starts authorization, processes the callback, stores the token, refreshes and revokes. On your side, what matters is:</p>
 <ul>
-<li>A cada request, a plataforma injeta o header <code>Authorization: Bearer &lt;access_token&gt;</code>.</li>
-<li>Se o seu servidor responder <code>401</code>, a plataforma tenta um refresh e reexecuta a chamada uma única vez.</li>
-<li>Se ainda receber <code>401</code>, devolve erro de autenticação e o usuário precisa re-autorizar.</li>
+<li>On each request, the platform injects the <code>Authorization: Bearer &lt;access_token&gt;</code> header.</li>
+<li>If your server responds <code>401</code>, the platform attempts a refresh and reruns the call exactly once.</li>
+<li>If it still receives <code>401</code>, it returns an authentication error and the user must re-authorize.</li>
 </ul>
-<p>O seu servidor MCP deve validar o token em toda chamada e responder <code>401</code> quando ele for inválido ou expirado. É esse comportamento que aciona o mecanismo de refresh da plataforma.</p>
-<p>Para o MCP validar o token como JWT, o authorization server precisa garantir a compatibilidade:</p>
+<p>Your MCP server must validate the token on every call and respond <code>401</code> when it is invalid or expired. It is this behavior that triggers the platform's refresh mechanism.</p>
+<p>For the MCP to validate the token as a JWT, the authorization server must guarantee compatibility:</p>
 <ul>
-<li>Publicar o <code>jwks_uri</code> (as chaves públicas de assinatura do token).</li>
-<li>Emitir tokens com <code>issuer</code> e <code>audience</code> consistentes com o que o MCP espera.</li>
-<li>Garantir que o <code>iss</code> do token corresponda ao <code>issuer</code> do metadata (RFC 8414).</li>
+<li>Publish the <code>jwks_uri</code> (the token's public signing keys).</li>
+<li>Issue tokens with <code>issuer</code> and <code>audience</code> consistent with what the MCP expects.</li>
+<li>Ensure the token's <code>iss</code> matches the metadata <code>issuer</code> (RFC 8414).</li>
 </ul>
-<h2 id="escopo-de-credenciais-por-usuario-vs-compartilhado">Escopo de credenciais: por usuário vs. compartilhado<a class="headerlink" href="#escopo-de-credenciais-por-usuario-vs-compartilhado" title="Permanent link">&para;</a></h2>
-<p>O servidor MCP tem um campo <code>credential_scope</code> com dois valores:</p>
+<h2 id="credential-scope-per-user-vs-shared">Credential scope: per-user vs. shared<a class="headerlink" href="#credential-scope-per-user-vs-shared" title="Permanent link">&para;</a></h2>
+<p>The MCP server has a <code>credential_scope</code> field with two values:</p>
 <ul>
-<li><strong><code>user</code></strong>: cada usuário tem o próprio token. Use este modo para "token do usuário" / "lojas que o usuário pode acessar".</li>
-<li><strong><code>global</code></strong> (padrão): um único token vale para todos os usuários.</li>
+<li><strong><code>user</code></strong>: each user has their own token. Use this mode for "user token" / "merchants the user can access".</li>
+<li><strong><code>global</code></strong> (default): a single token is valid for all users.</li>
 </ul>
-<p>Para listar lojas com o token do usuário, configure <code>credential_scope: user</code>.</p>
-<h2 id="exemplos-por-linguagem">Exemplos por linguagem<a class="headerlink" href="#exemplos-por-linguagem" title="Permanent link">&para;</a></h2>
-<p>Os exemplos abaixo são ilustrativos e focados no contrato do MCP: publicar o RFC 9728, validar o <code>Authorization: Bearer</code> e responder <code>401</code> corretamente.</p>
+<p>To list merchants with the user's token, configure <code>credential_scope: user</code>.</p>
+<h2 id="examples-by-language">Examples by language<a class="headerlink" href="#examples-by-language" title="Permanent link">&para;</a></h2>
+<p>The examples below are illustrative and focused on the MCP contract: publishing RFC 9728, validating the <code>Authorization: Bearer</code> and responding <code>401</code> correctly.</p>
 <h3 id="python-fastmcp">Python (FastMCP)<a class="headerlink" href="#python-fastmcp" title="Permanent link">&para;</a></h3>
-<p>O lado do MCP server em Python usa <a href="https://gofastmcp.com">FastMCP</a> com <code>RemoteAuthProvider</code>, que publica o <code>/.well-known/oauth-protected-resource</code> (RFC 9728) automaticamente:</p>
+<p>The MCP server side in Python uses <a href="https://gofastmcp.com">FastMCP</a> with <code>RemoteAuthProvider</code>, which publishes <code>/.well-known/oauth-protected-resource</code> (RFC 9728) automatically:</p>
 <div class="language-python highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">fastmcp</span><span class="w"> </span><span class="kn">import</span> <span class="n">FastMCP</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">fastmcp.server.auth</span><span class="w"> </span><span class="kn">import</span> <span class="n">RemoteAuthProvider</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">fastmcp.server.auth.providers.jwt</span><span class="w"> </span><span class="kn">import</span> <span class="n">JWTVerifier</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">AnyHttpUrl</span>
 
 <span class="n">token_verifier</span> <span class="o">=</span> <span class="n">JWTVerifier</span><span class="p">(</span>
-    <span class="n">jwks_uri</span><span class="o">=</span><span class="s2">"https://auth.suaempresa.com/.well-known/jwks.json"</span><span class="p">,</span>
-    <span class="n">issuer</span><span class="o">=</span><span class="s2">"https://auth.suaempresa.com"</span><span class="p">,</span>
-    <span class="n">audience</span><span class="o">=</span><span class="s2">"seu-mcp-server"</span><span class="p">,</span>
+    <span class="n">jwks_uri</span><span class="o">=</span><span class="s2">"https://auth.yourcompany.com/.well-known/jwks.json"</span><span class="p">,</span>
+    <span class="n">issuer</span><span class="o">=</span><span class="s2">"https://auth.yourcompany.com"</span><span class="p">,</span>
+    <span class="n">audience</span><span class="o">=</span><span class="s2">"your-mcp-server"</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="n">auth</span> <span class="o">=</span> <span class="n">RemoteAuthProvider</span><span class="p">(</span>
     <span class="n">token_verifier</span><span class="o">=</span><span class="n">token_verifier</span><span class="p">,</span>
-    <span class="n">authorization_servers</span><span class="o">=</span><span class="p">[</span><span class="n">AnyHttpUrl</span><span class="p">(</span><span class="s2">"https://auth.suaempresa.com"</span><span class="p">)],</span>
-    <span class="n">base_url</span><span class="o">=</span><span class="s2">"https://api.suaempresa.com"</span><span class="p">,</span>
+    <span class="n">authorization_servers</span><span class="o">=</span><span class="p">[</span><span class="n">AnyHttpUrl</span><span class="p">(</span><span class="s2">"https://auth.yourcompany.com"</span><span class="p">)],</span>
+    <span class="n">base_url</span><span class="o">=</span><span class="s2">"https://api.yourcompany.com"</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="n">mcp</span> <span class="o">=</span> <span class="n">FastMCP</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"Lojas"</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span><span class="p">)</span>
+<span class="n">mcp</span> <span class="o">=</span> <span class="n">FastMCP</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"Merchants"</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="go-ilustrativo">Go (ilustrativo)<a class="headerlink" href="#go-ilustrativo" title="Permanent link">&para;</a></h3>
-<p>Exemplo conceitual em Go, cobrindo apenas o que o MCP precisa expor e validar (sem dependência de lib específica):</p>
-<div class="language-go highlight"><pre><span></span><code><span class="c1">// 1. Publicar o metadata do recurso protegido (RFC 9728)</span>
+<h3 id="go-illustrative">Go (illustrative)<a class="headerlink" href="#go-illustrative" title="Permanent link">&para;</a></h3>
+<p>Conceptual example in Go, covering only what the MCP needs to expose and validate (no specific library dependency):</p>
+<div class="language-go highlight"><pre><span></span><code><span class="c1">// 1. Publish the protected resource metadata (RFC 9728)</span>
 <span class="nx">mux</span><span class="p">.</span><span class="nx">HandleFunc</span><span class="p">(</span><span class="s">"/.well-known/oauth-protected-resource"</span><span class="p">,</span><span class="w"> </span><span class="kd">func</span><span class="p">(</span><span class="nx">w</span><span class="w"> </span><span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span><span class="w"> </span><span class="nx">r</span><span class="w"> </span><span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nx">json</span><span class="p">.</span><span class="nx">NewEncoder</span><span class="p">(</span><span class="nx">w</span><span class="p">).</span><span class="nx">Encode</span><span class="p">(</span><span class="kt">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">any</span><span class="p">{</span>
-<span class="w">        </span><span class="s">"resource"</span><span class="p">:</span><span class="w">              </span><span class="s">"https://seu-mcp.com"</span><span class="p">,</span>
-<span class="w">        </span><span class="s">"authorization_servers"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"https://auth.suaempresa.com"</span><span class="p">},</span>
+<span class="w">        </span><span class="s">"resource"</span><span class="p">:</span><span class="w">              </span><span class="s">"https://your-mcp.com"</span><span class="p">,</span>
+<span class="w">        </span><span class="s">"authorization_servers"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"https://auth.yourcompany.com"</span><span class="p">},</span>
 <span class="w">    </span><span class="p">})</span>
 <span class="p">})</span>
 
-<span class="c1">// 2. Validar o JWT em toda chamada protegida (jwks_uri + issuer + audience)</span>
+<span class="c1">// 2. Validate the JWT on every protected call (jwks_uri + issuer + audience)</span>
 <span class="kd">func</span><span class="w"> </span><span class="nx">authMiddleware</span><span class="p">(</span><span class="nx">next</span><span class="w"> </span><span class="nx">http</span><span class="p">.</span><span class="nx">Handler</span><span class="p">)</span><span class="w"> </span><span class="nx">http</span><span class="p">.</span><span class="nx">Handler</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">http</span><span class="p">.</span><span class="nx">HandlerFunc</span><span class="p">(</span><span class="kd">func</span><span class="p">(</span><span class="nx">w</span><span class="w"> </span><span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span><span class="w"> </span><span class="nx">r</span><span class="w"> </span><span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="nx">token</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">strings</span><span class="p">.</span><span class="nx">TrimPrefix</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">Header</span><span class="p">.</span><span class="nx">Get</span><span class="p">(</span><span class="s">"Authorization"</span><span class="p">),</span><span class="w"> </span><span class="s">"Bearer "</span><span class="p">)</span>
 
 <span class="w">        </span><span class="nx">claims</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">validateJWT</span><span class="p">(</span><span class="nx">token</span><span class="p">)</span>
 <span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">w</span><span class="p">.</span><span class="nx">Header</span><span class="p">().</span><span class="nx">Set</span><span class="p">(</span><span class="s">"WWW-Authenticate"</span><span class="p">,</span><span class="w"> </span><span class="s">`Bearer resource_metadata="https://seu-mcp.com/.well-known/oauth-protected-resource"`</span><span class="p">)</span>
+<span class="w">            </span><span class="nx">w</span><span class="p">.</span><span class="nx">Header</span><span class="p">().</span><span class="nx">Set</span><span class="p">(</span><span class="s">"WWW-Authenticate"</span><span class="p">,</span><span class="w"> </span><span class="s">`Bearer resource_metadata="https://your-mcp.com/.well-known/oauth-protected-resource"`</span><span class="p">)</span>
 <span class="w">            </span><span class="nx">http</span><span class="p">.</span><span class="nx">Error</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span><span class="w"> </span><span class="s">"unauthorized"</span><span class="p">,</span><span class="w"> </span><span class="nx">http</span><span class="p">.</span><span class="nx">StatusUnauthorized</span><span class="p">)</span>
 <span class="w">            </span><span class="k">return</span>
 <span class="w">        </span><span class="p">}</span>
@@ -1263,9 +1293,9 @@
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Outras linguagens seguem o mesmo contrato: publicar o RFC 9728, validar o <code>Authorization: Bearer</code> e responder <code>401</code> quando o token for inválido ou expirado.</p>
+<p>Other languages follow the same contract: publish RFC 9728, validate the <code>Authorization: Bearer</code> and respond <code>401</code> when the token is invalid or expired.</p>
 </div>
-<p>As credenciais <code>client_id</code>/<code>client_secret</code> não entram aqui. O client OAuth é a plataforma (veja os <a href="../oauth-requirements/">requisitos do OAuth</a>). O MCP server valida o token via JWKS ou, se preferir, via introspection.</p>
+<p>The <code>client_id</code>/<code>client_secret</code> credentials do not come in here. The OAuth client is the platform (see the <a href="../oauth-requirements/">OAuth requirements</a>). The MCP server validates the token via JWKS or, if preferred, via introspection.</p>
 
 
 
@@ -1289,7 +1319,7 @@
           <button type="button" class="md-top md-icon" data-md-component="top" hidden>
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
-  Voltar ao topo
+  Back to top
 </button>
         
       </main>
@@ -1321,7 +1351,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "Mais 1 nesta p\u00e1gina", "search.result.more.other": "Mais # nesta p\u00e1gina", "search.result.none": "Nenhum resultado encontrado", "search.result.one": "1 resultado encontrado", "search.result.other": "# resultados encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>

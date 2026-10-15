@@ -1,12 +1,12 @@
 
 <!doctype html>
-<html lang="pt" class="no-js">
+<html lang="en" class="no-js">
   <head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Padrão aberto para integrações do ecossistema Open Restaurant.">
+        <meta name="description" content="Open standard for integrations in the Open Restaurant ecosystem.">
       
       
       
@@ -19,6 +19,10 @@
         <link rel="next" href="../merchants/">
       
       
+        
+          <link rel="alternate" href="./" hreflang="en">
+        
+          <link rel="alternate" href="../../pt/authz/userinfo/" hreflang="pt">
         
       
       
@@ -79,7 +83,7 @@
       
         
         <a href="#userinfo-oidc" class="md-skip">
-          Ir para o conteúdo
+          Skip to content
         </a>
       
     </div>
@@ -95,7 +99,7 @@
       
 
 <header class="md-header" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+  <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../.." title="Open Restaurant Protocol" class="md-header__button md-logo" aria-label="Open Restaurant Protocol" data-md-component="logo">
       
   <img src="../../assets/icon.png" alt="logo">
@@ -128,9 +132,9 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Alternar para modo escuro"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
     
-      <label class="md-header__button md-icon" title="Alternar para modo escuro" for="__palette_1" hidden>
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
       </label>
     
@@ -138,9 +142,9 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Alternar para modo claro"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
     
-      <label class="md-header__button md-icon" title="Alternar para modo claro" for="__palette_0" hidden>
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
       </label>
     
@@ -151,6 +155,32 @@
     
       <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../pt/authz/userinfo/" hreflang="pt" class="md-select__link">
+              Português
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
     
     
       
@@ -163,16 +193,16 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
       </label>
-      <nav class="md-search__options" aria-label="Pesquisar">
+      <nav class="md-search__options" aria-label="Search">
         
-        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
           
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
@@ -185,7 +215,7 @@
       <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
-            Inicializando a pesquisa
+            Initializing search
           </div>
           <ol class="md-search-result__list" role="presentation"></ol>
         </div>
@@ -206,7 +236,7 @@
         
           
             
-<nav class="md-tabs" aria-label="Abas" data-md-component="tabs">
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
   <div class="md-grid">
     <ul class="md-tabs__list">
       
@@ -222,7 +252,7 @@
   
     
   
-  Início
+  Home
 
       </a>
     </li>
@@ -243,7 +273,7 @@
   
     
   
-  Autenticação
+  Authentication
 
         </a>
       </li>
@@ -267,7 +297,7 @@
   
     
   
-  Autorização
+  Authorization
 
         </a>
       </li>
@@ -289,7 +319,7 @@
   
     
   
-  Contratos de Dados
+  Data Contracts
 
         </a>
       </li>
@@ -311,7 +341,7 @@
   
     
   
-  Integrações
+  Integrations
 
         </a>
       </li>
@@ -339,7 +369,7 @@
   
 
 
-<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegação" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="Open Restaurant Protocol" class="md-nav__button md-logo" aria-label="Open Restaurant Protocol" data-md-component="logo">
       
@@ -365,7 +395,7 @@
   <span class="md-ellipsis">
     
   
-    Início
+    Home
   
 
     
@@ -416,7 +446,7 @@
   <span class="md-ellipsis">
     
   
-    Autenticação
+    Authentication
   
 
     
@@ -432,7 +462,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Autenticação
+    Authentication
   
 
           </label>
@@ -480,7 +510,7 @@
   <span class="md-ellipsis">
     
   
-    Requisitos do OAuth
+    OAuth Requirements
   
 
     
@@ -508,7 +538,7 @@
   <span class="md-ellipsis">
     
   
-    Como construir um MCP com OAuth
+    Building an MCP with OAuth
   
 
     
@@ -575,7 +605,7 @@
   <span class="md-ellipsis">
     
   
-    Autorização
+    Authorization
   
 
     
@@ -597,7 +627,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Autorização
+    Authorization
   
 
           </label>
@@ -658,7 +688,7 @@
       
         
 
-<nav class="md-nav md-nav--secondary" aria-label="Índice">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
   
@@ -667,15 +697,15 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Índice
+      Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#o-que-e" class="md-nav__link">
+  <a href="#what-it-is" class="md-nav__link">
     <span class="md-ellipsis">
       
-        O que é
+        What it is
       
     </span>
   </a>
@@ -694,15 +724,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#resposta" class="md-nav__link">
+  <a href="#response" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Resposta
+        Response
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Resposta">
+    <nav class="md-nav" aria-label="Response">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -728,10 +758,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#exemplo-de-resposta" class="md-nav__link">
+  <a href="#response-example" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Exemplo de resposta
+        Response example
       
     </span>
   </a>
@@ -744,10 +774,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#responsabilidades" class="md-nav__link">
+  <a href="#responsibilities" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Responsabilidades
+        Responsibilities
       
     </span>
   </a>
@@ -777,7 +807,7 @@
   <span class="md-ellipsis">
     
   
-    Lojas
+    Merchants
   
 
     
@@ -835,7 +865,7 @@
   <span class="md-ellipsis">
     
   
-    Contratos de Dados
+    Data Contracts
   
 
     
@@ -852,7 +882,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Contratos de Dados
+    Data Contracts
   
 
           </label>
@@ -901,7 +931,7 @@
   <span class="md-ellipsis">
     
   
-    Integrações
+    Integrations
   
 
     
@@ -917,7 +947,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Integrações
+    Integrations
   
 
           </label>
@@ -971,7 +1001,7 @@
                   <div class="md-sidebar__inner">
                     
 
-<nav class="md-nav md-nav--secondary" aria-label="Índice">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
   
@@ -980,15 +1010,15 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Índice
+      Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#o-que-e" class="md-nav__link">
+  <a href="#what-it-is" class="md-nav__link">
     <span class="md-ellipsis">
       
-        O que é
+        What it is
       
     </span>
   </a>
@@ -1007,15 +1037,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#resposta" class="md-nav__link">
+  <a href="#response" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Resposta
+        Response
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Resposta">
+    <nav class="md-nav" aria-label="Response">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1041,10 +1071,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#exemplo-de-resposta" class="md-nav__link">
+  <a href="#response-example" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Exemplo de resposta
+        Response example
       
     </span>
   </a>
@@ -1057,10 +1087,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#responsabilidades" class="md-nav__link">
+  <a href="#responsibilities" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Responsabilidades
+        Responsibilities
       
     </span>
   </a>
@@ -1086,82 +1116,82 @@
 
 <h1 id="userinfo-oidc">Userinfo (OIDC)<a class="headerlink" href="#userinfo-oidc" title="Permanent link">&para;</a></h1>
 <div class="admonition info">
-<p class="admonition-title">Público</p>
-<p>Quem provê o authorization server e precisa expor o endpoint de identidade (OpenID Connect) para a plataforma.</p>
-<p>O que esta página responde: o contrato do endpoint de <strong>userinfo</strong>, que retorna a identidade e as permissões do usuário.</p>
+<p class="admonition-title">Audience</p>
+<p>Whoever provides the authorization server and needs to expose the identity endpoint (OpenID Connect) to the platform.</p>
+<p>What this page answers: the contract of the <strong>userinfo</strong> endpoint, which returns the user's identity and permissions.</p>
 </div>
-<h2 id="o-que-e">O que é<a class="headerlink" href="#o-que-e" title="Permanent link">&para;</a></h2>
-<p>O <strong>userinfo</strong> é um endpoint definido pelo <strong>OpenID Connect (OIDC)</strong>, a camada de identidade construída sobre o OAuth 2.0. Ele não faz parte dos requisitos de OAuth em si: é o mecanismo pelo qual o <strong>MCP</strong> descobre <strong>quem é o usuário</strong> (<code>sub</code>), seu contato (<code>email</code>) e seu <strong>perfil/roles de acesso</strong>.</p>
+<h2 id="what-it-is">What it is<a class="headerlink" href="#what-it-is" title="Permanent link">&para;</a></h2>
+<p><strong>Userinfo</strong> is an endpoint defined by <strong>OpenID Connect (OIDC)</strong>, the identity layer built on top of OAuth 2.0. It is not part of the OAuth requirements itself: it is the mechanism through which the <strong>MCP</strong> discovers <strong>who the user is</strong> (<code>sub</code>), their contact (<code>email</code>) and their <strong>access profile/roles</strong>.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>O MCP chama este endpoint para obter o contexto de permissão do usuário antes de decidir quais recursos liberar.</p>
+<p>The MCP calls this endpoint to obtain the user's permission context before deciding which resources to release.</p>
 </div>
 <h2 id="request">Request<a class="headerlink" href="#request" title="Permanent link">&para;</a></h2>
-<p>O MCP chama o endpoint com o token do usuário:</p>
+<p>The MCP calls the endpoint with the user's token:</p>
 <div class="language-text highlight"><pre><span></span><code>Authorization: Bearer &lt;access_token&gt;
 </code></pre></div>
-<p>O endpoint deve validar o token (assinatura, <code>iss</code>, <code>aud</code>, <code>exp</code>) e usar o <code>sub</code> para identificar a conta antes de responder.</p>
-<h2 id="resposta">Resposta<a class="headerlink" href="#resposta" title="Permanent link">&para;</a></h2>
-<p>O endpoint deve retornar, no mínimo, os seguintes campos:</p>
+<p>The endpoint must validate the token (signature, <code>iss</code>, <code>aud</code>, <code>exp</code>) and use the <code>sub</code> to identify the account before responding.</p>
+<h2 id="response">Response<a class="headerlink" href="#response" title="Permanent link">&para;</a></h2>
+<p>The endpoint must return, at minimum, the following fields:</p>
 <table>
 <thead>
 <tr>
-<th>Campo</th>
-<th>Tipo</th>
-<th>Obrigatório</th>
-<th>Descrição</th>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>sub</code></td>
 <td>string</td>
-<td>Sim</td>
-<td>Identificador único do usuário</td>
+<td>Yes</td>
+<td>Unique user identifier</td>
 </tr>
 <tr>
 <td><code>email</code></td>
 <td>string</td>
-<td>Sim</td>
-<td>E-mail (ou outro identificador de contato)</td>
+<td>Yes</td>
+<td>Email (or another contact identifier)</td>
 </tr>
 <tr>
 <td><code>name</code></td>
 <td>string</td>
-<td>Não</td>
-<td>Nome de exibição do usuário</td>
+<td>No</td>
+<td>User's display name</td>
 </tr>
 <tr>
 <td><code>merchants</code></td>
 <td>array</td>
-<td>Sim</td>
-<td>Lista de lojas que o usuário pode acessar</td>
+<td>Yes</td>
+<td>List of merchants the user can access</td>
 </tr>
 <tr>
 <td><code>profile_permissions</code></td>
 <td>object</td>
-<td>Sim</td>
-<td>Perfil e roles de acesso da conta</td>
+<td>Yes</td>
+<td>Access profile and roles of the account</td>
 </tr>
 </tbody>
 </table>
 <h3 id="merchants"><code>merchants</code><a class="headerlink" href="#merchants" title="Permanent link">&para;</a></h3>
-<p>Lista de lojas que o usuário pode acessar. O <code>id</code> de cada item corresponde ao <code>merchant_id</code> do contrato de <a href="../merchants/">Lojas</a>:</p>
+<p>List of merchants the user can access. The <code>id</code> of each item corresponds to the <code>merchant_id</code> of the <a href="../merchants/">Merchants</a> contract:</p>
 <table>
 <thead>
 <tr>
-<th>Campo</th>
-<th>Tipo</th>
-<th>Obrigatório</th>
-<th>Descrição</th>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>id</code></td>
 <td>string</td>
-<td>Sim</td>
-<td>Identificador da loja</td>
+<td>Yes</td>
+<td>Merchant identifier</td>
 </tr>
 </tbody>
 </table>
@@ -1169,32 +1199,32 @@
 <table>
 <thead>
 <tr>
-<th>Campo</th>
-<th>Tipo</th>
-<th>Obrigatório</th>
-<th>Descrição</th>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>profile</code></td>
 <td>object</td>
-<td>Sim</td>
-<td>Perfil do usuário (<code>id</code> e <code>name</code>)</td>
+<td>Yes</td>
+<td>User profile (<code>id</code> and <code>name</code>)</td>
 </tr>
 <tr>
 <td><code>resource_access</code></td>
 <td>object</td>
-<td>Sim</td>
-<td>Permissões por aplicação</td>
+<td>Yes</td>
+<td>Permissions per application</td>
 </tr>
 </tbody>
 </table>
-<h3 id="exemplo-de-resposta">Exemplo de resposta<a class="headerlink" href="#exemplo-de-resposta" title="Permanent link">&para;</a></h3>
+<h3 id="response-example">Response example<a class="headerlink" href="#response-example" title="Permanent link">&para;</a></h3>
 <div class="language-json highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">    </span><span class="nt">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a1b2c3d4-e5f6-7890-abcd-ef1234567890"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Maria Exemplo"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"maria@exemplo.com.br"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Maria Example"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"maria@example.com"</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">"merchants"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"80727f01-5fa7-42d7-8735-9f0e847ff78c"</span><span class="w"> </span><span class="p">},</span>
 <span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2262aeff-9ea3-4314-a4a1-86f9fb57cbe1"</span><span class="w"> </span><span class="p">}</span>
@@ -1202,32 +1232,32 @@
 <span class="w">    </span><span class="nt">"profile_permissions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="nt">"profile"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1006</span><span class="p">,</span><span class="w"> </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Admin"</span><span class="w"> </span><span class="p">},</span>
 <span class="w">        </span><span class="nt">"resource_access"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">"sua-aplicacao"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"your-application"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                </span><span class="nt">"permissions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"VIEW_MENU"</span><span class="p">,</span><span class="w"> </span><span class="s2">"EDIT_MENU"</span><span class="p">]</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<h2 id="responsabilidades">Responsabilidades<a class="headerlink" href="#responsabilidades" title="Permanent link">&para;</a></h2>
+<h2 id="responsibilities">Responsibilities<a class="headerlink" href="#responsibilities" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>Responsabilidade</th>
-<th>Quem faz</th>
+<th>Responsibility</th>
+<th>Who does it</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Expor o endpoint de userinfo</td>
-<td>Sua empresa (authorization server / IdP)</td>
+<td>Expose the userinfo endpoint</td>
+<td>Your company (authorization server / IdP)</td>
 </tr>
 <tr>
-<td>Chamar o userinfo e obter o contexto de permissão</td>
+<td>Call userinfo and obtain the permission context</td>
 <td>MCP</td>
 </tr>
 <tr>
-<td>Determinar o perfil/roles de acesso a partir do userinfo</td>
+<td>Determine the access profile/roles from userinfo</td>
 <td>MCP</td>
 </tr>
 </tbody>
@@ -1255,7 +1285,7 @@
           <button type="button" class="md-top md-icon" data-md-component="top" hidden>
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
-  Voltar ao topo
+  Back to top
 </button>
         
       </main>
@@ -1287,7 +1317,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "Mais 1 nesta p\u00e1gina", "search.result.more.other": "Mais # nesta p\u00e1gina", "search.result.none": "Nenhum resultado encontrado", "search.result.one": "1 resultado encontrado", "search.result.other": "# resultados encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
