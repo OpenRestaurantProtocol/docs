@@ -1,7 +1,7 @@
 # Requisitos do OAuth para integração
 
 !!! info "Público"
-    Empresas que querem integrar seu MCP/dados à plataforma e precisam construir o authorization server (OAuth) do lado delas.
+    Organizações que querem integrar seu MCP/dados à plataforma e precisam construir o authorization server (OAuth) do lado delas.
 
     O que esta página responde: **o que o seu OAuth precisa ter para conseguir conectar à plataforma.**
 
@@ -17,7 +17,7 @@ Para integrar, você vai precisar de:
 
 ## Visão geral
 
-A sua empresa constrói e opera um **authorization server** (OAuth 2.0 / OIDC) que autentica os usuários e emite tokens. A plataforma atua como *client* desse authorization server: descobre os endpoints, conduz o usuário pelo fluxo de autorização e guarda o token resultante. De posse do token, o **MCP** consulta o endpoint de **userinfo** do authorization server para descobrir a identidade e o perfil de acesso da conta.
+A sua organização constrói e opera um **authorization server** (OAuth 2.0 / OIDC) que autentica os usuários e emite tokens. A plataforma atua como *client* desse authorization server: descobre os endpoints, conduz o usuário pelo fluxo de autorização e guarda o token resultante. De posse do token, o **MCP** consulta o endpoint de **userinfo** do authorization server para descobrir a identidade e o perfil de acesso da conta.
 
 Existem **dois caminhos** para conectar o seu OAuth à plataforma. Eles diferem apenas em *como* a plataforma obtém as informações. **Os requisitos do authorization server são os mesmos** nos dois casos. A base obrigatória está na seção [O que é igual nos dois caminhos](#o-que-e-igual-nos-dois-caminhos).
 
@@ -61,10 +61,10 @@ Nesse caminho, o seu authorization server **publica metadados** e a plataforma d
 
 ### 1. Metadados do authorization server (RFC 8414) — sempre
 
-O authorization server publica um documento de metadados derivado do `issuer`. Na descoberta, você pode informar a URL base do authorization server (o `issuer`, ex.: `https://auth.suaempresa.com`) ou a URL do documento diretamente. A partir do `issuer`, a plataforma deriva o caminho:
+O authorization server publica um documento de metadados derivado do `issuer`. Na descoberta, você pode informar a URL base do authorization server (o `issuer`, ex.: `https://auth.suaorganizacao.com`) ou a URL do documento diretamente. A partir do `issuer`, a plataforma deriva o caminho:
 
 ```
-https://auth.suaempresa.com/.well-known/oauth-authorization-server
+https://auth.suaorganizacao.com/.well-known/oauth-authorization-server
 ```
 
 !!! info "OpenID Connect"
@@ -89,10 +89,10 @@ Exemplo de conteúdo:
 
 ```json
 {
-  "issuer": "https://auth.suaempresa.com",
-  "authorization_endpoint": "https://auth.suaempresa.com/oauth/authorize",
-  "token_endpoint": "https://auth.suaempresa.com/oauth/token",
-  "registration_endpoint": "https://auth.suaempresa.com/oauth/register",
+  "issuer": "https://auth.suaorganizacao.com",
+  "authorization_endpoint": "https://auth.suaorganizacao.com/oauth/authorize",
+  "token_endpoint": "https://auth.suaorganizacao.com/oauth/token",
+  "registration_endpoint": "https://auth.suaorganizacao.com/oauth/register",
   "scopes_supported": ["openid", "profile", "menus:read"],
   "response_types_supported": ["code"],
   "grant_types_supported": ["authorization_code", "refresh_token"],
@@ -200,15 +200,15 @@ Antes de tentar conectar, confirme cada item:
 
 | Responsabilidade | Quem faz |
 |---|---|
-| Construir/operar o authorization server | Sua empresa |
-| Publicar metadados RFC 8414 (authorization server) | Sua empresa |
-| Publicar protected resource metadata RFC 9728 (MCP) | Quem opera o MCP |
-| Expor endpoint de userinfo (identidade + perfil/roles) | Sua empresa |
-| Autenticar o usuário e emitir tokens | Sua empresa |
+| Construir/operar o authorization server | Sua organização |
+| Publicar metadados RFC 8414 (authorization server) | Sua organização |
+| Publicar protected resource metadata RFC 9728 (MCP) | a organização que opera o MCP |
+| Expor endpoint de userinfo (identidade + perfil/roles) | Sua organização |
+| Autenticar o usuário e emitir tokens | Sua organização |
 | Descoberta do authorization server (autodescoberta) | Plataforma |
 | Guardar e criptografar o token | Plataforma |
 | Consultar o endpoint de userinfo com o token e interpretar perfil/lojas | MCP |
 | Injetar `Authorization: Bearer` e fazer refresh | Plataforma |
 
 !!! note
-    O authorization server e o MCP podem ser operados pela mesma empresa ou por empresas diferentes. O RFC 8414 e o userinfo são responsabilidade de quem opera o authorization server; o RFC 9728 é de quem opera o MCP.
+    O authorization server e o MCP podem ser operados pela mesma organização ou por organizações diferentes. O RFC 8414 e o userinfo são responsabilidade da organização que opera o authorization server; o RFC 9728 é da organização que opera o MCP.

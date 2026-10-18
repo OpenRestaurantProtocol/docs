@@ -11,8 +11,8 @@
   "participants": [
     { "id": "user", "type": "external", "label": "User", "sublabel": "operator" },
     { "id": "platform", "type": "backend", "label": "Platform", "sublabel": "agent" },
-    { "id": "login", "type": "frontend", "label": "Login (Partner)", "sublabel": "login page" },
-    { "id": "oauth", "type": "security", "label": "OAuth (Partner)", "sublabel": "authorization server" },
+    { "id": "login", "type": "frontend", "label": "Login (Organization)", "sublabel": "login page" },
+    { "id": "oauth", "type": "security", "label": "OAuth (Organization)", "sublabel": "authorization server" },
     { "id": "mcp", "type": "backend", "label": "MCP", "sublabel": "ecosystem tools" },
     { "id": "bridge", "type": "database", "label": "DataBridge", "sublabel": "data access" }
   ],
@@ -22,15 +22,15 @@
     { "from": 855, "to": 1175, "label": "Data Query" }
   ],
   "messages": [
-    { "id": "m01", "from": "user", "to": "platform", "y": 178, "label": "Connect Partner", "variant": "emphasis" },
+    { "id": "m01", "from": "user", "to": "platform", "y": 178, "label": "Connect Organization", "variant": "emphasis" },
     { "id": "m02", "from": "platform", "to": "login", "y": 218, "label": "redirect (client_id, scopes, PKCE)", "variant": "default" },
     { "id": "m03", "from": "user", "to": "login", "y": 258, "label": "credentials + MFA", "variant": "default" },
     { "id": "m04", "from": "login", "to": "oauth", "y": 298, "label": "validate credentials", "variant": "security" },
     { "id": "m05", "from": "oauth", "to": "platform", "y": 338, "label": "authorization code (callback)", "variant": "return" },
     { "id": "m06", "from": "platform", "to": "oauth", "y": 378, "label": "exchange code for tokens (code_verifier)", "variant": "security" },
     { "id": "m07", "from": "oauth", "to": "platform", "y": 418, "label": "access_token + refresh_token", "variant": "return" },
-    { "id": "m08", "from": "platform", "to": "user", "y": 498, "label": "partner connected", "variant": "return" },
-    { "id": "m09", "from": "user", "to": "platform", "y": 560, "label": "prompt about partner data", "variant": "emphasis" },
+    { "id": "m08", "from": "platform", "to": "user", "y": 498, "label": "organization connected", "variant": "return" },
+    { "id": "m09", "from": "user", "to": "platform", "y": 560, "label": "prompt about organization data", "variant": "emphasis" },
     { "id": "m10", "from": "platform", "to": "mcp", "y": 600, "label": "tool_call + Bearer JWT", "variant": "emphasis" },
     { "id": "m11", "from": "mcp", "to": "oauth", "y": 680, "label": "GET /userinfo + Bearer JWT", "variant": "security" },
     { "id": "m12", "from": "oauth", "to": "mcp", "y": 720, "label": "sub + email + permissions", "variant": "return" },
@@ -60,7 +60,7 @@
       "dot": "emerald",
       "title": "OAuth + PKCE Connection",
       "items": [
-        "The partner authenticates the user and issues an authorization code",
+        "The organization authenticates the user and issues an authorization code",
         "The platform exchanges the code for tokens using the PKCE code_verifier",
         "The access_token (JWT) authenticates every subsequent call"
       ]
@@ -70,7 +70,7 @@
       "title": "JWT Authorization",
       "items": [
         "Every MCP call validates signature, iss, aud, and exp",
-        "The MCP calls GET /userinfo on the partner's authorization server to get the user's authorization context",
+        "The MCP calls GET /userinfo on the organization's authorization server to get the user's authorization context",
         "The MCP applies authorization logic to determine accessible merchants"
       ]
     },

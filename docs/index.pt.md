@@ -19,6 +19,14 @@ O **Open Restaurant Protocol** (ORP) define como sistemas se conectam e trocam d
 - Descoberta automática via **RFC 8414** (Authorization Server Metadata), **RFC 9728** (Protected Resource Metadata) e **RFC 7591** (Dynamic Client Registration).
 - Versionamento semântico do protocolo (v1, v2, ...), com acesso a versões anteriores via seletor de versão.
 
+## Terminologia
+
+- **Organização** — uma empresa registrada no ecossistema ORP, independentemente do papel. Exemplos: uma plataforma de delivery, um provedor de POS, um sistema de gestão de restaurantes ou um consumidor de dados.
+- **Provedor** — uma organização que atua fornecendo dados, APIs, ferramentas, serviços ou capacidades.
+- **Consumidor** — uma organização que atua consumindo dados, APIs, ferramentas, serviços ou capacidades.
+
+Uma organização pode atuar como provedor, consumidor ou ambos — os papéis não são exclusivos.
+
 ## Versões
 
 - **v1** — lançamento inicial (atual).

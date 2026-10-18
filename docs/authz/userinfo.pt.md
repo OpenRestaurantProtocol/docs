@@ -1,7 +1,7 @@
 # Userinfo (OIDC)
 
 !!! info "Público"
-    Quem provê o authorization server e precisa expor o endpoint de identidade (OpenID Connect) para a plataforma.
+    A organização que provê o authorization server e precisa expor o endpoint de identidade (OpenID Connect) para a plataforma.
 
     O que esta página responde: o contrato do endpoint de **userinfo**, que retorna a identidade e as permissões do usuário.
 
@@ -75,6 +75,6 @@ Lista de lojas que o usuário pode acessar. O `id` de cada item corresponde ao `
 
 | Responsabilidade | Quem faz |
 |---|---|
-| Expor o endpoint de userinfo | Sua empresa (authorization server / IdP) |
+| Expor o endpoint de userinfo | Sua organização (authorization server / IdP) |
 | Chamar o userinfo e obter o contexto de permissão | MCP |
 | Determinar o perfil/roles de acesso a partir do userinfo | MCP |

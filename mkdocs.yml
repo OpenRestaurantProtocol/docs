@@ -1,5 +1,5 @@
 site_name: Open Restaurant Protocol
-site_description: Padrão aberto para integrações do ecossistema Open Restaurant.
+site_description: Open standard for integrations in the Open Restaurant ecosystem.
 site_url: https://openrestaurantprotocol.org/
 exclude_docs: |
   diagrams/oauth/*.json
@@ -7,7 +7,7 @@ exclude_docs: |
   changes/**
 theme:
   name: material
-  language: pt
+  language: en
   logo: assets/icon.png
   favicon: assets/icon.png
   palette:
@@ -17,14 +17,14 @@ theme:
       accent: indigo
       toggle:
         icon: material/weather-sunny
-        name: Alternar para modo escuro
+        name: Switch to dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
       primary: black
       accent: indigo
       toggle:
         icon: material/weather-night
-        name: Alternar para modo claro
+        name: Switch to light mode
   features:
     - navigation.tabs
     - navigation.sections
@@ -33,18 +33,18 @@ theme:
     - search.suggest
     - search.highlight
 nav:
-  - Início: index.md
-  - Autenticação:
+  - Home: index.md
+  - Authentication:
       - OAuth: auth/oauth.md
-      - Requisitos do OAuth: auth/oauth-requirements.md
-      - Como construir um MCP com OAuth: auth/mcp-oauth.md
-  - Autorização:
-      - Visão geral: authz/index.md
+      - OAuth Requirements: auth/oauth-requirements.md
+      - Building an MCP with OAuth: auth/mcp-oauth.md
+  - Authorization:
+      - Overview: authz/index.md
       - Userinfo (OIDC): authz/userinfo.md
-      - Lojas: authz/merchants.md
-  - Contratos de Dados:
-      - Visão geral: data-contracts/index.md
-  - Integrações:
+      - Merchants: authz/merchants.md
+  - Data Contracts:
+      - Overview: data-contracts/index.md
+  - Integrations:
       - MCP: integrations/mcp.md
 markdown_extensions:
   - admonition
@@ -71,6 +71,47 @@ markdown_extensions:
 plugins:
   - search
   - mike
+  - i18n:
+      docs_structure: suffix
+      fallback_to_default: true
+      reconfigure_material: true
+      reconfigure_search: true
+      languages:
+        - locale: en
+          default: true
+          name: English
+          build: true
+        - locale: pt
+          name: Português
+          build: true
+          site_description: Padrão aberto para integrações do ecossistema Open Restaurant.
+          theme:
+            language: pt
+            palette:
+              - media: "(prefers-color-scheme: light)"
+                scheme: default
+                primary: black
+                accent: indigo
+                toggle:
+                  icon: material/weather-sunny
+                  name: Alternar para modo escuro
+              - media: "(prefers-color-scheme: dark)"
+                scheme: slate
+                primary: black
+                accent: indigo
+                toggle:
+                  icon: material/weather-night
+                  name: Alternar para modo claro
+          nav_translations:
+            Home: Início
+            Authentication: Autenticação
+            OAuth Requirements: Requisitos do OAuth
+            Building an MCP with OAuth: Como construir um MCP com OAuth
+            Authorization: Autorização
+            Overview: Visão geral
+            Merchants: Lojas
+            Data Contracts: Contratos de Dados
+            Integrations: Integrações
 extra:
   version:
     provider: mike

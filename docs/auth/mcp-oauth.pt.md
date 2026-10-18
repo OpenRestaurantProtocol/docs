@@ -1,7 +1,7 @@
 # Como construir um MCP com OAuth
 
 !!! info "Público"
-    Quem vai construir (ou adaptar) um servidor MCP que será consumido pela plataforma e precisa autenticar via OAuth.
+    A organização que vai construir (ou adaptar) um servidor MCP que será consumido pela plataforma e precisa autenticar via OAuth.
 
     Escopo deste doc: o lado do servidor MCP e o que ele precisa expor para a plataforma conseguir autenticar e injetar o token.
 
@@ -83,15 +83,15 @@ from fastmcp.server.auth.providers.jwt import JWTVerifier
 from pydantic import AnyHttpUrl
 
 token_verifier = JWTVerifier(
-    jwks_uri="https://auth.suaempresa.com/.well-known/jwks.json",
-    issuer="https://auth.suaempresa.com",
+    jwks_uri="https://auth.suaorganizacao.com/.well-known/jwks.json",
+    issuer="https://auth.suaorganizacao.com",
     audience="seu-mcp-server",
 )
 
 auth = RemoteAuthProvider(
     token_verifier=token_verifier,
-    authorization_servers=[AnyHttpUrl("https://auth.suaempresa.com")],
-    base_url="https://api.suaempresa.com",
+    authorization_servers=[AnyHttpUrl("https://auth.suaorganizacao.com")],
+    base_url="https://api.suaorganizacao.com",
 )
 
 mcp = FastMCP(name="Lojas", auth=auth)
@@ -106,7 +106,7 @@ Exemplo conceitual em Go, cobrindo apenas o que o MCP precisa expor e validar (s
 mux.HandleFunc("/.well-known/oauth-protected-resource", func(w http.ResponseWriter, r *http.Request) {
     json.NewEncoder(w).Encode(map[string]any{
         "resource":              "https://seu-mcp.com",
-        "authorization_servers": []string{"https://auth.suaempresa.com"},
+        "authorization_servers": []string{"https://auth.suaorganizacao.com"},
     })
 })
 

@@ -10,8 +10,8 @@ Este repositório contém o site de documentação, construído com [MkDocs](htt
 
 ### O que você encontra aqui
 
-- **OAuth** — o fluxo de autenticação e autorização usado para conectar um parceiro à Plataforma, com um diagrama de sequência interativo.
-- **Requisitos do OAuth** — o que um parceiro precisa prover para integrar.
+- **OAuth** — o fluxo de autenticação e autorização usado para conectar uma organização à Plataforma, com um diagrama de sequência interativo.
+- **Requisitos do OAuth** — o que uma organização precisa prover para integrar.
 - **Discovery** — descoberta automática de authorization servers e recursos protegidos (RFC 8414, RFC 9728, DCR).
 - **Como construir um MCP com OAuth** — o lado do servidor MCP.
 - **Contratos de Dados** — o template que cada domínio de dados deve seguir (em desenvolvimento).

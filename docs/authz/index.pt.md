@@ -7,7 +7,7 @@
 
 Depois que o usuário está autenticado (via OAuth), ainda é preciso decidir **o que** ele pode acessar. Essa decisão é feita pelo MCP.
 
-O endpoint de [userinfo](userinfo.md) é sempre fornecido pelo parceiro (quem opera o authorization server). Quem cria o MCP usa esse endpoint para obter o contexto de autorização do usuário e implementar a lógica de acesso:
+O endpoint de [userinfo](userinfo.md) é sempre fornecido pela organização (quem opera o authorization server). Quem cria o MCP usa esse endpoint para obter o contexto de autorização do usuário e implementar a lógica de acesso:
 
 1. O MCP recebe o token do usuário.
 2. O MCP chama o [userinfo](userinfo.md) para obter a identidade e as permissões do usuário.
