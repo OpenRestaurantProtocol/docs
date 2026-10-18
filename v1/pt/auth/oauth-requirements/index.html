@@ -1327,7 +1327,7 @@
 <h1 id="requisitos-do-oauth-para-integracao">Requisitos do OAuth para integração<a class="headerlink" href="#requisitos-do-oauth-para-integracao" title="Permanent link">&para;</a></h1>
 <div class="admonition info">
 <p class="admonition-title">Público</p>
-<p>Empresas que querem integrar seu MCP/dados à plataforma e precisam construir o authorization server (OAuth) do lado delas.</p>
+<p>Organizações que querem integrar seu MCP/dados à plataforma e precisam construir o authorization server (OAuth) do lado delas.</p>
 <p>O que esta página responde: <strong>o que o seu OAuth precisa ter para conseguir conectar à plataforma.</strong></p>
 </div>
 <h2 id="resumo-rapido">Resumo rápido<a class="headerlink" href="#resumo-rapido" title="Permanent link">&para;</a></h2>
@@ -1340,7 +1340,7 @@
 <li>(Opcional) <strong>DCR</strong> (RFC 7591) para registro automático do client.</li>
 </ul>
 <h2 id="visao-geral">Visão geral<a class="headerlink" href="#visao-geral" title="Permanent link">&para;</a></h2>
-<p>A sua empresa constrói e opera um <strong>authorization server</strong> (OAuth 2.0 / OIDC) que autentica os usuários e emite tokens. A plataforma atua como <em>client</em> desse authorization server: descobre os endpoints, conduz o usuário pelo fluxo de autorização e guarda o token resultante. De posse do token, o <strong>MCP</strong> consulta o endpoint de <strong>userinfo</strong> do authorization server para descobrir a identidade e o perfil de acesso da conta.</p>
+<p>A sua organização constrói e opera um <strong>authorization server</strong> (OAuth 2.0 / OIDC) que autentica os usuários e emite tokens. A plataforma atua como <em>client</em> desse authorization server: descobre os endpoints, conduz o usuário pelo fluxo de autorização e guarda o token resultante. De posse do token, o <strong>MCP</strong> consulta o endpoint de <strong>userinfo</strong> do authorization server para descobrir a identidade e o perfil de acesso da conta.</p>
 <p>Existem <strong>dois caminhos</strong> para conectar o seu OAuth à plataforma. Eles diferem apenas em <em>como</em> a plataforma obtém as informações. <strong>Os requisitos do authorization server são os mesmos</strong> nos dois casos. A base obrigatória está na seção <a href="#o-que-e-igual-nos-dois-caminhos">O que é igual nos dois caminhos</a>.</p>
 <h2 id="glossario-rapido">Glossário rápido<a class="headerlink" href="#glossario-rapido" title="Permanent link">&para;</a></h2>
 <table>
@@ -1400,8 +1400,8 @@
 <h2 id="caminho-1-autodescoberta-recomendado">Caminho 1 — Autodescoberta (recomendado)<a class="headerlink" href="#caminho-1-autodescoberta-recomendado" title="Permanent link">&para;</a></h2>
 <p>Nesse caminho, o seu authorization server <strong>publica metadados</strong> e a plataforma descobre os endpoints automaticamente. Você não precisa configurar endpoints manualmente.</p>
 <h3 id="1-metadados-do-authorization-server-rfc-8414-sempre">1. Metadados do authorization server (RFC 8414) — sempre<a class="headerlink" href="#1-metadados-do-authorization-server-rfc-8414-sempre" title="Permanent link">&para;</a></h3>
-<p>O authorization server publica um documento de metadados derivado do <code>issuer</code>. Na descoberta, você pode informar a URL base do authorization server (o <code>issuer</code>, ex.: <code>https://auth.suaempresa.com</code>) ou a URL do documento diretamente. A partir do <code>issuer</code>, a plataforma deriva o caminho:</p>
-<div class="language-text highlight"><pre><span></span><code>https://auth.suaempresa.com/.well-known/oauth-authorization-server
+<p>O authorization server publica um documento de metadados derivado do <code>issuer</code>. Na descoberta, você pode informar a URL base do authorization server (o <code>issuer</code>, ex.: <code>https://auth.suaorganizacao.com</code>) ou a URL do documento diretamente. A partir do <code>issuer</code>, a plataforma deriva o caminho:</p>
+<div class="language-text highlight"><pre><span></span><code>https://auth.suaorganizacao.com/.well-known/oauth-authorization-server
 </code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">OpenID Connect</p>
@@ -1471,10 +1471,10 @@
 </table>
 <p>Exemplo de conteúdo:</p>
 <div class="language-json highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">"issuer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://auth.suaempresa.com"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"authorization_endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://auth.suaempresa.com/oauth/authorize"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"token_endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://auth.suaempresa.com/oauth/token"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"registration_endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://auth.suaempresa.com/oauth/register"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"issuer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://auth.suaorganizacao.com"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"authorization_endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://auth.suaorganizacao.com/oauth/authorize"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"token_endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://auth.suaorganizacao.com/oauth/token"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"registration_endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://auth.suaorganizacao.com/oauth/register"</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">"scopes_supported"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"openid"</span><span class="p">,</span><span class="w"> </span><span class="s2">"profile"</span><span class="p">,</span><span class="w"> </span><span class="s2">"menus:read"</span><span class="p">],</span>
 <span class="w">  </span><span class="nt">"response_types_supported"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"code"</span><span class="p">],</span>
 <span class="w">  </span><span class="nt">"grant_types_supported"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"authorization_code"</span><span class="p">,</span><span class="w"> </span><span class="s2">"refresh_token"</span><span class="p">],</span>
@@ -1598,23 +1598,23 @@
 <tbody>
 <tr>
 <td>Construir/operar o authorization server</td>
-<td>Sua empresa</td>
+<td>Sua organização</td>
 </tr>
 <tr>
 <td>Publicar metadados RFC 8414 (authorization server)</td>
-<td>Sua empresa</td>
+<td>Sua organização</td>
 </tr>
 <tr>
 <td>Publicar protected resource metadata RFC 9728 (MCP)</td>
-<td>Quem opera o MCP</td>
+<td>a organização que opera o MCP</td>
 </tr>
 <tr>
 <td>Expor endpoint de userinfo (identidade + perfil/roles)</td>
-<td>Sua empresa</td>
+<td>Sua organização</td>
 </tr>
 <tr>
 <td>Autenticar o usuário e emitir tokens</td>
-<td>Sua empresa</td>
+<td>Sua organização</td>
 </tr>
 <tr>
 <td>Descoberta do authorization server (autodescoberta)</td>
@@ -1636,7 +1636,7 @@
 </table>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>O authorization server e o MCP podem ser operados pela mesma empresa ou por empresas diferentes. O RFC 8414 e o userinfo são responsabilidade de quem opera o authorization server; o RFC 9728 é de quem opera o MCP.</p>
+<p>O authorization server e o MCP podem ser operados pela mesma organização ou por organizações diferentes. O RFC 8414 e o userinfo são responsabilidade da organização que opera o authorization server; o RFC 9728 é da organização que opera o MCP.</p>
 </div>
 
 

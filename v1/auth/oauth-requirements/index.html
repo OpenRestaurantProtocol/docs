@@ -1327,7 +1327,7 @@
 <h1 id="oauth-requirements-for-integration">OAuth requirements for integration<a class="headerlink" href="#oauth-requirements-for-integration" title="Permanent link">&para;</a></h1>
 <div class="admonition info">
 <p class="admonition-title">Audience</p>
-<p>Companies that want to integrate their MCP/data with the platform and need to build the authorization server (OAuth) on their side.</p>
+<p>Organizations that want to integrate their MCP/data with the platform and need to build the authorization server (OAuth) on their side.</p>
 <p>What this page answers: <strong>what your OAuth needs to have in order to connect to the platform.</strong></p>
 </div>
 <h2 id="quick-summary">Quick summary<a class="headerlink" href="#quick-summary" title="Permanent link">&para;</a></h2>
@@ -1340,7 +1340,7 @@
 <li>(Optional) <strong>DCR</strong> (RFC 7591) for automatic client registration.</li>
 </ul>
 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
-<p>Your company builds and operates an <strong>authorization server</strong> (OAuth 2.0 / OIDC) that authenticates users and issues tokens. The platform acts as a <em>client</em> of that authorization server: it discovers the endpoints, guides the user through the authorization flow, and stores the resulting token. With the token in hand, the <strong>MCP</strong> queries the authorization server's <strong>userinfo</strong> endpoint to discover the identity and access profile of the account.</p>
+<p>Your organization builds and operates an <strong>authorization server</strong> (OAuth 2.0 / OIDC) that authenticates users and issues tokens. The platform acts as a <em>client</em> of that authorization server: it discovers the endpoints, guides the user through the authorization flow, and stores the resulting token. With the token in hand, the <strong>MCP</strong> queries the authorization server's <strong>userinfo</strong> endpoint to discover the identity and access profile of the account.</p>
 <p>There are <strong>two paths</strong> to connect your OAuth to the platform. They differ only in <em>how</em> the platform obtains the information. <strong>The authorization server requirements are the same</strong> in both cases. The mandatory baseline is in the <a href="#what-is-the-same-in-both-paths">What is the same in both paths</a> section.</p>
 <h2 id="quick-glossary">Quick glossary<a class="headerlink" href="#quick-glossary" title="Permanent link">&para;</a></h2>
 <table>
@@ -1400,8 +1400,8 @@
 <h2 id="path-1-auto-discovery-recommended">Path 1 — Auto-discovery (recommended)<a class="headerlink" href="#path-1-auto-discovery-recommended" title="Permanent link">&para;</a></h2>
 <p>In this path, your authorization server <strong>publishes metadata</strong> and the platform discovers the endpoints automatically. You don't need to configure endpoints manually.</p>
 <h3 id="1-authorization-server-metadata-rfc-8414-always">1. Authorization server metadata (RFC 8414) — always<a class="headerlink" href="#1-authorization-server-metadata-rfc-8414-always" title="Permanent link">&para;</a></h3>
-<p>The authorization server publishes a metadata document derived from the <code>issuer</code>. During discovery, you can provide the authorization server's base URL (the <code>issuer</code>, e.g. <code>https://auth.yourcompany.com</code>) or the document URL directly. From the <code>issuer</code>, the platform derives the path:</p>
-<div class="language-text highlight"><pre><span></span><code>https://auth.yourcompany.com/.well-known/oauth-authorization-server
+<p>The authorization server publishes a metadata document derived from the <code>issuer</code>. During discovery, you can provide the authorization server's base URL (the <code>issuer</code>, e.g. <code>https://auth.yourorganization.com</code>) or the document URL directly. From the <code>issuer</code>, the platform derives the path:</p>
+<div class="language-text highlight"><pre><span></span><code>https://auth.yourorganization.com/.well-known/oauth-authorization-server
 </code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">OpenID Connect</p>
@@ -1471,10 +1471,10 @@
 </table>
 <p>Content example:</p>
 <div class="language-json highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">"issuer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://auth.yourcompany.com"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"authorization_endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://auth.yourcompany.com/oauth/authorize"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"token_endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://auth.yourcompany.com/oauth/token"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"registration_endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://auth.yourcompany.com/oauth/register"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"issuer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://auth.yourorganization.com"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"authorization_endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://auth.yourorganization.com/oauth/authorize"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"token_endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://auth.yourorganization.com/oauth/token"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"registration_endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://auth.yourorganization.com/oauth/register"</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">"scopes_supported"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"openid"</span><span class="p">,</span><span class="w"> </span><span class="s2">"profile"</span><span class="p">,</span><span class="w"> </span><span class="s2">"menus:read"</span><span class="p">],</span>
 <span class="w">  </span><span class="nt">"response_types_supported"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"code"</span><span class="p">],</span>
 <span class="w">  </span><span class="nt">"grant_types_supported"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"authorization_code"</span><span class="p">,</span><span class="w"> </span><span class="s2">"refresh_token"</span><span class="p">],</span>
@@ -1598,23 +1598,23 @@
 <tbody>
 <tr>
 <td>Build/operate the authorization server</td>
-<td>Your company</td>
+<td>Your organization</td>
 </tr>
 <tr>
 <td>Publish RFC 8414 metadata (authorization server)</td>
-<td>Your company</td>
+<td>Your organization</td>
 </tr>
 <tr>
 <td>Publish RFC 9728 protected resource metadata (MCP)</td>
-<td>Whoever operates the MCP</td>
+<td>The organization that operates the MCP</td>
 </tr>
 <tr>
 <td>Expose the userinfo endpoint (identity + profile/roles)</td>
-<td>Your company</td>
+<td>Your organization</td>
 </tr>
 <tr>
 <td>Authenticate the user and issue tokens</td>
-<td>Your company</td>
+<td>Your organization</td>
 </tr>
 <tr>
 <td>Authorization server discovery (auto-discovery)</td>
@@ -1636,7 +1636,7 @@
 </table>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The authorization server and the MCP can be operated by the same company or by different companies. RFC 8414 and userinfo are the responsibility of whoever operates the authorization server; RFC 9728 is the responsibility of whoever operates the MCP.</p>
+<p>The authorization server and the MCP can be operated by the same organization or by different organizations. RFC 8414 and userinfo are the responsibility of the organization that operates the authorization server; RFC 9728 is the responsibility of the organization that operates the MCP.</p>
 </div>
 
 

@@ -930,7 +930,7 @@
 </div>
 <h2 id="how-it-works">How it works<a class="headerlink" href="#how-it-works" title="Permanent link">&para;</a></h2>
 <p>After the user is authenticated (via OAuth), it is still necessary to decide <strong>what</strong> they can access. That decision is made by the MCP.</p>
-<p>The <a href="userinfo/">userinfo</a> endpoint is always provided by the partner (whoever operates the authorization server). Whoever creates the MCP uses that endpoint to obtain the user's authorization context and implement the access logic:</p>
+<p>The <a href="userinfo/">userinfo</a> endpoint is always provided by the organization (whoever operates the authorization server). Whoever creates the MCP uses that endpoint to obtain the user's authorization context and implement the access logic:</p>
 <ol>
 <li>The MCP receives the user's token.</li>
 <li>The MCP calls <a href="userinfo/">userinfo</a> to obtain the user's identity and permissions.</li>

@@ -585,10 +585,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-conexao-do-parceiro" class="md-nav__link">
+  <a href="#1-conexao-da-organizacao" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Conexão do parceiro
+        1. Conexão da organização
       
     </span>
   </a>
@@ -596,10 +596,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-pergunta-sobre-dados-do-parceiro" class="md-nav__link">
+  <a href="#2-pergunta-sobre-dados-da-organizacao" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Pergunta sobre dados do parceiro
+        2. Pergunta sobre dados da organização
       
     </span>
   </a>
@@ -1071,10 +1071,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-conexao-do-parceiro" class="md-nav__link">
+  <a href="#1-conexao-da-organizacao" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Conexão do parceiro
+        1. Conexão da organização
       
     </span>
   </a>
@@ -1082,10 +1082,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-pergunta-sobre-dados-do-parceiro" class="md-nav__link">
+  <a href="#2-pergunta-sobre-dados-da-organizacao" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Pergunta sobre dados do parceiro
+        2. Pergunta sobre dados da organização
       
     </span>
   </a>
@@ -1137,7 +1137,7 @@
 
 
 <h1 id="fluxo-oauth">Fluxo OAuth<a class="headerlink" href="#fluxo-oauth" title="Permanent link">&para;</a></h1>
-<p>Esta seção documenta o fluxo de <strong>autenticação e autorização</strong> usado para conectar um <strong>Parceiro</strong> (software de restaurante) à <strong>Plataforma</strong> e permitir acesso seguro aos dados via MCP.</p>
+<p>Esta seção documenta o fluxo de <strong>autenticação e autorização</strong> usado para conectar uma <strong>Organização</strong> (ex.: uma plataforma de delivery, um sistema de POS ou um sistema de gestão de restaurantes) à <strong>Plataforma</strong> e permitir acesso seguro aos dados via MCP.</p>
 <h2 id="participantes">Participantes<a class="headerlink" href="#participantes" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -1149,38 +1149,38 @@
 <tbody>
 <tr>
 <td>Usuário</td>
-<td>Pessoa que opera a plataforma e conecta o parceiro</td>
+<td>Pessoa que opera a plataforma e conecta a organização</td>
 </tr>
 <tr>
 <td>Plataforma</td>
 <td>Agente que consome os dados via MCP</td>
 </tr>
 <tr>
-<td>Login (Parceiro)</td>
+<td>Login (Organização)</td>
 <td>Página de login do software de restaurante</td>
 </tr>
 <tr>
-<td>OAuth (Parceiro)</td>
-<td>Authorization server do parceiro</td>
+<td>OAuth (Organização)</td>
+<td>Authorization server da organização</td>
 </tr>
 <tr>
 <td>MCP</td>
 <td>Servidor MCP do ecossistema que expõe as tools</td>
 </tr>
 <tr>
-<td>DataBridge (Parceiro)</td>
-<td>Camada de acesso aos dados do parceiro (executa as queries)</td>
+<td>DataBridge</td>
+<td>Camada de acesso aos dados (executa as queries)</td>
 </tr>
 </tbody>
 </table>
 <div class="admonition note">
-<p class="admonition-title">Parceiro</p>
-<p>"Parceiro" representa qualquer software de restaurante integrado. DataBridge é um componente do lado do parceiro, não da plataforma.</p>
+<p class="admonition-title">Organização</p>
+<p>"Organização" representa qualquer empresa integrada ao ecossistema. Nesse fluxo, a organização atua como <strong>provedor</strong>, expondo seus dados à plataforma. DataBridge é a camada genérica de acesso aos dados que executa as queries por trás de um MCP — qualquer lado pode operar a sua.</p>
 </div>
 <h2 id="como-a-plataforma-obtem-o-oauth-antes-do-fluxo">Como a plataforma obtém o OAuth antes do fluxo<a class="headerlink" href="#como-a-plataforma-obtem-o-oauth-antes-do-fluxo" title="Permanent link">&para;</a></h2>
 <p>Antes do fluxo de autorização, a plataforma precisa descobrir os endpoints do authorization server e as credenciais do client. Há três cenários:</p>
 <ul>
-<li><strong>Sem metadados de descoberta</strong> → <strong>configuração manual</strong>: o parceiro informa os endpoints e as credenciais (<code>client_id</code>/<code>client_secret</code>) explicitamente.</li>
+<li><strong>Sem metadados de descoberta</strong> → <strong>configuração manual</strong>: a organização informa os endpoints e as credenciais (<code>client_id</code>/<code>client_secret</code>) explicitamente.</li>
 <li><strong>Com metadados + DCR</strong> → <strong>fluxo automático</strong>: a plataforma lê os metadados (RFC 8414) e se auto-registra como client (RFC 7591). Nada é trocado manualmente.</li>
 <li><strong>Com metadados, sem DCR</strong> → <strong>descoberta automática dos endpoints</strong>, mas as credenciais (<code>client_id</code>/<code>client_secret</code>) são informadas manualmente.</li>
 </ul>
@@ -1193,25 +1193,25 @@
 <iframe src="../../../diagrams/oauth/auth-flow.html" width="100%" height="950" style="border: 1px solid var(--md-default-fg-color--lightest); border-radius: 6px;" loading="lazy" title="Diagrama de sequência interativo do fluxo OAuth"></iframe>
 
 <h2 id="etapas-do-fluxo">Etapas do fluxo<a class="headerlink" href="#etapas-do-fluxo" title="Permanent link">&para;</a></h2>
-<h3 id="1-conexao-do-parceiro">1. Conexão do parceiro<a class="headerlink" href="#1-conexao-do-parceiro" title="Permanent link">&para;</a></h3>
+<h3 id="1-conexao-da-organizacao">1. Conexão da organização<a class="headerlink" href="#1-conexao-da-organizacao" title="Permanent link">&para;</a></h3>
 <ol>
-<li><strong>Usuário → Plataforma:</strong> clica em "Conectar Parceiro".</li>
+<li><strong>Usuário → Plataforma:</strong> clica em "Conectar Organização".</li>
 <li><strong>Plataforma → Login:</strong> redireciona o usuário enviando <code>client_id</code>, <code>scopes</code> e os parâmetros do fluxo <strong>PKCE</strong>.</li>
 <li><strong>Usuário → Login:</strong> insere credenciais (email/senha) e realiza MFA se necessário.</li>
 <li><strong>Login → OAuth:</strong> valida as credenciais fornecidas.</li>
 <li><strong>OAuth → Plataforma:</strong> retorna um <strong>authorization code</strong> via callback.</li>
 <li><strong>Plataforma → OAuth:</strong> troca o authorization code por tokens usando o <code>code_verifier</code> do PKCE.</li>
 <li><strong>OAuth → Plataforma:</strong> retorna <code>access_token</code> (JWT) e <code>refresh_token</code>.</li>
-<li><strong>Plataforma:</strong> armazena os tokens da conexão com o parceiro.</li>
-<li><strong>Plataforma → Usuário:</strong> informa que o parceiro foi conectado.</li>
+<li><strong>Plataforma:</strong> armazena os tokens da conexão com a organização.</li>
+<li><strong>Plataforma → Usuário:</strong> informa que a organização foi conectada.</li>
 </ol>
-<h3 id="2-pergunta-sobre-dados-do-parceiro">2. Pergunta sobre dados do parceiro<a class="headerlink" href="#2-pergunta-sobre-dados-do-parceiro" title="Permanent link">&para;</a></h3>
+<h3 id="2-pergunta-sobre-dados-da-organizacao">2. Pergunta sobre dados da organização<a class="headerlink" href="#2-pergunta-sobre-dados-da-organizacao" title="Permanent link">&para;</a></h3>
 <ol>
-<li><strong>Usuário → Plataforma:</strong> envia um prompt que envolve dados do parceiro.</li>
+<li><strong>Usuário → Plataforma:</strong> envia um prompt que envolve dados da organização.</li>
 <li><strong>Plataforma → MCP:</strong> executa uma tool — no exemplo, <code>listar_lojas</code> — com <code>Bearer JWT</code>.</li>
 <li><strong>MCP:</strong> valida o JWT (assinatura, <code>iss</code>, <code>aud</code>, <code>exp</code>).</li>
-<li><strong>MCP → OAuth (Parceiro):</strong> chama <code>GET /userinfo</code> com o Bearer token para obter o contexto de autorização do usuário (identidade + permissões).</li>
-<li><strong>OAuth (Parceiro) → MCP:</strong> retorna <code>sub</code>, <code>email</code> e <code>profile_permissions</code>.</li>
+<li><strong>MCP → OAuth (Organização):</strong> chama <code>GET /userinfo</code> com o Bearer token para obter o contexto de autorização do usuário (identidade + permissões).</li>
+<li><strong>OAuth (Organização) → MCP:</strong> retorna <code>sub</code>, <code>email</code> e <code>profile_permissions</code>.</li>
 <li><strong>MCP:</strong> aplica a lógica de autorização — determina quais lojas/recursos o usuário pode acessar.</li>
 <li><strong>MCP → Plataforma:</strong> retorna a lista de lojas autorizadas.</li>
 </ol>
@@ -1219,7 +1219,7 @@
 <ol>
 <li><strong>Plataforma → MCP:</strong> executa <code>tool_call buscar_dados(merchant_ids)</code> com <code>Bearer JWT</code>.</li>
 <li><strong>MCP:</strong> valida o JWT (assinatura, <code>iss</code>, <code>aud</code>, <code>exp</code>) e verifica o escopo de autorização do usuário.</li>
-<li><strong>MCP → DataBridge (Parceiro):</strong> executa as queries necessárias no armazenamento de dados do parceiro, filtradas pelos <code>merchant_ids</code> autorizados.</li>
+<li><strong>MCP → DataBridge:</strong> executa as queries necessárias no armazenamento de dados da organização, filtradas pelos <code>merchant_ids</code> autorizados.</li>
 <li><strong>DataBridge → MCP:</strong> retorna os dados solicitados.</li>
 <li><strong>MCP → Plataforma:</strong> retorna o resultado da execução da tool.</li>
 <li><strong>Plataforma → Usuário:</strong> exibe a resposta com os dados das lojas.</li>
