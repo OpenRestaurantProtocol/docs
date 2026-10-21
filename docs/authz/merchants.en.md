@@ -5,7 +5,16 @@
 
 ## Overview
 
-This endpoint lists the merchants the user can access according to the token. The MCP calls it to build the user's authorization scope. The authorization (which merchants) has already been resolved from the token: this endpoint only returns the merchants visible for that token.
+This endpoint lists the merchants visible for the token. Authorization (which merchants) has already been resolved from the token: the endpoint only materializes the list.
+
+**Callers:**
+
+| Caller | When | What for |
+|---|---|---|
+| **Platform** (preferred) | On connect, after obtaining tokens | Store picker / bind; account **business profile** (store count, names, address, tax id, `external_ids`) |
+| **MCP** | Authz and `list_merchants` tool | Validate scope; **fallback** for the agent (rediscovery / refresh) when the connect cache is not enough |
+
+The `list_merchants` (`listar_lojas`) tool is **recommended** on the MCP and should mirror (or call) this endpoint. It does **not** replace the platform's `GET /merchants` call on connect.
 
 ## Endpoint
 
@@ -66,3 +75,16 @@ Each key of `external_ids` is the identifier of an external system (e.g. `ifood`
     }
 ]
 ```
+
+## Relationship to userinfo
+
+`userinfo.merchants` carries ids only for fast MCP authz. This endpoint is the **rich catalog** for UI and business profile. See [Userinfo](userinfo.md).
+
+## Responsibilities
+
+| Responsibility | Who does it |
+|---|---|
+| Expose `GET /merchants` | Organization (authorization server) |
+| Call `/merchants` on connect (picker + business profile) | Platform |
+| Expose `list_merchants` as a fallback tool (via this endpoint) | MCP |
+| Enforce merchant scope on data tools | MCP |

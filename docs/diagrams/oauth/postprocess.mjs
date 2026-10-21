@@ -36,11 +36,14 @@ function edgeY(id) {
 
 // Self-loops to draw, each sitting in the vertical gap between `after`
 // (message above) and `before` (message below).
+// side: 'left' keeps platform loops off the OAuth/message lane to the right.
 const loops = [
-  { participant: 'platform', after: 'm07', before: 'm08', label: 'stores connection tokens' },
-  { participant: 'mcp',   after: 'm10', before: 'm11', label: 'validates JWT' },
-  { participant: 'mcp',   after: 'm12', before: 'm13', label: 'caches permissions (short TTL)' },
-  { participant: 'mcp',   after: 'm14', before: 'm15', label: 'validates JWT' },
+  { participant: 'platform', after: 'm07', before: 'm07b', label: 'stores connection tokens', side: 'left' },
+  // Bias toward m07c (bias 0.28) so the loop sits clearly above "organization connected".
+  { participant: 'platform', after: 'm07c', before: 'm08', label: 'builds picker + business profile', side: 'left', bias: 0.28 },
+  { participant: 'mcp', after: 'm10', before: 'm11', label: 'validates JWT', side: 'right' },
+  { participant: 'mcp', after: 'm12', before: 'm13', label: 'caches permissions (short TTL)', side: 'right' },
+  { participant: 'mcp', after: 'm14', before: 'm15', label: 'validates JWT', side: 'right' },
 ];
 
 for (const loop of loops) {
@@ -51,16 +54,20 @@ for (const loop of loops) {
     console.error(`SKIP loop "${loop.label}": cx=${cx} yAfter=${yAfter} yBefore=${yBefore}`);
     continue;
   }
-  const mid = (yAfter + yBefore) / 2;
+  const bias = typeof loop.bias === 'number' ? loop.bias : 0.5;
+  const mid = yAfter + bias * (yBefore - yAfter);
   const yTop = mid - 10;
   const yBot = mid + 10;
-  const barRight = cx + 5;   // right border of the 10px-wide activation bar
-  const loopRight = cx + 42;
+  const side = loop.side === 'left' ? 'left' : 'right';
+  const barEdge = side === 'left' ? cx - 5 : cx + 5;
+  const loopOuter = side === 'left' ? cx - 42 : cx + 42;
+  const labelX = side === 'left' ? loopOuter - 8 : loopOuter + 8;
+  const anchor = side === 'left' ? 'end' : 'start';
   const labelY = mid + 3;
   const svg = `
         <g data-edge-self="${loop.participant}" data-edge-label="${loop.label}">
-          <path d="M ${barRight} ${yTop} L ${loopRight} ${yTop} L ${loopRight} ${yBot} L ${barRight} ${yBot}" class="a-default" stroke-width="1.4" fill="none" marker-end="url(#arrowhead)"/>
-          <text x="${loopRight + 8}" y="${labelY}" class="t-muted" font-size="8" text-anchor="start">${loop.label}</text>
+          <path d="M ${barEdge} ${yTop} L ${loopOuter} ${yTop} L ${loopOuter} ${yBot} L ${barEdge} ${yBot}" class="a-default" stroke-width="1.4" fill="none" marker-end="url(#arrowhead)"/>
+          <text x="${labelX}" y="${labelY}" class="t-muted" font-size="8" text-anchor="${anchor}">${loop.label}</text>
         </g>`;
   html = html.replace(
     new RegExp(`(<g data-edge-from="[^"]*" data-edge-to="[^"]*"[^>]*data-edge-id="${loop.before}")`),

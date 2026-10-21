@@ -1,16 +1,16 @@
 # Userinfo (OIDC)
 
 !!! info "Audience"
-    The organization that provides the authorization server and needs to expose the identity endpoint (OpenID Connect) to the platform.
+    The organization that operates the authorization server and needs to expose the identity endpoint (OpenID Connect).
 
-    What this page answers: the contract of the **userinfo** endpoint, which returns the user's identity and permissions.
+    What this page answers: the contract of the **userinfo** endpoint, which returns the user's identity and permissions. The **primary consumer** is the MCP.
 
 ## What it is
 
 **Userinfo** is an endpoint defined by **OpenID Connect (OIDC)**, the identity layer built on top of OAuth 2.0. It is not part of the OAuth requirements itself: it is the mechanism through which the **MCP** discovers **who the user is** (`sub`), their contact (`email`) and their **access profile/roles**.
 
 !!! info
-    The MCP calls this endpoint to obtain the user's permission context before deciding which resources to release.
+    The MCP calls this endpoint on tool calls to obtain the permission context before deciding which resources to release. The platform does not need the full userinfo payload; use [Merchants](merchants.md) on connect for selection and business profile.
 
 ## Request
 
@@ -31,16 +31,18 @@ The endpoint must return, at minimum, the following fields:
 | `sub` | string | Yes | Unique user identifier |
 | `email` | string | Yes | Email (or another contact identifier) |
 | `name` | string | No | User's display name |
-| `merchants` | array | Yes | List of merchants the user can access |
+| `merchants` | array | Yes | List of merchant ids the user can access |
 | `profile_permissions` | object | Yes | Access profile and roles of the account |
 
 ### `merchants`
 
-List of merchants the user can access. The `id` of each item corresponds to the `merchant_id` of the [Merchants](merchants.md) contract:
+**Minimal id list** for fast authz in the MCP. The `id` of each item corresponds to the `merchant_id` of the [Merchants](merchants.md) contract:
 
 | Field | Type | Required | Description |
 |---|---|---|---|
 | `id` | string | Yes | Merchant identifier |
+
+For a rich catalog (name, address, tax id, `external_ids`) and selection UI, use `GET /merchants` — see [Relationship to `/merchants`](#relationship-to-merchants).
 
 ### `profile_permissions`
 
@@ -71,10 +73,19 @@ List of merchants the user can access. The `id` of each item corresponds to the 
 }
 ```
 
+## Relationship to `/merchants`
+
+| Source | Content | Typical use |
+|---|---|---|
+| `userinfo.merchants` | Minimal ids | MCP: fast scope check on the tool |
+| `GET /merchants` | Rich catalog | Platform: picker, bind, business profile; MCP: `list_merchants` tool (fallback) |
+
 ## Responsibilities
 
 | Responsibility | Who does it |
 |---|---|
-| Expose the userinfo endpoint | Your organization (authorization server / IdP) |
+| Expose the userinfo endpoint | Organization (authorization server / IdP) |
 | Call userinfo and obtain the permission context | MCP |
 | Determine the access profile/roles from userinfo | MCP |
+| Consume the full userinfo payload on every call | **Not** the platform's role |
+| Identity summary in the UI (`sub`, `name`, `email`), if needed | Platform (optional) |

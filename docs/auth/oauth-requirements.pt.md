@@ -12,6 +12,7 @@ Para integrar, você vai precisar de:
 - Um **authorization server** (OAuth 2.0 / OIDC) com metadados **RFC 8414**.
 - Suporte a **authorization code + PKCE** e emissão de **refresh token**.
 - Um endpoint de **userinfo** (OIDC) com identidade e perfil/roles.
+- Um endpoint **`GET /merchants`** com o catálogo de lojas do token.
 - Se houver **MCP**: metadados do recurso protegido (**RFC 9728**).
 - (Opcional) **DCR** (RFC 7591) para registro automático do client.
 
@@ -50,10 +51,11 @@ O OAuth por si só entrega um token, mas **não** responde "quem é esse usuári
 - `email` (ou outro identificador de contato).
 - Perfil e roles de acesso da conta.
 
-A plataforma usa o userinfo como **contexto de autorização**: é a partir dele que se determina quais lojas/recursos o usuário pode acessar. O contrato completo (request com `Authorization: Bearer`, exemplo de resposta e responsabilidades) está na página [Userinfo (OIDC)](../authz/userinfo.md).
+O **MCP** usa o userinfo como **contexto de autorização** nas tool calls (identidade + perfil/roles). A **plataforma** usa `GET /merchants` no connect para seleção de loja e perfil de negócio da conta — não precisa do payload completo de userinfo. O contrato completo de userinfo está na página [Userinfo (OIDC)](../authz/userinfo.md).
 
-!!! info
-    A lista de lojas que o usuário pode acessar é um dado de domínio, não identidade. Veja [Lojas](../authz/merchants.md).
+### No authorization server — endpoint de lojas (`GET /merchants`)
+
+A lista de lojas que o usuário pode acessar é um **dado de domínio**, não identidade. O authorization server deve expor `GET /merchants` com o catálogo rico (nome, endereço, CNPJ, `external_ids`, etc.). Contrato completo: [Lojas](../authz/merchants.md).
 
 ## Caminho 1 — Autodescoberta (recomendado)
 

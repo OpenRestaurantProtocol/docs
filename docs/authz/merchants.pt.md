@@ -5,7 +5,16 @@
 
 ## Visão geral
 
-Este endpoint lista as lojas que o usuário pode acessar de acordo com o token. O MCP o chama para construir o escopo de autorização do usuário. A autorização (quais lojas) já foi resolvida a partir do token: este endpoint apenas devolve as lojas visíveis para aquele token.
+Este endpoint lista as lojas visíveis para o token. A autorização (quais lojas) já foi resolvida a partir do token: o endpoint apenas materializa a lista.
+
+**Callers:**
+
+| Caller | Quando | Para quê |
+|---|---|---|
+| **Plataforma** (preferido) | No connect, após obter os tokens | Picker / bind de loja(s); **perfil de negócio** da conta (N lojas, nomes, endereço, CNPJ, `external_ids`) |
+| **MCP** | Authz e tool `listar_lojas` | Validar escopo; **fallback** para o agente (rediscovery / refresh) quando o cache do connect não basta |
+
+A tool `listar_lojas` (`list_merchants`) é **recomendada** no MCP e deve espelhar (ou chamar) este endpoint. Ela **não** substitui a chamada da plataforma a `GET /merchants` no connect.
 
 ## Endpoint
 
@@ -66,3 +75,16 @@ Cada chave de `external_ids` é o identificador de um sistema externo (ex.: `ifo
     }
 ]
 ```
+
+## Relação com userinfo
+
+`userinfo.merchants` traz só ids para authz rápida no MCP. Este endpoint é o **catálogo rico** para UI e perfil comercial. Veja [Userinfo](userinfo.md).
+
+## Responsabilidades
+
+| Responsabilidade | Quem faz |
+|---|---|
+| Expor `GET /merchants` | Organization (authorization server) |
+| Chamar `/merchants` no connect (picker + perfil de negócio) | Plataforma |
+| Expor tool `listar_lojas` como fallback (via este endpoint) | MCP |
+| Aplicar escopo de loja nas tools de dados | MCP |

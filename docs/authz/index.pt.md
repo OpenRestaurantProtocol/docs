@@ -1,20 +1,28 @@
 # Autorização
 
 !!! info "O que esta seção responde"
-    Como o MCP controla o acesso a recursos (lojas, dados) para cada usuário autenticado.
+    Como a **plataforma** e o **MCP** usam os endpoints de autorização da organização depois do OAuth: escopo de lojas, identidade e permissões.
+
+## Papéis
+
+| Papel | Responsabilidade |
+|---|---|
+| Organization (authorization server) | Expõe [userinfo](userinfo.md) e [lojas](merchants.md) |
+| Plataforma | No connect, chama `GET /merchants` para seleção de loja e perfil de negócio da conta |
+| MCP | Em cada tool call, chama [userinfo](userinfo.md), aplica permissões e valida `merchant_ids` no escopo |
+
+O MCP pode ser hospedado pela própria organização ou por um operador delegado — veja [Integração via MCP](../integrations/mcp.md). Em ambos os casos, userinfo e `/merchants` continuam no authorization server da **Organization**.
 
 ## Como funciona
 
-Depois que o usuário está autenticado (via OAuth), ainda é preciso decidir **o que** ele pode acessar. Essa decisão é feita pelo MCP.
+1. A organização autentica o usuário (OAuth) e emite o token.
+2. A **plataforma** chama `GET /merchants` no connect (caminho preferido): monta o picker, faz o bind da(s) loja(s) e monta o perfil comercial da conta (quantas lojas, nomes, CNPJ, `external_ids`, etc.).
+3. Em tool calls, o **MCP** chama [userinfo](userinfo.md), aplica o perfil/roles e verifica se os `merchant_ids` pedidos estão no escopo.
+4. O MCP **deve** expor a tool `listar_lojas` (`list_merchants`) como **fallback** para o agente (rediscovery, refresh, multi-turn), implementada via `GET /merchants` ou equivalente. Isso **não** substitui a chamada da plataforma a `/merchants` no connect.
 
-O endpoint de [userinfo](userinfo.md) é sempre fornecido pela organização (quem opera o authorization server). Quem cria o MCP usa esse endpoint para obter o contexto de autorização do usuário e implementar a lógica de acesso:
-
-1. O MCP recebe o token do usuário.
-2. O MCP chama o [userinfo](userinfo.md) para obter a identidade e as permissões do usuário.
-3. O MCP usa esse contexto para decidir quais recursos liberar.
-4. Quando necessário, o MCP lista as lojas autorizadas via [lojas](merchants.md).
+A plataforma **não** precisa do payload completo de userinfo em cada chamada. No máximo um resumo de identidade (`sub`, `name`, `email`) se a UI precisar mostrar quem está conectado.
 
 ## Endpoints deste protocolo
 
-- [Userinfo (OIDC)](userinfo.md) — contexto de autorização: identidade + permissões do usuário.
-- [Lojas](merchants.md) — lista de lojas autorizadas para o token do usuário.
+- [Userinfo (OIDC)](userinfo.md) — identidade + permissões; consumidor primário = MCP.
+- [Lojas](merchants.md) — catálogo de lojas do token; callers = plataforma (connect) e MCP (authz / tool fallback).

@@ -12,6 +12,7 @@ To integrate, you will need:
 - An **authorization server** (OAuth 2.0 / OIDC) with **RFC 8414** metadata.
 - Support for **authorization code + PKCE** and issuing a **refresh token**.
 - A **userinfo** endpoint (OIDC) with identity and profile/roles.
+- A **`GET /merchants`** endpoint with the merchant catalog for the token.
 - If there is an **MCP**: protected resource metadata (**RFC 9728**).
 - (Optional) **DCR** (RFC 7591) for automatic client registration.
 
@@ -50,10 +51,11 @@ OAuth by itself delivers a token, but it does **not** answer "who is this user" 
 - `email` (or another contact identifier).
 - Access profile and roles of the account.
 
-The platform uses userinfo as the **authorization context**: it is from it that it determines which merchants/resources the user can access. The full contract (request with `Authorization: Bearer`, response example and responsibilities) is on the [Userinfo (OIDC)](../authz/userinfo.md) page.
+The **MCP** uses userinfo as the **authorization context** on tool calls (identity + profile/roles). The **platform** uses `GET /merchants` on connect for store selection and the account business profile — it does not need the full userinfo payload. The full userinfo contract is on the [Userinfo (OIDC)](../authz/userinfo.md) page.
 
-!!! info
-    The list of merchants the user can access is domain data, not identity. See [Merchants](../authz/merchants.md).
+### On the authorization server — merchants endpoint (`GET /merchants`)
+
+The list of merchants the user can access is **domain data**, not identity. The authorization server must expose `GET /merchants` with the rich catalog (name, address, tax id, `external_ids`, etc.). Full contract: [Merchants](../authz/merchants.md).
 
 ## Path 1 — Auto-discovery (recommended)
 

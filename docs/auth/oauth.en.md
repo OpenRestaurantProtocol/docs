@@ -7,14 +7,14 @@ This section documents the **authentication and authorization** flow used to con
 | Participant | Description |
 |---|---|
 | User | Person who operates the platform and connects the organization |
-| Platform | Agent that consumes the data via MCP |
+| Platform | Agent / UI that consumes data via MCP |
 | Login (Organization) | Login page of the restaurant software |
 | OAuth (Organization) | Organization's authorization server |
-| MCP | Ecosystem MCP server that exposes the tools |
+| MCP | MCP server that exposes the tools (hosted by the organization or a [delegated operator](../integrations/mcp.md)) |
 | DataBridge | Data access layer (runs the queries) |
 
 !!! note "Organization"
-    "Organization" represents any company integrated with the ecosystem. In this flow, the organization acts as a **provider**, exposing its data to the platform. DataBridge is the generic data access layer that runs the queries behind an MCP — either side may operate its own.
+    "Organization" represents any company integrated with the ecosystem. In this flow, the organization acts as a **provider**, exposing identity (OAuth / userinfo / merchants) and data. DataBridge is the generic data access layer behind an MCP — the organization or a delegated operator may run it. See [Who operates the MCP](../integrations/mcp.md#who-operates-the-mcp).
 
 ## How the platform obtains OAuth before the flow
 
@@ -45,29 +45,40 @@ Before the authorization flow, the platform needs to discover the authorization 
 6. **Platform → OAuth:** exchanges the authorization code for tokens using the PKCE `code_verifier`.
 7. **OAuth → Platform:** returns `access_token` (JWT) and `refresh_token`.
 8. **Platform:** stores the connection tokens with the organization.
-9. **Platform → User:** informs that the organization was connected.
+9. **Platform → OAuth:** calls `GET /merchants` with the Bearer (preferred path for store scope).
+10. **OAuth → Platform:** returns the merchant list (rich catalog).
+11. **Platform:** builds the store picker / bind and the account **business profile**.
+12. **Platform → User:** informs that the organization was connected.
+
+!!! note
+    The platform does **not** need to call `userinfo` in this step. Userinfo is consumed by the MCP on tool calls. See [Userinfo](../authz/userinfo.md) and [Merchants](../authz/merchants.md).
 
 ### 2. Query about organization data
 
-10. **User → Platform:** sends a prompt involving organization data.
-11. **Platform → MCP:** runs a tool — in the example, `listar_lojas` — with `Bearer JWT`.
-12. **MCP:** validates the JWT (signature, `iss`, `aud`, `exp`).
-13. **MCP → OAuth (Organization):** calls `GET /userinfo` with the Bearer token to obtain the user's authorization context (identity + permissions).
-14. **OAuth (Organization) → MCP:** returns `sub`, `email` and `profile_permissions`.
-15. **MCP:** applies the authorization logic — determines which merchants/resources the user can access.
-16. **MCP → Platform:** returns the list of authorized merchants.
+13. **User → Platform:** sends a prompt involving organization data.
+14. **Platform → MCP:** runs a tool — in the example, `list_merchants` (**fallback** for rediscovery/refresh; connect stores already came from `/merchants`) — with `Bearer JWT`.
+15. **MCP:** validates the JWT (signature, `iss`, `aud`, `exp`).
+16. **MCP → OAuth (Organization):** calls `GET /userinfo` with the Bearer token to obtain the user's authorization context (identity + permissions).
+17. **OAuth (Organization) → MCP:** returns `sub`, `email` and `profile_permissions`.
+18. **MCP:** applies the authorization logic — determines which merchants/resources the user can access.
+19. **MCP → Platform:** returns the tool result (e.g. authorized merchant list).
+
+!!! note
+    The platform does **not** receive the raw userinfo payload. The MCP applies userinfo and returns only the tool result.
 
 ### 3. Data query
 
-17. **Platform → MCP:** runs `tool_call buscar_dados(merchant_ids)` with `Bearer JWT`.
-18. **MCP:** validates the JWT (signature, `iss`, `aud`, `exp`) and checks the user's authorization scope.
-19. **MCP → DataBridge:** runs the necessary queries against the organization's data store, filtered by the authorized `merchant_ids`.
-20. **DataBridge → MCP:** returns the requested data.
-21. **MCP → Platform:** returns the result of the tool execution.
-22. **Platform → User:** displays the response with the merchant data.
+20. **Platform → MCP:** runs `tool_call fetch_data(merchant_ids)` with `Bearer JWT`.
+21. **MCP:** validates the JWT (signature, `iss`, `aud`, `exp`) and checks the user's authorization scope (via userinfo / known scope).
+22. **MCP → DataBridge:** runs the necessary queries against the organization's data store, filtered by the authorized `merchant_ids`.
+23. **DataBridge → MCP:** returns the requested data.
+24. **MCP → Platform:** returns the result of the tool execution.
+25. **Platform → User:** displays the response with the merchant data.
 
 ## References
 
 - [RFC 6749 — OAuth 2.0](https://datatracker.ietf.org/doc/html/rfc6749)
 - [RFC 7636 — Proof Key for Code Exchange (PKCE)](https://datatracker.ietf.org/doc/html/rfc7636)
 - [RFC 7519 — JSON Web Token (JWT)](https://datatracker.ietf.org/doc/html/rfc7519)
+- [Authorization](../authz/index.md)
+- [MCP integration](../integrations/mcp.md)

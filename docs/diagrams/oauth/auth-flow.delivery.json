@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "4415d0d9-ac05-4a35-87bc-b80354b74420",
+  "status": "current",
+  "command": "deliver",
+  "type": "sequence",
+  "input": "/Users/marcus.nunes/projects/openrestaurantprotocol/docs/diagrams/oauth/auth-flow.sequence.json",
+  "output": "/Users/marcus.nunes/projects/openrestaurantprotocol/docs/diagrams/oauth/auth-flow.html",
+  "specification": {
+    "sha256": "bd6abefa0f59fd71ac355f85c4890915e893751c64f191abffbda064c9fddc55",
+    "bytes": 5730
+  },
+  "artifact": {
+    "sha256": "fa6e4066e4c4f921b1bde2f6e70a8f261479cbe3cdb361b0b782a36e718e2a14",
+    "bytes": 768448
+  }
+}

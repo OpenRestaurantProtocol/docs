@@ -4,7 +4,7 @@
   "meta": {
     "title": "Authentication and Data Access Flow",
     "output": "auth-flow.html",
-    "viewBox": [1080, 1280],
+    "viewBox": [1080, 1410],
     "column_fit": "spread",
     "animation": "trace"
   },
@@ -17,9 +17,9 @@
     { "id": "bridge", "type": "database", "label": "DataBridge", "sublabel": "data access" }
   ],
   "segments": [
-    { "from": 148, "to": 520, "label": "OAuth + PKCE Connection" },
-    { "from": 530, "to": 825, "label": "Data Question" },
-    { "from": 855, "to": 1175, "label": "Data Query" }
+    { "from": 148, "to": 630, "label": "OAuth + PKCE Connection" },
+    { "from": 640, "to": 935, "label": "Data Question" },
+    { "from": 965, "to": 1285, "label": "Data Query" }
   ],
   "messages": [
     { "id": "m01", "from": "user", "to": "platform", "y": 178, "label": "Connect Organization", "variant": "emphasis" },
@@ -29,31 +29,33 @@
     { "id": "m05", "from": "oauth", "to": "platform", "y": 338, "label": "authorization code (callback)", "variant": "return" },
     { "id": "m06", "from": "platform", "to": "oauth", "y": 378, "label": "exchange code for tokens (code_verifier)", "variant": "security" },
     { "id": "m07", "from": "oauth", "to": "platform", "y": 418, "label": "access_token + refresh_token", "variant": "return" },
-    { "id": "m08", "from": "platform", "to": "user", "y": 498, "label": "organization connected", "variant": "return" },
-    { "id": "m09", "from": "user", "to": "platform", "y": 560, "label": "prompt about organization data", "variant": "emphasis" },
-    { "id": "m10", "from": "platform", "to": "mcp", "y": 600, "label": "tool_call + Bearer JWT", "variant": "emphasis" },
-    { "id": "m11", "from": "mcp", "to": "oauth", "y": 680, "label": "GET /userinfo + Bearer JWT", "variant": "security" },
-    { "id": "m12", "from": "oauth", "to": "mcp", "y": 720, "label": "sub + email + permissions", "variant": "return" },
-    { "id": "m13", "from": "mcp", "to": "platform", "y": 800, "label": "merchant list (ids, names)", "variant": "return" },
-    { "id": "m14", "from": "platform", "to": "mcp", "y": 885, "label": "fetch_data(merchant_ids) + Bearer JWT", "variant": "emphasis" },
-    { "id": "m15", "from": "mcp", "to": "oauth", "y": 965, "label": "GET /userinfo + Bearer JWT", "variant": "security" },
-    { "id": "m16", "from": "oauth", "to": "mcp", "y": 1005, "label": "sub + email + permissions", "variant": "return" },
-    { "id": "m17", "from": "mcp", "to": "bridge", "y": 1045, "label": "queries filtered by merchant_ids", "variant": "emphasis" },
-    { "id": "m18", "from": "bridge", "to": "mcp", "y": 1085, "label": "requested data", "variant": "return" },
-    { "id": "m19", "from": "mcp", "to": "platform", "y": 1125, "label": "tool result", "variant": "return" },
-    { "id": "m20", "from": "platform", "to": "user", "y": 1165, "label": "response with data", "variant": "return" }
+    { "id": "m07b", "from": "platform", "to": "oauth", "y": 488, "label": "GET /merchants + Bearer", "variant": "security" },
+    { "id": "m07c", "from": "oauth", "to": "platform", "y": 528, "label": "merchant catalog (picker + business profile)", "variant": "return" },
+    { "id": "m08", "from": "platform", "to": "user", "y": 598, "label": "organization connected", "variant": "return" },
+    { "id": "m09", "from": "user", "to": "platform", "y": 670, "label": "prompt about organization data", "variant": "emphasis" },
+    { "id": "m10", "from": "platform", "to": "mcp", "y": 710, "label": "list_merchants (fallback) + Bearer JWT", "variant": "emphasis" },
+    { "id": "m11", "from": "mcp", "to": "oauth", "y": 790, "label": "GET /userinfo + Bearer JWT", "variant": "security" },
+    { "id": "m12", "from": "oauth", "to": "mcp", "y": 830, "label": "sub + email + permissions", "variant": "return" },
+    { "id": "m13", "from": "mcp", "to": "platform", "y": 910, "label": "tool result (merchant list)", "variant": "return" },
+    { "id": "m14", "from": "platform", "to": "mcp", "y": 995, "label": "fetch_data(merchant_ids) + Bearer JWT", "variant": "emphasis" },
+    { "id": "m15", "from": "mcp", "to": "oauth", "y": 1075, "label": "GET /userinfo + Bearer JWT", "variant": "security" },
+    { "id": "m16", "from": "oauth", "to": "mcp", "y": 1115, "label": "sub + email + permissions", "variant": "return" },
+    { "id": "m17", "from": "mcp", "to": "bridge", "y": 1155, "label": "queries filtered by merchant_ids", "variant": "emphasis" },
+    { "id": "m18", "from": "bridge", "to": "mcp", "y": 1195, "label": "requested data", "variant": "return" },
+    { "id": "m19", "from": "mcp", "to": "platform", "y": 1235, "label": "tool result", "variant": "return" },
+    { "id": "m20", "from": "platform", "to": "user", "y": 1275, "label": "response with data", "variant": "return" }
   ],
   "activations": [
-    { "participant": "platform", "from": 173, "to": 503, "type": "backend" },
+    { "participant": "platform", "from": 173, "to": 603, "type": "backend" },
     { "participant": "login", "from": 213, "to": 303, "type": "frontend" },
-    { "participant": "oauth", "from": 293, "to": 423, "type": "security" },
-    { "participant": "platform", "from": 555, "to": 805, "type": "backend" },
-    { "participant": "mcp", "from": 595, "to": 805, "type": "backend" },
-    { "participant": "oauth", "from": 675, "to": 725, "type": "security" },
-    { "participant": "platform", "from": 880, "to": 1170, "type": "backend" },
-    { "participant": "mcp", "from": 880, "to": 1130, "type": "backend" },
-    { "participant": "oauth", "from": 960, "to": 1010, "type": "security" },
-    { "participant": "bridge", "from": 1040, "to": 1090, "type": "database" }
+    { "participant": "oauth", "from": 293, "to": 533, "type": "security" },
+    { "participant": "platform", "from": 665, "to": 915, "type": "backend" },
+    { "participant": "mcp", "from": 705, "to": 915, "type": "backend" },
+    { "participant": "oauth", "from": 785, "to": 835, "type": "security" },
+    { "participant": "platform", "from": 990, "to": 1280, "type": "backend" },
+    { "participant": "mcp", "from": 990, "to": 1240, "type": "backend" },
+    { "participant": "oauth", "from": 1070, "to": 1120, "type": "security" },
+    { "participant": "bridge", "from": 1150, "to": 1200, "type": "database" }
   ],
   "cards": [
     {
@@ -62,6 +64,7 @@
       "items": [
         "The organization authenticates the user and issues an authorization code",
         "The platform exchanges the code for tokens using the PKCE code_verifier",
+        "The platform calls GET /merchants for the store picker and business profile",
         "The access_token (JWT) authenticates every subsequent call"
       ]
     },
@@ -71,7 +74,7 @@
       "items": [
         "Every MCP call validates signature, iss, aud, and exp",
         "The MCP calls GET /userinfo on the organization's authorization server to get the user's authorization context",
-        "The MCP applies authorization logic to determine accessible merchants"
+        "list_merchants is a recommended fallback tool; connect already loaded stores via GET /merchants"
       ]
     },
     {

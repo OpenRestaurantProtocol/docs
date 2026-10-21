@@ -1,20 +1,28 @@
 # Authorization
 
 !!! info "What this section answers"
-    How the MCP controls access to resources (merchants, data) for each authenticated user.
+    How the **platform** and the **MCP** use the organization's authorization endpoints after OAuth: merchant scope, identity, and permissions.
+
+## Roles
+
+| Role | Responsibility |
+|---|---|
+| Organization (authorization server) | Exposes [userinfo](userinfo.md) and [merchants](merchants.md) |
+| Platform | On connect, calls `GET /merchants` for store selection and the account's business profile |
+| MCP | On each tool call, calls [userinfo](userinfo.md), applies permissions, and validates `merchant_ids` in scope |
+
+The MCP may be hosted by the organization itself or by a delegated operator — see [MCP integration](../integrations/mcp.md). In both cases, userinfo and `/merchants` remain on the **Organization** authorization server.
 
 ## How it works
 
-After the user is authenticated (via OAuth), it is still necessary to decide **what** they can access. That decision is made by the MCP.
+1. The organization authenticates the user (OAuth) and issues the token.
+2. The **platform** calls `GET /merchants` on connect (preferred path): builds the picker, binds store(s), and builds the account business profile (store count, names, tax id, `external_ids`, etc.).
+3. On tool calls, the **MCP** calls [userinfo](userinfo.md), applies profile/roles, and checks that requested `merchant_ids` are in scope.
+4. The MCP **should** expose a `list_merchants` (`listar_lojas`) tool as a **fallback** for the agent (rediscovery, refresh, multi-turn), implemented via `GET /merchants` or equivalent. This does **not** replace the platform's `/merchants` call on connect.
 
-The [userinfo](userinfo.md) endpoint is always provided by the organization (whoever operates the authorization server). Whoever creates the MCP uses that endpoint to obtain the user's authorization context and implement the access logic:
-
-1. The MCP receives the user's token.
-2. The MCP calls [userinfo](userinfo.md) to obtain the user's identity and permissions.
-3. The MCP uses that context to decide which resources to release.
-4. When necessary, the MCP lists the authorized merchants via [merchants](merchants.md).
+The platform does **not** need the full userinfo payload on every call. At most an identity summary (`sub`, `name`, `email`) if the UI needs to show who is connected.
 
 ## Protocol endpoints
 
-- [Userinfo (OIDC)](userinfo.md) — authorization context: user identity + permissions.
-- [Merchants](merchants.md) — list of merchants authorized for the user's token.
+- [Userinfo (OIDC)](userinfo.md) — identity + permissions; primary consumer = MCP.
+- [Merchants](merchants.md) — merchant catalog for the token; callers = platform (connect) and MCP (authz / fallback tool).
