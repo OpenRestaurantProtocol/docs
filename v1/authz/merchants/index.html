@@ -1152,7 +1152,7 @@
 </tbody>
 </table>
 <h3 id="external_ids"><code>external_ids</code><a class="headerlink" href="#external_ids" title="Permanent link">&para;</a></h3>
-<p>Each key of <code>external_ids</code> is the identifier of an external system (e.g. <code>ifood</code>), whose value is an object with:</p>
+<p>Each key of <code>external_ids</code> is the identifier of an external system (e.g. <code>ifood</code>), whose value is a list of objects, each with:</p>
 <table>
 <thead>
 <tr>
@@ -1183,9 +1183,11 @@
 <span class="w">        </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
 <span class="w">        </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100 Flower Street, Downtown, Rio de Janeiro - RJ"</span><span class="p">,</span>
 <span class="w">        </span><span class="nt">"external_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">"ifood"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">"merchant_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc123-def456"</span>
-<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="nt">"ifood"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">"merchant_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc123-def456"</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">]</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">]</span>
