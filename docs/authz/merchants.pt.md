@@ -37,7 +37,7 @@ A resposta é uma lista (array) de lojas. Cada item tem o seguinte formato:
 
 ### `external_ids`
 
-Cada chave de `external_ids` é o identificador de um sistema externo (ex.: `ifood`), cujo valor é um objeto com:
+Cada chave de `external_ids` é o identificador de um sistema externo (ex.: `ifood`), cujo valor é uma lista de objetos, cada um com:
 
 | Campo | Tipo | Obrigatório | Descrição |
 |---|---|---|---|
@@ -57,9 +57,11 @@ Cada chave de `external_ids` é o identificador de um sistema externo (ex.: `ifo
         "active": true,
         "address": "Rua das Flores, 100, Centro, Rio de Janeiro - RJ",
         "external_ids": {
-            "ifood": {
-                "merchant_id": "abc123-def456"
-            }
+            "ifood": [
+                {
+                    "merchant_id": "abc123-def456"
+                }
+            ]
         }
     }
 ]

@@ -37,7 +37,7 @@ The response is a list (array) of merchants. Each item has the following format:
 
 ### `external_ids`
 
-Each key of `external_ids` is the identifier of an external system (e.g. `ifood`), whose value is an object with:
+Each key of `external_ids` is the identifier of an external system (e.g. `ifood`), whose value is a list of objects, each with:
 
 | Field | Type | Required | Description |
 |---|---|---|---|
@@ -57,9 +57,11 @@ Each key of `external_ids` is the identifier of an external system (e.g. `ifood`
         "active": true,
         "address": "100 Flower Street, Downtown, Rio de Janeiro - RJ",
         "external_ids": {
-            "ifood": {
-                "merchant_id": "abc123-def456"
-            }
+            "ifood": [
+                {
+                    "merchant_id": "abc123-def456"
+                }
+            ]
         }
     }
 ]
