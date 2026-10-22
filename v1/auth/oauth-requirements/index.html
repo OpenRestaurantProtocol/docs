@@ -1583,7 +1583,11 @@
 <li><strong><code>WWW-Authenticate</code> header.</strong> Return a <code>401 Unauthorized</code> response with a <code>WWW-Authenticate</code> header whose <code>resource_metadata</code> parameter points to the metadata document (<code>WWW-Authenticate: Bearer resource_metadata="https://.../.well-known/oauth-protected-resource"</code>).</li>
 <li><strong>Well-known URI.</strong> Publish the document at the applicable well-known URI <code>/.well-known/oauth-protected-resource</code>. This can be at the host root (<code>https://example.com/.well-known/oauth-protected-resource</code>) or at the path of the MCP endpoint (an MCP at <code>https://example.com/public/mcp</code> hosts metadata at <code>https://example.com/.well-known/oauth-protected-resource/public/mcp</code>).</li>
 </ul>
-<p>The MCP client MUST support both mechanisms: it uses the <code>resource_metadata</code> URL from the <code>WWW-Authenticate</code> header when present, and otherwise falls back to the well-known URI.</p>
+<p><strong>Client fallback order.</strong> The MCP client MUST support both mechanisms:</p>
+<ol>
+<li>When the <code>WWW-Authenticate</code> header contains a <code>resource_metadata</code> parameter, the client uses the URL provided in that parameter.</li>
+<li>When it does not, the client falls back to the well-known URI — first the path-specific URI (<code>https://example.com/.well-known/oauth-protected-resource/public/mcp</code>), then the root URI (<code>https://example.com/.well-known/oauth-protected-resource</code>).</li>
+</ol>
 <div class="admonition tip">
 <p class="admonition-title">FastMCP</p>
 <p>With FastMCP, <code>RemoteAuthProvider</code> publishes this document automatically. See <a href="../mcp-oauth/">Building an MCP with OAuth</a>.</p>
@@ -1644,7 +1648,7 @@
 <h2 id="validation-checklist-before-integration">Validation checklist before integration<a class="headerlink" href="#validation-checklist-before-integration" title="Permanent link">&para;</a></h2>
 <p>Before attempting to connect, confirm each item:</p>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>GET /.well-known/oauth-protected-resource</code> returns <code>resource</code> and <code>authorization_servers</code> (for an OAuth-protected HTTP MCP).</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> The Protected Resource Metadata is discoverable (via the <code>WWW-Authenticate</code> <code>resource_metadata</code> parameter or the well-known URI — path-specific or root) and returns <code>resource</code> and <code>authorization_servers</code> (for an OAuth-protected HTTP MCP).</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>GET /.well-known/oauth-authorization-server</code> returns the mandatory RFC 8414 fields.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> The metadata <code>issuer</code> exactly matches the identifier used to construct the metadata lookup URL.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>code_challenge_methods_supported</code> contains <code>S256</code>.</li>
@@ -1658,7 +1662,8 @@
 </ul>
 <h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>Discovery fails (404 on <code>/.well-known</code>)</strong>: confirm the document is served over HTTPS and at the correct path derived from the <code>issuer</code>.</li>
+<li><strong>Authorization server metadata discovery fails (404 on <code>/.well-known/oauth-authorization-server</code>)</strong>: confirm the document is served over HTTPS and at the correct path derived from the <code>issuer</code>.</li>
+<li><strong>Protected Resource Metadata not discoverable</strong>: confirm the server returns the <code>WWW-Authenticate</code> header with <code>resource_metadata</code>, or that the document is available at the path-specific or root well-known URI (<code>/.well-known/oauth-protected-resource</code>).</li>
 <li><strong><code>issuer</code> mismatch</strong>: the metadata <code>issuer</code> must be <strong>exactly</strong> identical to the identifier used to construct the metadata lookup URL (RFC 8414 §3.3). Sharing the same registrable domain is not sufficient.</li>
 <li><strong>Redirect fails</strong>: the callback URL was not registered in the IdP allowlist.</li>
 <li><strong><code>401</code> on <code>/userinfo</code></strong>: the presented token is invalid, expired, or the <code>aud</code> does not match the expected value. Check <code>iss</code>, <code>aud</code> and the signature.</li>
