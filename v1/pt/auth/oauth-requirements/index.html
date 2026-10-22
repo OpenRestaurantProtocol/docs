@@ -601,15 +601,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#o-que-e-igual-nos-dois-caminhos" class="md-nav__link">
+  <a href="#requisitos-obrigatorios" class="md-nav__link">
     <span class="md-ellipsis">
       
-        O que é igual nos dois caminhos
+        Requisitos obrigatórios
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="O que é igual nos dois caminhos">
+    <nav class="md-nav" aria-label="Requisitos obrigatórios">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -651,15 +651,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#caminho-1-autodescoberta-recomendado" class="md-nav__link">
+  <a href="#descoberta-oauth" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Caminho 1 — Autodescoberta (recomendado)
+        Descoberta OAuth
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Caminho 1 — Autodescoberta (recomendado)">
+    <nav class="md-nav" aria-label="Descoberta OAuth">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -674,10 +674,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-metadados-do-recurso-protegido-rfc-9728-somente-se-houver-mcp" class="md-nav__link">
+  <a href="#2-metadados-do-recurso-protegido-rfc-9728-obrigatorio-para-servidores-mcp-http-protegidos-por-oauth" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Metadados do recurso protegido (RFC 9728) — somente se houver MCP
+        2. Metadados do Recurso Protegido (RFC 9728) — obrigatório para servidores MCP HTTP protegidos por OAuth
       
     </span>
   </a>
@@ -701,10 +701,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#caminho-2-configuracao-manual" class="md-nav__link">
+  <a href="#avancado-configuracao-manual-legado-e-diagnostico" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Caminho 2 — Configuração manual
+        Avançado — configuração manual (legado e diagnóstico)
       
     </span>
   </a>
@@ -1164,15 +1164,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#o-que-e-igual-nos-dois-caminhos" class="md-nav__link">
+  <a href="#requisitos-obrigatorios" class="md-nav__link">
     <span class="md-ellipsis">
       
-        O que é igual nos dois caminhos
+        Requisitos obrigatórios
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="O que é igual nos dois caminhos">
+    <nav class="md-nav" aria-label="Requisitos obrigatórios">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1214,15 +1214,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#caminho-1-autodescoberta-recomendado" class="md-nav__link">
+  <a href="#descoberta-oauth" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Caminho 1 — Autodescoberta (recomendado)
+        Descoberta OAuth
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Caminho 1 — Autodescoberta (recomendado)">
+    <nav class="md-nav" aria-label="Descoberta OAuth">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1237,10 +1237,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-metadados-do-recurso-protegido-rfc-9728-somente-se-houver-mcp" class="md-nav__link">
+  <a href="#2-metadados-do-recurso-protegido-rfc-9728-obrigatorio-para-servidores-mcp-http-protegidos-por-oauth" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Metadados do recurso protegido (RFC 9728) — somente se houver MCP
+        2. Metadados do Recurso Protegido (RFC 9728) — obrigatório para servidores MCP HTTP protegidos por OAuth
       
     </span>
   </a>
@@ -1264,10 +1264,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#caminho-2-configuracao-manual" class="md-nav__link">
+  <a href="#avancado-configuracao-manual-legado-e-diagnostico" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Caminho 2 — Configuração manual
+        Avançado — configuração manual (legado e diagnóstico)
       
     </span>
   </a>
@@ -1359,12 +1359,18 @@
 <li>Suporte a <strong>authorization code + PKCE</strong> e emissão de <strong>refresh token</strong>.</li>
 <li>Um endpoint de <strong>userinfo</strong> (OIDC) com identidade e perfil/roles.</li>
 <li>Um endpoint <strong><code>GET /merchants</code></strong> com o catálogo de lojas do token.</li>
-<li>Se houver <strong>MCP</strong>: metadados do recurso protegido (<strong>RFC 9728</strong>).</li>
+<li>Se houver um <strong>MCP HTTP protegido por OAuth</strong>: metadados do recurso protegido (<strong>RFC 9728</strong>) são obrigatórios.</li>
 <li>(Opcional) <strong>DCR</strong> (RFC 7591) para registro automático do client.</li>
 </ul>
 <h2 id="visao-geral">Visão geral<a class="headerlink" href="#visao-geral" title="Permanent link">&para;</a></h2>
 <p>A sua organização constrói e opera um <strong>authorization server</strong> (OAuth 2.0 / OIDC) que autentica os usuários e emite tokens. A plataforma atua como <em>client</em> desse authorization server: descobre os endpoints, conduz o usuário pelo fluxo de autorização e guarda o token resultante. De posse do token, o <strong>MCP</strong> consulta o endpoint de <strong>userinfo</strong> do authorization server para descobrir a identidade e o perfil de acesso da conta.</p>
-<p>Existem <strong>dois caminhos</strong> para conectar o seu OAuth à plataforma. Eles diferem apenas em <em>como</em> a plataforma obtém as informações. <strong>Os requisitos do authorization server são os mesmos</strong> nos dois casos. A base obrigatória está na seção <a href="#o-que-e-igual-nos-dois-caminhos">O que é igual nos dois caminhos</a>.</p>
+<p>Existem <strong>três papéis</strong> neste fluxo:</p>
+<ul>
+<li><strong>Servidor MCP</strong> — o recurso protegido. Publica seus <strong>Metadados do Recurso Protegido</strong> (RFC 9728), que identificam o(s) authorization server(s) que o protegem.</li>
+<li><strong>Authorization server</strong> — publica os <strong>próprios</strong> metadados (RFC 8414) com endpoints e capacidades (<code>authorization_endpoint</code>, <code>token_endpoint</code>, <code>response_types_supported</code>, <code>grant_types_supported</code>).</li>
+<li><strong>Cliente / plataforma</strong> — descobre essa relação automaticamente e conclui o fluxo OAuth.</li>
+</ul>
+<p>A integração padrão usa <strong>autodescoberta</strong>. A base obrigatória está na seção <a href="#requisitos-obrigatorios">Requisitos obrigatórios</a>.</p>
 <h2 id="glossario-rapido">Glossário rápido<a class="headerlink" href="#glossario-rapido" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -1384,7 +1390,7 @@
 </tr>
 <tr>
 <td>PRM</td>
-<td>Protected Resource Metadata (RFC 9728) — metadados do recurso protegido</td>
+<td>Protected Resource Metadata (RFC 9728) — identifica o recurso e seu(s) authorization server(s)</td>
 </tr>
 <tr>
 <td>DCR</td>
@@ -1400,8 +1406,8 @@
 </tr>
 </tbody>
 </table>
-<h2 id="o-que-e-igual-nos-dois-caminhos">O que é igual nos dois caminhos<a class="headerlink" href="#o-que-e-igual-nos-dois-caminhos" title="Permanent link">&para;</a></h2>
-<p>Independente do caminho escolhido, estes requisitos são obrigatórios. Estão organizados por onde cada um é implementado:</p>
+<h2 id="requisitos-obrigatorios">Requisitos obrigatórios<a class="headerlink" href="#requisitos-obrigatorios" title="Permanent link">&para;</a></h2>
+<p>Estes requisitos são obrigatórios em toda integração. Estão organizados por onde cada um é implementado:</p>
 <h3 id="no-authorization-server-authorization-code-pkce">No authorization server — authorization code + PKCE<a class="headerlink" href="#no-authorization-server-authorization-code-pkce" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Grant: <strong>authorization code</strong>.</li>
@@ -1418,8 +1424,8 @@
 <p>O <strong>MCP</strong> usa o userinfo como <strong>contexto de autorização</strong> nas tool calls (identidade + perfil/roles). A <strong>plataforma</strong> usa <code>GET /merchants</code> no connect para seleção de loja e perfil de negócio da conta — não precisa do payload completo de userinfo. O contrato completo de userinfo está na página <a href="../../authz/userinfo/">Userinfo (OIDC)</a>.</p>
 <h3 id="no-authorization-server-endpoint-de-lojas-get-merchants">No authorization server — endpoint de lojas (<code>GET /merchants</code>)<a class="headerlink" href="#no-authorization-server-endpoint-de-lojas-get-merchants" title="Permanent link">&para;</a></h3>
 <p>A lista de lojas que o usuário pode acessar é um <strong>dado de domínio</strong>, não identidade. O authorization server deve expor <code>GET /merchants</code> com o catálogo rico (nome, endereço, CNPJ, <code>external_ids</code>, etc.). Contrato completo: <a href="../../authz/merchants/">Lojas</a>.</p>
-<h2 id="caminho-1-autodescoberta-recomendado">Caminho 1 — Autodescoberta (recomendado)<a class="headerlink" href="#caminho-1-autodescoberta-recomendado" title="Permanent link">&para;</a></h2>
-<p>Nesse caminho, o seu authorization server <strong>publica metadados</strong> e a plataforma descobre os endpoints automaticamente. Você não precisa configurar endpoints manualmente.</p>
+<h2 id="descoberta-oauth">Descoberta OAuth<a class="headerlink" href="#descoberta-oauth" title="Permanent link">&para;</a></h2>
+<p>No fluxo padrão, o seu authorization server <strong>publica metadados</strong> e a plataforma descobre os endpoints automaticamente. Você não precisa configurar endpoints manualmente.</p>
 <h3 id="1-metadados-do-authorization-server-rfc-8414-sempre">1. Metadados do authorization server (RFC 8414) — sempre<a class="headerlink" href="#1-metadados-do-authorization-server-rfc-8414-sempre" title="Permanent link">&para;</a></h3>
 <p>O authorization server publica um documento de metadados derivado do <code>issuer</code>. Na descoberta, você pode informar a URL base do authorization server (o <code>issuer</code>, ex.: <code>https://auth.suaorganizacao.com</code>) ou a URL do documento diretamente. A partir do <code>issuer</code>, a plataforma deriva o caminho:</p>
 <div class="language-text highlight"><pre><span></span><code>https://auth.suaorganizacao.com/.well-known/oauth-authorization-server
@@ -1507,8 +1513,13 @@
 <p class="admonition-title">Quem acessa e quando</p>
 <p>Esse documento é acessado pela <strong>plataforma</strong>, uma única vez na descoberta (e guardado em cache). O usuário final <strong>não</strong> acessa esse caminho diretamente. No login, o browser é redirecionado para o <code>authorization_endpoint</code> que a plataforma já descobriu.</p>
 </div>
-<h3 id="2-metadados-do-recurso-protegido-rfc-9728-somente-se-houver-mcp">2. Metadados do recurso protegido (RFC 9728) — somente se houver MCP<a class="headerlink" href="#2-metadados-do-recurso-protegido-rfc-9728-somente-se-houver-mcp" title="Permanent link">&para;</a></h3>
-<p>Se a integração envolve um <strong>MCP</strong>, o MCP publica um documento de metadados do recurso protegido em <code>/.well-known/oauth-protected-resource</code>, apontando para o authorization server. A plataforma usa isso para descobrir automaticamente <strong>qual</strong> authorization server protege aquele MCP, sem que você precise informar a URL manualmente ao cadastrar o MCP.</p>
+<h3 id="2-metadados-do-recurso-protegido-rfc-9728-obrigatorio-para-servidores-mcp-http-protegidos-por-oauth">2. Metadados do Recurso Protegido (RFC 9728) — obrigatório para servidores MCP HTTP protegidos por OAuth<a class="headerlink" href="#2-metadados-do-recurso-protegido-rfc-9728-obrigatorio-para-servidores-mcp-http-protegidos-por-oauth" title="Permanent link">&para;</a></h3>
+<p>Para um MCP protegido por OAuth sobre HTTP, o servidor MCP publica seus <strong>Metadados do Recurso Protegido</strong> (RFC 9728). Esse documento descreve o recurso protegido e identifica o(s) authorization server(s); é o ponto de entrada da descoberta. A plataforma lê <code>authorization_servers</code> para saber <strong>qual</strong> authorization server protege aquele MCP.</p>
+<div class="admonition note">
+<p class="admonition-title">Metadados do recurso ≠ metadados do authorization server</p>
+<p>O Metadado do Recurso Protegido descreve o recurso e aponta para o(s) authorization server(s). Ele <strong>não</strong> substitui os metadados do próprio authorization server. Endpoints e capacidades como <code>authorization_endpoint</code>, <code>token_endpoint</code>, <code>response_types_supported</code> e <code>grant_types_supported</code> são descobertos a partir dos metadados do authorization server (RFC 8414 / OpenID Connect Discovery), descritos na seção de metadados do authorization server acima.</p>
+</div>
+<p><strong>Campos:</strong></p>
 <table>
 <thead>
 <tr>
@@ -1520,17 +1531,59 @@
 <tbody>
 <tr>
 <td><code>resource</code></td>
-<td>Sim</td>
-<td>Identificador canônico do recurso protegido (a URL do MCP). O host raiz (<code>/</code>) cobre qualquer path do mesmo host; um path específico não cobre subpaths arbitrários</td>
+<td>Obrigatório (RFC 9728)</td>
+<td>URI canônica que identifica o recurso protegido (a URL do MCP).</td>
 </tr>
 <tr>
 <td><code>authorization_servers</code></td>
-<td>Sim</td>
-<td>Lista não vazia de authorization servers do recurso</td>
+<td>Opcional na RFC 9728; <strong>obrigatório no Open Restaurant Protocol</strong> quando a descoberta do authorization server é necessária</td>
+<td>Lista não vazia de identificadores de issuer do authorization server. Deve conter ao menos uma entrada.</td>
+</tr>
+<tr>
+<td><code>scopes_supported</code></td>
+<td>Recomendado (RFC 9728)</td>
+<td>Scopes OAuth aceitos nas solicitações de autorização ao recurso.</td>
+</tr>
+<tr>
+<td><code>resource_name</code></td>
+<td>Recomendado (RFC 9728)</td>
+<td>Nome legível do recurso para exibição.</td>
+</tr>
+<tr>
+<td><code>resource_documentation</code></td>
+<td>Opcional (RFC 9728)</td>
+<td>URL da documentação do recurso para desenvolvedores.</td>
+</tr>
+<tr>
+<td><code>bearer_methods_supported</code></td>
+<td>Opcional (RFC 9728)</td>
+<td>Métodos de envio de bearer token suportados (<code>header</code>, <code>body</code>, <code>query</code>).</td>
 </tr>
 </tbody>
 </table>
-<p>Se esse endpoint não estiver disponível, a plataforma pode obter o metadata a partir do header <code>WWW-Authenticate: resource_metadata=...</code> retornado em respostas <code>401</code>. Se nenhum dos dois estiver presente, a plataforma não consegue descobrir o authorization server a partir do MCP. Nesse caso, informe a URL do authorization server manualmente.</p>
+<p>Exemplo mínimo:</p>
+<div class="language-json highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"resource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.exemplo.com"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"authorization_servers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">"https://auth.exemplo.com"</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>As URLs acima são ilustrativas — substitua pelas URLs reais do recurso e do authorization server.</p>
+<p><strong>Fluxo de descoberta:</strong></p>
+<ol>
+<li>O cliente MCP descobre os Metadados do Recurso Protegido usando o mecanismo de descoberta abaixo.</li>
+<li>O cliente lê <code>authorization_servers</code> para identificar o authorization server.</li>
+<li>O cliente descobre os metadados do authorization server (RFC 8414 / OpenID Connect Discovery).</li>
+<li>O cliente usa os endpoints descobertos para concluir o fluxo OAuth.</li>
+</ol>
+<p>O <strong>servidor MCP</strong> publica os Metadados do Recurso Protegido; o <strong>authorization server</strong> publica os próprios metadados.</p>
+<p><strong>Mecanismos de descoberta.</strong> Servidores MCP protegidos por OAuth sobre HTTP DEVEM implementar ao menos um dos seguintes (RFC 9728):</p>
+<ul>
+<li>Retornar uma resposta <code>401 Unauthorized</code> com um header <code>WWW-Authenticate</code> cujo parâmetro <code>resource_metadata</code> aponta para o documento de metadados (<code>WWW-Authenticate: Bearer resource_metadata="https://.../.well-known/oauth-protected-resource"</code>).</li>
+<li>Alternativamente, publicar o documento na URI well-known aplicável <code>/.well-known/oauth-protected-resource</code>.</li>
+</ul>
+<p>O cliente MCP DEVE suportar os dois mecanismos: usa a URL <code>resource_metadata</code> do header <code>WWW-Authenticate</code> quando presente e, caso contrário, recorre à URI well-known.</p>
 <div class="admonition tip">
 <p class="admonition-title">FastMCP</p>
 <p>Com FastMCP, o <code>RemoteAuthProvider</code> publica esse documento automaticamente. Veja <a href="../mcp-oauth/">Como construir um MCP com OAuth</a>.</p>
@@ -1553,8 +1606,12 @@
 <p>O DCR <strong>não</strong> elimina a necessidade de publicar metadata. Ele só automatiza as credenciais do client e o allowlist da callback. O DCR só é possível se o seu IdP expuser o <code>registration_endpoint</code> (RFC 7591); sem ele, use o registro manual.</p>
 <p>O userinfo é uma camada separada (identidade/autorização), não um requisito de autenticação. Veja <a href="../../authz/userinfo/">Userinfo (OIDC)</a>.</p>
 </div>
-<h2 id="caminho-2-configuracao-manual">Caminho 2 — Configuração manual<a class="headerlink" href="#caminho-2-configuracao-manual" title="Permanent link">&para;</a></h2>
-<p>Quando a autodescoberta não é possível (por exemplo, o MCP não publica os metadados, ou é preciso usar um client já registrado), você entrega explicitamente as informações de OAuth. Você precisa fornecer:</p>
+<h2 id="avancado-configuracao-manual-legado-e-diagnostico">Avançado — configuração manual (legado e diagnóstico)<a class="headerlink" href="#avancado-configuracao-manual-legado-e-diagnostico" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Não é o fluxo padrão</p>
+<p>A configuração manual é uma <strong>exceção avançada</strong> para diagnóstico ou compatibilidade com integrações legadas. <strong>Não</strong> é o fluxo normal de descoberta MCP e <strong>não</strong> remove a obrigação do servidor MCP de publicar seus Metadados do Recurso Protegido (RFC 9728).</p>
+</div>
+<p>Quando a autodescoberta não é possível (por exemplo, uma integração legada que não publica metadados, ou um client já registrado), você entrega explicitamente as informações de OAuth. Você precisa fornecer:</p>
 <ul>
 <li><strong>Endpoints do authorization server</strong>: <code>authorization_endpoint</code> e <code>token_endpoint</code> (e <code>revocation_endpoint</code>, se houver).</li>
 <li><strong><code>client_id</code></strong> e <strong><code>client_secret</code></strong> (o <code>client_secret</code> é obrigatório no fluxo típico com client confidencial).</li>
@@ -1582,12 +1639,12 @@
 <h2 id="o-que-nao-e-suportado">O que não é suportado<a class="headerlink" href="#o-que-nao-e-suportado" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Apenas o grant <strong>authorization code + PKCE</strong> é usado para autenticação de usuário. Grants como <code>client_credentials</code> não fazem parte deste fluxo.</li>
-<li>Sem metadados de descoberta <strong>e</strong> sem DCR, a configuração manual é obrigatória.</li>
+<li>A configuração manual é uma exceção avançada para integrações legadas ou diagnóstico — não é um substituto da descoberta de metadados, e não remove a obrigação do servidor MCP de publicar os Metadados do Recurso Protegido (RFC 9728).</li>
 </ul>
 <h2 id="checklist-de-validacao-antes-da-integracao">Checklist de validação antes da integração<a class="headerlink" href="#checklist-de-validacao-antes-da-integracao" title="Permanent link">&para;</a></h2>
 <p>Antes de tentar conectar, confirme cada item:</p>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>GET /.well-known/oauth-protected-resource</code> retorna <code>resource</code> e <code>authorization_servers</code> (se houver MCP).</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>GET /.well-known/oauth-protected-resource</code> retorna <code>resource</code> e <code>authorization_servers</code> (para um MCP HTTP protegido por OAuth).</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>GET /.well-known/oauth-authorization-server</code> retorna os campos obrigatórios da RFC 8414.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> O <code>issuer</code> do metadata coincide com o identificador usado para buscar o documento, ou compartilha o mesmo domínio registrável.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>code_challenge_methods_supported</code> contém <code>S256</code>.</li>
