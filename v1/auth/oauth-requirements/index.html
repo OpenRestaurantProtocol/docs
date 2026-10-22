@@ -1536,8 +1536,8 @@
 </tr>
 <tr>
 <td><code>authorization_servers</code></td>
-<td>Optional in RFC 9728; <strong>required by the Open Restaurant Protocol</strong> when authorization server discovery is needed</td>
-<td>Non-empty list of authorization server issuer identifiers. Must contain at least one entry.</td>
+<td>Optional in RFC 9728; <strong>required by the MCP Authorization specification</strong> (at least one entry)</td>
+<td>List of authorization server issuer identifiers.</td>
 </tr>
 <tr>
 <td><code>scopes_supported</code></td>
@@ -1578,10 +1578,10 @@
 <li>The client uses the discovered endpoints to complete the OAuth flow.</li>
 </ol>
 <p>The <strong>MCP server</strong> publishes the Protected Resource Metadata; the <strong>authorization server</strong> publishes its own metadata.</p>
-<p><strong>Discovery mechanisms.</strong> MCP servers protected by OAuth over HTTP MUST implement at least one of the following (RFC 9728):</p>
+<p><strong>Discovery mechanisms.</strong> MCP servers protected by OAuth over HTTP MUST implement at least one of the following (MCP Authorization specification):</p>
 <ul>
-<li>Return a <code>401 Unauthorized</code> response with a <code>WWW-Authenticate</code> header whose <code>resource_metadata</code> parameter points to the metadata document (<code>WWW-Authenticate: Bearer resource_metadata="https://.../.well-known/oauth-protected-resource"</code>).</li>
-<li>Alternatively, publish the document at the applicable well-known URI <code>/.well-known/oauth-protected-resource</code>.</li>
+<li><strong><code>WWW-Authenticate</code> header.</strong> Return a <code>401 Unauthorized</code> response with a <code>WWW-Authenticate</code> header whose <code>resource_metadata</code> parameter points to the metadata document (<code>WWW-Authenticate: Bearer resource_metadata="https://.../.well-known/oauth-protected-resource"</code>).</li>
+<li><strong>Well-known URI.</strong> Publish the document at the applicable well-known URI <code>/.well-known/oauth-protected-resource</code>. This can be at the host root (<code>https://example.com/.well-known/oauth-protected-resource</code>) or at the path of the MCP endpoint (an MCP at <code>https://example.com/public/mcp</code> hosts metadata at <code>https://example.com/.well-known/oauth-protected-resource/public/mcp</code>).</li>
 </ul>
 <p>The MCP client MUST support both mechanisms: it uses the <code>resource_metadata</code> URL from the <code>WWW-Authenticate</code> header when present, and otherwise falls back to the well-known URI.</p>
 <div class="admonition tip">
@@ -1609,7 +1609,7 @@
 <h2 id="advanced-manual-configuration-legacy-diagnostics">Advanced — manual configuration (legacy &amp; diagnostics)<a class="headerlink" href="#advanced-manual-configuration-legacy-diagnostics" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">
 <p class="admonition-title">Not the standard flow</p>
-<p>Manual configuration is an <strong>advanced exception</strong> for troubleshooting or compatibility with legacy integrations. It is <strong>not</strong> the normal MCP discovery flow, and it does <strong>not</strong> remove the MCP server's obligation to publish its Protected Resource Metadata (RFC 9728).</p>
+<p>Manual configuration is an <strong>advanced exception</strong> for troubleshooting or compatibility with legacy integrations. It is <strong>not</strong> the normal MCP discovery flow, and it does <strong>not</strong> replace the MCP server's Protected Resource Metadata discovery requirements (RFC 9728).</p>
 </div>
 <p>When auto-discovery is not possible (for example, a legacy integration that does not publish metadata, or an already-registered client), you explicitly provide the OAuth information. You need to provide:</p>
 <ul>
@@ -1633,20 +1633,20 @@
 <p>Some operational rules make discovery fail if not met. Before publishing, ensure:</p>
 <ul>
 <li><strong>Mandatory HTTPS</strong>: metadata documents (RFC 8414 and RFC 9728) must be served over <strong>HTTPS</strong> (RFC 8414 requires the <code>https</code> scheme). Plain HTTP is not accepted for discovery.</li>
-<li><strong>Consistent <code>issuer</code></strong>: the <code>issuer</code> value in the metadata must be <strong>identical</strong> to the identifier used to fetch the document (RFC 8414 §3.3), or share the <strong>same registrable domain</strong> (e.g. <code>mcp.example.com</code> and <code>auth.example.com</code>). An <code>issuer</code> on a completely different domain makes discovery fail (prevents mix-up attacks).</li>
+<li><strong>Exact <code>issuer</code> match</strong>: the <code>issuer</code> value in the metadata must be <strong>identical</strong> to the identifier used to construct the metadata lookup URL (RFC 8414 §3.3). Sharing the same registrable domain is not sufficient; any mismatch makes discovery fail (prevents mix-up attacks).</li>
 <li><strong><code>resource</code> covers the real URL</strong>: in the protected resource metadata (RFC 9728), the <code>resource</code> must cover the MCP URL. The root host covers any path on the same host; a specific path does not cover arbitrary subpaths.</li>
 </ul>
 <h2 id="what-is-not-supported">What is not supported<a class="headerlink" href="#what-is-not-supported" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Only the <strong>authorization code + PKCE</strong> grant is used for user authentication. Grants such as <code>client_credentials</code> are not part of this flow.</li>
-<li>Manual configuration is an advanced exception for legacy integrations or diagnostics — it is not a substitute for metadata discovery, and it does not remove the MCP server's obligation to publish Protected Resource Metadata (RFC 9728).</li>
+<li>Manual configuration is an advanced exception for legacy integrations or diagnostics — it is not a substitute for metadata discovery, and it does not replace the MCP server's Protected Resource Metadata discovery requirements (RFC 9728).</li>
 </ul>
 <h2 id="validation-checklist-before-integration">Validation checklist before integration<a class="headerlink" href="#validation-checklist-before-integration" title="Permanent link">&para;</a></h2>
 <p>Before attempting to connect, confirm each item:</p>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>GET /.well-known/oauth-protected-resource</code> returns <code>resource</code> and <code>authorization_servers</code> (for an OAuth-protected HTTP MCP).</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>GET /.well-known/oauth-authorization-server</code> returns the mandatory RFC 8414 fields.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> The metadata <code>issuer</code> matches the identifier used to fetch the document, or shares the same registrable domain.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> The metadata <code>issuer</code> exactly matches the identifier used to construct the metadata lookup URL.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>code_challenge_methods_supported</code> contains <code>S256</code>.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> The flow issues a <strong>refresh token</strong>.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> The <code>/userinfo</code> responds with identity and profile/roles.</li>
@@ -1659,7 +1659,7 @@
 <h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Discovery fails (404 on <code>/.well-known</code>)</strong>: confirm the document is served over HTTPS and at the correct path derived from the <code>issuer</code>.</li>
-<li><strong><code>issuer</code> mismatch</strong>: the metadata <code>issuer</code> must be identical to the identifier used in the lookup, or share the same registrable domain (RFC 8414 §3.3).</li>
+<li><strong><code>issuer</code> mismatch</strong>: the metadata <code>issuer</code> must be <strong>exactly</strong> identical to the identifier used to construct the metadata lookup URL (RFC 8414 §3.3). Sharing the same registrable domain is not sufficient.</li>
 <li><strong>Redirect fails</strong>: the callback URL was not registered in the IdP allowlist.</li>
 <li><strong><code>401</code> on <code>/userinfo</code></strong>: the presented token is invalid, expired, or the <code>aud</code> does not match the expected value. Check <code>iss</code>, <code>aud</code> and the signature.</li>
 <li><strong>Invalid <code>audience</code> in the JWT</strong>: the token <code>aud</code> does not match what the MCP expects. Align the authorization server's <code>audience</code> with the MCP.</li>
