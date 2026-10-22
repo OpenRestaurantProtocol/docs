@@ -124,7 +124,7 @@ For an MCP protected by OAuth over HTTP, the MCP server publishes its **Protecte
 | Field | Required? | Notes |
 |---|---|---|
 | `resource` | Required (RFC 9728) | Canonical URI that identifies the protected resource (the MCP URL). |
-| `authorization_servers` | Optional in RFC 9728; **required by the Open Restaurant Protocol** when authorization server discovery is needed | Non-empty list of authorization server issuer identifiers. Must contain at least one entry. |
+| `authorization_servers` | Optional in RFC 9728; **required by the MCP Authorization specification** (at least one entry) | List of authorization server issuer identifiers. |
 | `scopes_supported` | Recommended (RFC 9728) | OAuth scopes accepted in authorization requests to the resource. |
 | `resource_name` | Recommended (RFC 9728) | Human-readable display name of the resource. |
 | `resource_documentation` | Optional (RFC 9728) | URL of developer documentation for the resource. |
@@ -152,10 +152,10 @@ The URLs above are illustrative — replace them with the actual resource and au
 
 The **MCP server** publishes the Protected Resource Metadata; the **authorization server** publishes its own metadata.
 
-**Discovery mechanisms.** MCP servers protected by OAuth over HTTP MUST implement at least one of the following (RFC 9728):
+**Discovery mechanisms.** MCP servers protected by OAuth over HTTP MUST implement at least one of the following (MCP Authorization specification):
 
-- Return a `401 Unauthorized` response with a `WWW-Authenticate` header whose `resource_metadata` parameter points to the metadata document (`WWW-Authenticate: Bearer resource_metadata="https://.../.well-known/oauth-protected-resource"`).
-- Alternatively, publish the document at the applicable well-known URI `/.well-known/oauth-protected-resource`.
+- **`WWW-Authenticate` header.** Return a `401 Unauthorized` response with a `WWW-Authenticate` header whose `resource_metadata` parameter points to the metadata document (`WWW-Authenticate: Bearer resource_metadata="https://.../.well-known/oauth-protected-resource"`).
+- **Well-known URI.** Publish the document at the applicable well-known URI `/.well-known/oauth-protected-resource`. This can be at the host root (`https://example.com/.well-known/oauth-protected-resource`) or at the path of the MCP endpoint (an MCP at `https://example.com/public/mcp` hosts metadata at `https://example.com/.well-known/oauth-protected-resource/public/mcp`).
 
 The MCP client MUST support both mechanisms: it uses the `resource_metadata` URL from the `WWW-Authenticate` header when present, and otherwise falls back to the well-known URI.
 
@@ -185,7 +185,7 @@ If the authorization server exposes `registration_endpoint` (RFC 7591) and suppo
 ## Advanced — manual configuration (legacy & diagnostics)
 
 !!! warning "Not the standard flow"
-    Manual configuration is an **advanced exception** for troubleshooting or compatibility with legacy integrations. It is **not** the normal MCP discovery flow, and it does **not** remove the MCP server's obligation to publish its Protected Resource Metadata (RFC 9728).
+    Manual configuration is an **advanced exception** for troubleshooting or compatibility with legacy integrations. It is **not** the normal MCP discovery flow, and it does **not** replace the MCP server's Protected Resource Metadata discovery requirements (RFC 9728).
 
 When auto-discovery is not possible (for example, a legacy integration that does not publish metadata, or an already-registered client), you explicitly provide the OAuth information. You need to provide:
 
@@ -210,13 +210,13 @@ The configuration on the platform is done by us, based on the information you pr
 Some operational rules make discovery fail if not met. Before publishing, ensure:
 
 - **Mandatory HTTPS**: metadata documents (RFC 8414 and RFC 9728) must be served over **HTTPS** (RFC 8414 requires the `https` scheme). Plain HTTP is not accepted for discovery.
-- **Consistent `issuer`**: the `issuer` value in the metadata must be **identical** to the identifier used to fetch the document (RFC 8414 §3.3), or share the **same registrable domain** (e.g. `mcp.example.com` and `auth.example.com`). An `issuer` on a completely different domain makes discovery fail (prevents mix-up attacks).
+- **Exact `issuer` match**: the `issuer` value in the metadata must be **identical** to the identifier used to construct the metadata lookup URL (RFC 8414 §3.3). Sharing the same registrable domain is not sufficient; any mismatch makes discovery fail (prevents mix-up attacks).
 - **`resource` covers the real URL**: in the protected resource metadata (RFC 9728), the `resource` must cover the MCP URL. The root host covers any path on the same host; a specific path does not cover arbitrary subpaths.
 
 ## What is not supported
 
 - Only the **authorization code + PKCE** grant is used for user authentication. Grants such as `client_credentials` are not part of this flow.
-- Manual configuration is an advanced exception for legacy integrations or diagnostics — it is not a substitute for metadata discovery, and it does not remove the MCP server's obligation to publish Protected Resource Metadata (RFC 9728).
+- Manual configuration is an advanced exception for legacy integrations or diagnostics — it is not a substitute for metadata discovery, and it does not replace the MCP server's Protected Resource Metadata discovery requirements (RFC 9728).
 
 ## Validation checklist before integration
 
@@ -224,7 +224,7 @@ Before attempting to connect, confirm each item:
 
 - [ ] `GET /.well-known/oauth-protected-resource` returns `resource` and `authorization_servers` (for an OAuth-protected HTTP MCP).
 - [ ] `GET /.well-known/oauth-authorization-server` returns the mandatory RFC 8414 fields.
-- [ ] The metadata `issuer` matches the identifier used to fetch the document, or shares the same registrable domain.
+- [ ] The metadata `issuer` exactly matches the identifier used to construct the metadata lookup URL.
 - [ ] `code_challenge_methods_supported` contains `S256`.
 - [ ] The flow issues a **refresh token**.
 - [ ] The `/userinfo` responds with identity and profile/roles.
@@ -237,7 +237,7 @@ Before attempting to connect, confirm each item:
 ## Troubleshooting
 
 - **Discovery fails (404 on `/.well-known`)**: confirm the document is served over HTTPS and at the correct path derived from the `issuer`.
-- **`issuer` mismatch**: the metadata `issuer` must be identical to the identifier used in the lookup, or share the same registrable domain (RFC 8414 §3.3).
+- **`issuer` mismatch**: the metadata `issuer` must be **exactly** identical to the identifier used to construct the metadata lookup URL (RFC 8414 §3.3). Sharing the same registrable domain is not sufficient.
 - **Redirect fails**: the callback URL was not registered in the IdP allowlist.
 - **`401` on `/userinfo`**: the presented token is invalid, expired, or the `aud` does not match the expected value. Check `iss`, `aud` and the signature.
 - **Invalid `audience` in the JWT**: the token `aud` does not match what the MCP expects. Align the authorization server's `audience` with the MCP.
