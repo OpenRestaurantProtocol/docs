@@ -157,7 +157,10 @@ O **servidor MCP** publica os Metadados do Recurso Protegido; o **authorization 
 - **Header `WWW-Authenticate`.** Retornar uma resposta `401 Unauthorized` com um header `WWW-Authenticate` cujo parâmetro `resource_metadata` aponta para o documento de metadados (`WWW-Authenticate: Bearer resource_metadata="https://.../.well-known/oauth-protected-resource"`).
 - **URI well-known.** Publicar o documento na URI well-known aplicável `/.well-known/oauth-protected-resource`. Pode ser na raiz do host (`https://exemplo.com/.well-known/oauth-protected-resource`) ou no path do endpoint MCP (um MCP em `https://exemplo.com/public/mcp` hospeda os metadados em `https://exemplo.com/.well-known/oauth-protected-resource/public/mcp`).
 
-O cliente MCP DEVE suportar os dois mecanismos: usa a URL `resource_metadata` do header `WWW-Authenticate` quando presente e, caso contrário, recorre à URI well-known.
+**Ordem de fallback do cliente.** O cliente MCP DEVE suportar os dois mecanismos:
+
+1. Quando o header `WWW-Authenticate` contém um parâmetro `resource_metadata`, o cliente usa a URL fornecida nesse parâmetro.
+2. Quando não contém, o cliente recorre à URI well-known — primeiro a URI do path do endpoint MCP (`https://exemplo.com/.well-known/oauth-protected-resource/public/mcp`), depois a URI raiz (`https://exemplo.com/.well-known/oauth-protected-resource`).
 
 !!! tip "FastMCP"
     Com FastMCP, o `RemoteAuthProvider` publica esse documento automaticamente. Veja [Como construir um MCP com OAuth](mcp-oauth.md).
@@ -222,7 +225,7 @@ Algumas regras operacionais fazem a descoberta falhar se não forem cumpridas. A
 
 Antes de tentar conectar, confirme cada item:
 
-- [ ] `GET /.well-known/oauth-protected-resource` retorna `resource` e `authorization_servers` (para um MCP HTTP protegido por OAuth).
+- [ ] Os Metadados do Recurso Protegido são detectáveis (via o parâmetro `resource_metadata` do header `WWW-Authenticate` ou pela URI well-known — no path do endpoint MCP ou na raiz) e retornam `resource` e `authorization_servers` (para um MCP HTTP protegido por OAuth).
 - [ ] `GET /.well-known/oauth-authorization-server` retorna os campos obrigatórios da RFC 8414.
 - [ ] O `issuer` do metadata coincide exatamente com o identificador usado para construir a URL de consulta do metadata.
 - [ ] `code_challenge_methods_supported` contém `S256`.
@@ -236,7 +239,8 @@ Antes de tentar conectar, confirme cada item:
 
 ## Troubleshooting
 
-- **Descoberta falha (404 no `/.well-known`)**: confirme que o documento está em HTTPS e no caminho correto derivado do `issuer`.
+- **Descoberta do metadata do authorization server falha (404 no `/.well-known/oauth-authorization-server`)**: confirme que o documento está em HTTPS e no caminho correto derivado do `issuer`.
+- **Metadados do Recurso Protegido não detectáveis**: confirme que o servidor retorna o header `WWW-Authenticate` com `resource_metadata`, ou que o documento está disponível na URI well-known — no path do endpoint MCP ou na raiz (`/.well-known/oauth-protected-resource`).
 - **`issuer` não bate**: o `issuer` do metadata precisa ser **exatamente** idêntico ao identificador usado para construir a URL de consulta do metadata (RFC 8414 §3.3). Compartilhar o mesmo domínio registrável não é suficiente.
 - **Redirect falha**: a URL de callback não foi cadastrada no allowlist do IdP.
 - **`401` no `/userinfo`**: o token apresentado não é válido, está expirado, ou o `aud` não corresponde ao esperado. Verifique `iss`, `aud` e a assinatura.
