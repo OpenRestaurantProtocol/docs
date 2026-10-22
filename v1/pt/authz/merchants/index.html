@@ -790,6 +790,28 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#relacao-com-userinfo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relação com userinfo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#responsabilidades" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Responsabilidades
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1053,6 +1075,28 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#relacao-com-userinfo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relação com userinfo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#responsabilidades" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Responsabilidades
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1076,7 +1120,30 @@
 <p>Endpoint de autorização: lista as lojas que o usuário tem permissão de acessar, de acordo com o token.</p>
 </div>
 <h2 id="visao-geral">Visão geral<a class="headerlink" href="#visao-geral" title="Permanent link">&para;</a></h2>
-<p>Este endpoint lista as lojas que o usuário pode acessar de acordo com o token. O MCP o chama para construir o escopo de autorização do usuário. A autorização (quais lojas) já foi resolvida a partir do token: este endpoint apenas devolve as lojas visíveis para aquele token.</p>
+<p>Este endpoint lista as lojas visíveis para o token. A autorização (quais lojas) já foi resolvida a partir do token: o endpoint apenas materializa a lista.</p>
+<p><strong>Callers:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Caller</th>
+<th>Quando</th>
+<th>Para quê</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Plataforma</strong> (preferido)</td>
+<td>No connect, após obter os tokens</td>
+<td>Picker / bind de loja(s); <strong>perfil de negócio</strong> da conta (N lojas, nomes, endereço, CNPJ, <code>external_ids</code>)</td>
+</tr>
+<tr>
+<td><strong>MCP</strong></td>
+<td>Authz e tool <code>listar_lojas</code></td>
+<td>Validar escopo; <strong>fallback</strong> para o agente (rediscovery / refresh) quando o cache do connect não basta</td>
+</tr>
+</tbody>
+</table>
+<p>A tool <code>listar_lojas</code> (<code>list_merchants</code>) é <strong>recomendada</strong> no MCP e deve espelhar (ou chamar) este endpoint. Ela <strong>não</strong> substitui a chamada da plataforma a <code>GET /merchants</code> no connect.</p>
 <h2 id="endpoint">Endpoint<a class="headerlink" href="#endpoint" title="Permanent link">&para;</a></h2>
 <div class="language-text highlight"><pre><span></span><code>GET /merchants
 </code></pre></div>
@@ -1192,6 +1259,35 @@
 <span class="w">    </span><span class="p">}</span>
 <span class="p">]</span>
 </code></pre></div>
+<h2 id="relacao-com-userinfo">Relação com userinfo<a class="headerlink" href="#relacao-com-userinfo" title="Permanent link">&para;</a></h2>
+<p><code>userinfo.merchants</code> traz só ids para authz rápida no MCP. Este endpoint é o <strong>catálogo rico</strong> para UI e perfil comercial. Veja <a href="../userinfo/">Userinfo</a>.</p>
+<h2 id="responsabilidades">Responsabilidades<a class="headerlink" href="#responsabilidades" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Responsabilidade</th>
+<th>Quem faz</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Expor <code>GET /merchants</code></td>
+<td>Organization (authorization server)</td>
+</tr>
+<tr>
+<td>Chamar <code>/merchants</code> no connect (picker + perfil de negócio)</td>
+<td>Plataforma</td>
+</tr>
+<tr>
+<td>Expor tool <code>listar_lojas</code> como fallback (via este endpoint)</td>
+<td>MCP</td>
+</tr>
+<tr>
+<td>Aplicar escopo de loja nas tools de dados</td>
+<td>MCP</td>
+</tr>
+</tbody>
+</table>
 
 
 

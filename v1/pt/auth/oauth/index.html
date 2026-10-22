@@ -1153,7 +1153,7 @@
 </tr>
 <tr>
 <td>Plataforma</td>
-<td>Agente que consome os dados via MCP</td>
+<td>Agente / UI que consome os dados via MCP</td>
 </tr>
 <tr>
 <td>Login (Organização)</td>
@@ -1165,7 +1165,7 @@
 </tr>
 <tr>
 <td>MCP</td>
-<td>Servidor MCP do ecossistema que expõe as tools</td>
+<td>Servidor MCP que expõe as tools (hospedado pela organização ou por um <a href="../../integrations/mcp/">operador delegado</a>)</td>
 </tr>
 <tr>
 <td>DataBridge</td>
@@ -1175,7 +1175,7 @@
 </table>
 <div class="admonition note">
 <p class="admonition-title">Organização</p>
-<p>"Organização" representa qualquer empresa integrada ao ecossistema. Nesse fluxo, a organização atua como <strong>provedor</strong>, expondo seus dados à plataforma. DataBridge é a camada genérica de acesso aos dados que executa as queries por trás de um MCP — qualquer lado pode operar a sua.</p>
+<p>"Organização" representa qualquer empresa integrada ao ecossistema. Nesse fluxo, a organização atua como <strong>provedor</strong>, expondo identidade (OAuth / userinfo / merchants) e dados. DataBridge é a camada genérica de acesso aos dados por trás de um MCP — a organização ou um operador delegado pode operá-la. Veja <a href="../../integrations/mcp/#quem-opera-o-mcp">Quem opera o MCP</a>.</p>
 </div>
 <h2 id="como-a-plataforma-obtem-o-oauth-antes-do-fluxo">Como a plataforma obtém o OAuth antes do fluxo<a class="headerlink" href="#como-a-plataforma-obtem-o-oauth-antes-do-fluxo" title="Permanent link">&para;</a></h2>
 <p>Antes do fluxo de autorização, a plataforma precisa descobrir os endpoints do authorization server e as credenciais do client. Há três cenários:</p>
@@ -1203,22 +1203,33 @@
 <li><strong>Plataforma → OAuth:</strong> troca o authorization code por tokens usando o <code>code_verifier</code> do PKCE.</li>
 <li><strong>OAuth → Plataforma:</strong> retorna <code>access_token</code> (JWT) e <code>refresh_token</code>.</li>
 <li><strong>Plataforma:</strong> armazena os tokens da conexão com a organização.</li>
+<li><strong>Plataforma → OAuth:</strong> chama <code>GET /merchants</code> com o Bearer (caminho preferido para escopo de lojas).</li>
+<li><strong>OAuth → Plataforma:</strong> retorna a lista de lojas (catálogo rico).</li>
+<li><strong>Plataforma:</strong> monta picker / bind de loja(s) e o <strong>perfil de negócio</strong> da conta.</li>
 <li><strong>Plataforma → Usuário:</strong> informa que a organização foi conectada.</li>
 </ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A plataforma <strong>não</strong> precisa chamar <code>userinfo</code> neste passo. Userinfo é consumido pelo MCP nas tool calls. Veja <a href="../../authz/userinfo/">Userinfo</a> e <a href="../../authz/merchants/">Lojas</a>.</p>
+</div>
 <h3 id="2-pergunta-sobre-dados-da-organizacao">2. Pergunta sobre dados da organização<a class="headerlink" href="#2-pergunta-sobre-dados-da-organizacao" title="Permanent link">&para;</a></h3>
 <ol>
 <li><strong>Usuário → Plataforma:</strong> envia um prompt que envolve dados da organização.</li>
-<li><strong>Plataforma → MCP:</strong> executa uma tool — no exemplo, <code>listar_lojas</code> — com <code>Bearer JWT</code>.</li>
+<li><strong>Plataforma → MCP:</strong> executa uma tool — no exemplo, <code>listar_lojas</code> (<strong>fallback</strong> para rediscovery/refresh; as lojas do connect já vieram de <code>/merchants</code>) — com <code>Bearer JWT</code>.</li>
 <li><strong>MCP:</strong> valida o JWT (assinatura, <code>iss</code>, <code>aud</code>, <code>exp</code>).</li>
 <li><strong>MCP → OAuth (Organização):</strong> chama <code>GET /userinfo</code> com o Bearer token para obter o contexto de autorização do usuário (identidade + permissões).</li>
 <li><strong>OAuth (Organização) → MCP:</strong> retorna <code>sub</code>, <code>email</code> e <code>profile_permissions</code>.</li>
 <li><strong>MCP:</strong> aplica a lógica de autorização — determina quais lojas/recursos o usuário pode acessar.</li>
-<li><strong>MCP → Plataforma:</strong> retorna a lista de lojas autorizadas.</li>
+<li><strong>MCP → Plataforma:</strong> retorna o resultado da tool (ex.: lista de lojas autorizadas).</li>
 </ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A plataforma <strong>não</strong> recebe o payload bruto de userinfo. O MCP aplica userinfo e devolve só o resultado da tool.</p>
+</div>
 <h3 id="3-consulta-dos-dados">3. Consulta dos dados<a class="headerlink" href="#3-consulta-dos-dados" title="Permanent link">&para;</a></h3>
 <ol>
 <li><strong>Plataforma → MCP:</strong> executa <code>tool_call buscar_dados(merchant_ids)</code> com <code>Bearer JWT</code>.</li>
-<li><strong>MCP:</strong> valida o JWT (assinatura, <code>iss</code>, <code>aud</code>, <code>exp</code>) e verifica o escopo de autorização do usuário.</li>
+<li><strong>MCP:</strong> valida o JWT (assinatura, <code>iss</code>, <code>aud</code>, <code>exp</code>) e verifica o escopo de autorização do usuário (via userinfo / escopo já conhecido).</li>
 <li><strong>MCP → DataBridge:</strong> executa as queries necessárias no armazenamento de dados da organização, filtradas pelos <code>merchant_ids</code> autorizados.</li>
 <li><strong>DataBridge → MCP:</strong> retorna os dados solicitados.</li>
 <li><strong>MCP → Plataforma:</strong> retorna o resultado da execução da tool.</li>
@@ -1229,6 +1240,8 @@
 <li><a href="https://datatracker.ietf.org/doc/html/rfc6749">RFC 6749 — OAuth 2.0</a></li>
 <li><a href="https://datatracker.ietf.org/doc/html/rfc7636">RFC 7636 — Proof Key for Code Exchange (PKCE)</a></li>
 <li><a href="https://datatracker.ietf.org/doc/html/rfc7519">RFC 7519 — JSON Web Token (JWT)</a></li>
+<li><a href="../../authz/">Autorização</a></li>
+<li><a href="../../integrations/mcp/">Integração via MCP</a></li>
 </ul>
 
 

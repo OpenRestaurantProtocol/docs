@@ -634,6 +634,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#no-authorization-server-endpoint-de-lojas-get-merchants" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        No authorization server — endpoint de lojas (GET /merchants)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1186,6 +1197,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#no-authorization-server-endpoint-de-lojas-get-merchants" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        No authorization server — endpoint de lojas (GET /merchants)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1336,6 +1358,7 @@
 <li>Um <strong>authorization server</strong> (OAuth 2.0 / OIDC) com metadados <strong>RFC 8414</strong>.</li>
 <li>Suporte a <strong>authorization code + PKCE</strong> e emissão de <strong>refresh token</strong>.</li>
 <li>Um endpoint de <strong>userinfo</strong> (OIDC) com identidade e perfil/roles.</li>
+<li>Um endpoint <strong><code>GET /merchants</code></strong> com o catálogo de lojas do token.</li>
 <li>Se houver <strong>MCP</strong>: metadados do recurso protegido (<strong>RFC 9728</strong>).</li>
 <li>(Opcional) <strong>DCR</strong> (RFC 7591) para registro automático do client.</li>
 </ul>
@@ -1392,11 +1415,9 @@
 <li><code>email</code> (ou outro identificador de contato).</li>
 <li>Perfil e roles de acesso da conta.</li>
 </ul>
-<p>A plataforma usa o userinfo como <strong>contexto de autorização</strong>: é a partir dele que se determina quais lojas/recursos o usuário pode acessar. O contrato completo (request com <code>Authorization: Bearer</code>, exemplo de resposta e responsabilidades) está na página <a href="../../authz/userinfo/">Userinfo (OIDC)</a>.</p>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
-<p>A lista de lojas que o usuário pode acessar é um dado de domínio, não identidade. Veja <a href="../../authz/merchants/">Lojas</a>.</p>
-</div>
+<p>O <strong>MCP</strong> usa o userinfo como <strong>contexto de autorização</strong> nas tool calls (identidade + perfil/roles). A <strong>plataforma</strong> usa <code>GET /merchants</code> no connect para seleção de loja e perfil de negócio da conta — não precisa do payload completo de userinfo. O contrato completo de userinfo está na página <a href="../../authz/userinfo/">Userinfo (OIDC)</a>.</p>
+<h3 id="no-authorization-server-endpoint-de-lojas-get-merchants">No authorization server — endpoint de lojas (<code>GET /merchants</code>)<a class="headerlink" href="#no-authorization-server-endpoint-de-lojas-get-merchants" title="Permanent link">&para;</a></h3>
+<p>A lista de lojas que o usuário pode acessar é um <strong>dado de domínio</strong>, não identidade. O authorization server deve expor <code>GET /merchants</code> com o catálogo rico (nome, endereço, CNPJ, <code>external_ids</code>, etc.). Contrato completo: <a href="../../authz/merchants/">Lojas</a>.</p>
 <h2 id="caminho-1-autodescoberta-recomendado">Caminho 1 — Autodescoberta (recomendado)<a class="headerlink" href="#caminho-1-autodescoberta-recomendado" title="Permanent link">&para;</a></h2>
 <p>Nesse caminho, o seu authorization server <strong>publica metadados</strong> e a plataforma descobre os endpoints automaticamente. Você não precisa configurar endpoints manualmente.</p>
 <h3 id="1-metadados-do-authorization-server-rfc-8414-sempre">1. Metadados do authorization server (RFC 8414) — sempre<a class="headerlink" href="#1-metadados-do-authorization-server-rfc-8414-sempre" title="Permanent link">&para;</a></h3>

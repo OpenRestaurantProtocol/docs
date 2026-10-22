@@ -888,6 +888,28 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#quem-opera-o-mcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quem opera o MCP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tools-recomendadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tools recomendadas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#pre-requisitos" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -974,6 +996,28 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#quem-opera-o-mcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quem opera o MCP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tools-recomendadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tools recomendadas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#pre-requisitos" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1038,26 +1082,86 @@
 <p>Esta seção documenta como conectar um serviço à plataforma usando o protocolo MCP (Model Context Protocol).</p>
 <div class="admonition info">
 <p class="admonition-title">Contexto</p>
-<p>O MCP expõe as tools do ecossistema (por exemplo, <code>listar_lojas</code> e <code>buscar_dados</code>) para a plataforma. Toda chamada é autenticada com <strong>Bearer JWT</strong> e validada antes de tocar no DataBridge — veja o <a href="../../auth/oauth/">fluxo OAuth</a>.</p>
+<p>O MCP expõe as tools do ecossistema para a plataforma. Toda chamada é autenticada com <strong>Bearer JWT</strong> e validada antes de tocar no DataBridge — veja o <a href="../../auth/oauth/">fluxo OAuth</a>.</p>
 </div>
+<h2 id="quem-opera-o-mcp">Quem opera o MCP<a class="headerlink" href="#quem-opera-o-mcp" title="Permanent link">&para;</a></h2>
+<p>O protocolo separa a <strong>Organization</strong> (dona do authorization server e do escopo de lojas) de <strong>quem hospeda</strong> o servidor MCP:</p>
+<table>
+<thead>
+<tr>
+<th>Modelo</th>
+<th>Nome</th>
+<th>AS / userinfo / <code>/merchants</code></th>
+<th>MCP + DataBridge</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A</strong></td>
+<td><em>organization-hosted MCP</em></td>
+<td>Organization</td>
+<td>Organization</td>
+</tr>
+<tr>
+<td><strong>B</strong></td>
+<td><em>delegated MCP operator</em></td>
+<td>Organization (<strong>obrigatório</strong>)</td>
+<td>Plataforma ou terceiro</td>
+</tr>
+</tbody>
+</table>
+<p>Regras:</p>
+<ol>
+<li>Identidade e escopo de loja (<code>userinfo</code>, <code>GET /merchants</code>) pertencem <strong>sempre</strong> ao authorization server da Organization.</li>
+<li>O MCP — em A ou B — <strong>consome e aplica</strong> esse contexto nas tools. No modelo B o operador <strong>não substitui</strong> o AS.</li>
+<li>A plataforma conecta via OAuth, chama <code>GET /merchants</code> no connect e envia tool calls ao endpoint MCP configurado (A ou B).</li>
+</ol>
+<div class="admonition example">
+<p class="admonition-title">Exemplos genéricos</p>
+<ul>
+<li>Modelo A: <code>https://mcp.organization.example</code> operado pela própria org; AS em <code>https://auth.organization.example</code>.</li>
+<li>Modelo B: tools em <code>https://mcp.platform.example</code>; userinfo/merchants continuam em <code>https://auth.organization.example</code>.</li>
+</ul>
+</div>
+<p>No modelo B, o MCP ainda chama o AS da Organization em toda tool que exige authorize — é o cenário em que <strong>userinfo é necessário</strong>, independentemente de quem hospeda o MCP.</p>
+<h2 id="tools-recomendadas">Tools recomendadas<a class="headerlink" href="#tools-recomendadas" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Papel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>listar_lojas</code> / <code>list_merchants</code></td>
+<td><strong>Recomendada como fallback</strong> — rediscovery/refresh para o agente; deve espelhar ou chamar <code>GET /merchants</code>. <strong>Não</strong> substitui a chamada da plataforma a <code>/merchants</code> no connect.</td>
+</tr>
+<tr>
+<td>Tools de dados (ex.: <code>buscar_dados</code>)</td>
+<td>Operam com <code>merchant_ids</code> já no escopo; o MCP aplica userinfo e valida o escopo.</td>
+</tr>
+</tbody>
+</table>
 <h2 id="pre-requisitos">Pré-requisitos<a class="headerlink" href="#pre-requisitos" title="Permanent link">&para;</a></h2>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Credencial / token</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Endpoint do servidor MCP</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Credencial / token (OAuth da Organization)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Endpoint do servidor MCP (modelo A ou B)</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Cliente MCP configurado</li>
 </ul>
 <h2 id="passo-a-passo">Passo a passo<a class="headerlink" href="#passo-a-passo" title="Permanent link">&para;</a></h2>
 <ol>
 <li><strong>Configurar o endpoint</strong> — obter o endpoint do servidor MCP e apontar o cliente.</li>
 <li><strong>Autenticar</strong> — obter o <code>access_token</code> via OAuth 2.0 + PKCE e enviá-lo como <code>Bearer</code> em cada chamada (ver <a href="../../auth/oauth/">OAuth</a>).</li>
-<li><strong>Testar a conexão</strong> — verificar que uma chamada de teste retorna os dados esperados.</li>
+<li><strong>Connect</strong> — a plataforma chama <code>GET /merchants</code> no AS da Organization (picker + perfil de negócio).</li>
+<li><strong>Testar a conexão</strong> — verificar que uma tool de teste (ex.: <code>listar_lojas</code> ou uma tool de dados) retorna o esperado.</li>
 </ol>
 <details class="example">
 <summary>Exemplo de configuração do endpoint</summary>
 <div class="language-json highlight"><span class="filename">mcp_config.json</span><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">"mcpServers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">"meu-servidor"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://mcp.example.com/meu-servidor"</span>
+<span class="w">    </span><span class="nt">"organization-example"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://mcp.organization.example"</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
@@ -1073,9 +1177,11 @@
 <p>Rotacione tokens periodicamente e valide o JWT (<code>iss</code>, <code>aud</code>, <code>exp</code>) a cada chamada.</p>
 </div>
 <h2 id="referencias">Referências<a class="headerlink" href="#referencias" title="Permanent link">&para;</a></h2>
-<ul class="task-list">
+<ul>
 <li><a href="../../auth/oauth-requirements/">Requisitos do OAuth</a></li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Especificação do MCP</li>
+<li><a href="../../authz/">Autorização</a></li>
+<li><a href="../../authz/userinfo/">Userinfo</a></li>
+<li><a href="../../authz/merchants/">Lojas</a></li>
 </ul>
 
 

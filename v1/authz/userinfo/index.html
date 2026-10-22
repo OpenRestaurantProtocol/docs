@@ -774,6 +774,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#relationship-to-merchants" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relationship to /merchants
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#responsibilities" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1087,6 +1098,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#relationship-to-merchants" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relationship to /merchants
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#responsibilities" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1117,14 +1139,14 @@
 <h1 id="userinfo-oidc">Userinfo (OIDC)<a class="headerlink" href="#userinfo-oidc" title="Permanent link">&para;</a></h1>
 <div class="admonition info">
 <p class="admonition-title">Audience</p>
-<p>The organization that provides the authorization server and needs to expose the identity endpoint (OpenID Connect) to the platform.</p>
-<p>What this page answers: the contract of the <strong>userinfo</strong> endpoint, which returns the user's identity and permissions.</p>
+<p>The organization that operates the authorization server and needs to expose the identity endpoint (OpenID Connect).</p>
+<p>What this page answers: the contract of the <strong>userinfo</strong> endpoint, which returns the user's identity and permissions. The <strong>primary consumer</strong> is the MCP.</p>
 </div>
 <h2 id="what-it-is">What it is<a class="headerlink" href="#what-it-is" title="Permanent link">&para;</a></h2>
 <p><strong>Userinfo</strong> is an endpoint defined by <strong>OpenID Connect (OIDC)</strong>, the identity layer built on top of OAuth 2.0. It is not part of the OAuth requirements itself: it is the mechanism through which the <strong>MCP</strong> discovers <strong>who the user is</strong> (<code>sub</code>), their contact (<code>email</code>) and their <strong>access profile/roles</strong>.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>The MCP calls this endpoint to obtain the user's permission context before deciding which resources to release.</p>
+<p>The MCP calls this endpoint on tool calls to obtain the permission context before deciding which resources to release. The platform does not need the full userinfo payload; use <a href="../merchants/">Merchants</a> on connect for selection and business profile.</p>
 </div>
 <h2 id="request">Request<a class="headerlink" href="#request" title="Permanent link">&para;</a></h2>
 <p>The MCP calls the endpoint with the user's token:</p>
@@ -1165,7 +1187,7 @@
 <td><code>merchants</code></td>
 <td>array</td>
 <td>Yes</td>
-<td>List of merchants the user can access</td>
+<td>List of merchant ids the user can access</td>
 </tr>
 <tr>
 <td><code>profile_permissions</code></td>
@@ -1176,7 +1198,7 @@
 </tbody>
 </table>
 <h3 id="merchants"><code>merchants</code><a class="headerlink" href="#merchants" title="Permanent link">&para;</a></h3>
-<p>List of merchants the user can access. The <code>id</code> of each item corresponds to the <code>merchant_id</code> of the <a href="../merchants/">Merchants</a> contract:</p>
+<p><strong>Minimal id list</strong> for fast authz in the MCP. The <code>id</code> of each item corresponds to the <code>merchant_id</code> of the <a href="../merchants/">Merchants</a> contract:</p>
 <table>
 <thead>
 <tr>
@@ -1195,6 +1217,7 @@
 </tr>
 </tbody>
 </table>
+<p>For a rich catalog (name, address, tax id, <code>external_ids</code>) and selection UI, use <code>GET /merchants</code> — see <a href="#relationship-to-merchants">Relationship to <code>/merchants</code></a>.</p>
 <h3 id="profile_permissions"><code>profile_permissions</code><a class="headerlink" href="#profile_permissions" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -1239,6 +1262,28 @@
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
+<h2 id="relationship-to-merchants">Relationship to <code>/merchants</code><a class="headerlink" href="#relationship-to-merchants" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Content</th>
+<th>Typical use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>userinfo.merchants</code></td>
+<td>Minimal ids</td>
+<td>MCP: fast scope check on the tool</td>
+</tr>
+<tr>
+<td><code>GET /merchants</code></td>
+<td>Rich catalog</td>
+<td>Platform: picker, bind, business profile; MCP: <code>list_merchants</code> tool (fallback)</td>
+</tr>
+</tbody>
+</table>
 <h2 id="responsibilities">Responsibilities<a class="headerlink" href="#responsibilities" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -1250,7 +1295,7 @@
 <tbody>
 <tr>
 <td>Expose the userinfo endpoint</td>
-<td>Your organization (authorization server / IdP)</td>
+<td>Organization (authorization server / IdP)</td>
 </tr>
 <tr>
 <td>Call userinfo and obtain the permission context</td>
@@ -1259,6 +1304,14 @@
 <tr>
 <td>Determine the access profile/roles from userinfo</td>
 <td>MCP</td>
+</tr>
+<tr>
+<td>Consume the full userinfo payload on every call</td>
+<td><strong>Not</strong> the platform's role</td>
+</tr>
+<tr>
+<td>Identity summary in the UI (<code>sub</code>, <code>name</code>, <code>email</code>), if needed</td>
+<td>Platform (optional)</td>
 </tr>
 </tbody>
 </table>

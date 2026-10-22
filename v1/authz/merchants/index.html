@@ -790,6 +790,28 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#relationship-to-userinfo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relationship to userinfo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#responsibilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Responsibilities
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1053,6 +1075,28 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#relationship-to-userinfo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relationship to userinfo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#responsibilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Responsibilities
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1076,7 +1120,30 @@
 <p>Authorization endpoint: lists the merchants the user has permission to access, according to the token.</p>
 </div>
 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
-<p>This endpoint lists the merchants the user can access according to the token. The MCP calls it to build the user's authorization scope. The authorization (which merchants) has already been resolved from the token: this endpoint only returns the merchants visible for that token.</p>
+<p>This endpoint lists the merchants visible for the token. Authorization (which merchants) has already been resolved from the token: the endpoint only materializes the list.</p>
+<p><strong>Callers:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Caller</th>
+<th>When</th>
+<th>What for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Platform</strong> (preferred)</td>
+<td>On connect, after obtaining tokens</td>
+<td>Store picker / bind; account <strong>business profile</strong> (store count, names, address, tax id, <code>external_ids</code>)</td>
+</tr>
+<tr>
+<td><strong>MCP</strong></td>
+<td>Authz and <code>list_merchants</code> tool</td>
+<td>Validate scope; <strong>fallback</strong> for the agent (rediscovery / refresh) when the connect cache is not enough</td>
+</tr>
+</tbody>
+</table>
+<p>The <code>list_merchants</code> (<code>listar_lojas</code>) tool is <strong>recommended</strong> on the MCP and should mirror (or call) this endpoint. It does <strong>not</strong> replace the platform's <code>GET /merchants</code> call on connect.</p>
 <h2 id="endpoint">Endpoint<a class="headerlink" href="#endpoint" title="Permanent link">&para;</a></h2>
 <div class="language-text highlight"><pre><span></span><code>GET /merchants
 </code></pre></div>
@@ -1192,6 +1259,35 @@
 <span class="w">    </span><span class="p">}</span>
 <span class="p">]</span>
 </code></pre></div>
+<h2 id="relationship-to-userinfo">Relationship to userinfo<a class="headerlink" href="#relationship-to-userinfo" title="Permanent link">&para;</a></h2>
+<p><code>userinfo.merchants</code> carries ids only for fast MCP authz. This endpoint is the <strong>rich catalog</strong> for UI and business profile. See <a href="../userinfo/">Userinfo</a>.</p>
+<h2 id="responsibilities">Responsibilities<a class="headerlink" href="#responsibilities" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Responsibility</th>
+<th>Who does it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Expose <code>GET /merchants</code></td>
+<td>Organization (authorization server)</td>
+</tr>
+<tr>
+<td>Call <code>/merchants</code> on connect (picker + business profile)</td>
+<td>Platform</td>
+</tr>
+<tr>
+<td>Expose <code>list_merchants</code> as a fallback tool (via this endpoint)</td>
+<td>MCP</td>
+</tr>
+<tr>
+<td>Enforce merchant scope on data tools</td>
+<td>MCP</td>
+</tr>
+</tbody>
+</table>
 
 
 

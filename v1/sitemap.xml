@@ -2,126 +2,126 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
     <url>
         <loc>https://openrestaurantprotocol.org/v1/</loc>
-        <lastmod>2026-10-21</lastmod>
+        <lastmod>2026-10-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://openrestaurantprotocol.org/v1/"/>
         <xhtml:link rel="alternate" hreflang="pt" href="https://openrestaurantprotocol.org/v1pt/"/>
     </url>
     <url>
         <loc>https://openrestaurantprotocol.org/v1/auth/mcp-oauth/</loc>
-        <lastmod>2026-10-21</lastmod>
+        <lastmod>2026-10-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://openrestaurantprotocol.org/v1/auth/mcp-oauth/"/>
         <xhtml:link rel="alternate" hreflang="pt" href="https://openrestaurantprotocol.org/v1pt/auth/mcp-oauth/"/>
     </url>
     <url>
         <loc>https://openrestaurantprotocol.org/v1/auth/oauth-requirements/</loc>
-        <lastmod>2026-10-21</lastmod>
+        <lastmod>2026-10-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://openrestaurantprotocol.org/v1/auth/oauth-requirements/"/>
         <xhtml:link rel="alternate" hreflang="pt" href="https://openrestaurantprotocol.org/v1pt/auth/oauth-requirements/"/>
     </url>
     <url>
         <loc>https://openrestaurantprotocol.org/v1/auth/oauth/</loc>
-        <lastmod>2026-10-21</lastmod>
+        <lastmod>2026-10-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://openrestaurantprotocol.org/v1/auth/oauth/"/>
         <xhtml:link rel="alternate" hreflang="pt" href="https://openrestaurantprotocol.org/v1pt/auth/oauth/"/>
     </url>
     <url>
         <loc>https://openrestaurantprotocol.org/v1/authz/</loc>
-        <lastmod>2026-10-21</lastmod>
+        <lastmod>2026-10-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://openrestaurantprotocol.org/v1/authz/"/>
         <xhtml:link rel="alternate" hreflang="pt" href="https://openrestaurantprotocol.org/v1pt/authz/"/>
     </url>
     <url>
         <loc>https://openrestaurantprotocol.org/v1/authz/merchants/</loc>
-        <lastmod>2026-10-21</lastmod>
+        <lastmod>2026-10-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://openrestaurantprotocol.org/v1/authz/merchants/"/>
         <xhtml:link rel="alternate" hreflang="pt" href="https://openrestaurantprotocol.org/v1pt/authz/merchants/"/>
     </url>
     <url>
         <loc>https://openrestaurantprotocol.org/v1/authz/userinfo/</loc>
-        <lastmod>2026-10-21</lastmod>
+        <lastmod>2026-10-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://openrestaurantprotocol.org/v1/authz/userinfo/"/>
         <xhtml:link rel="alternate" hreflang="pt" href="https://openrestaurantprotocol.org/v1pt/authz/userinfo/"/>
     </url>
     <url>
         <loc>https://openrestaurantprotocol.org/v1/data-contracts/</loc>
-        <lastmod>2026-10-21</lastmod>
+        <lastmod>2026-10-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://openrestaurantprotocol.org/v1/data-contracts/"/>
         <xhtml:link rel="alternate" hreflang="pt" href="https://openrestaurantprotocol.org/v1pt/data-contracts/"/>
     </url>
     <url>
         <loc>https://openrestaurantprotocol.org/v1/integrations/mcp/</loc>
-        <lastmod>2026-10-21</lastmod>
+        <lastmod>2026-10-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://openrestaurantprotocol.org/v1/integrations/mcp/"/>
         <xhtml:link rel="alternate" hreflang="pt" href="https://openrestaurantprotocol.org/v1pt/integrations/mcp/"/>
     </url>
     <url>
         <loc>https://openrestaurantprotocol.org/v1/pt/</loc>
-        <lastmod>2026-10-21</lastmod>
+        <lastmod>2026-10-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="pt" href="https://openrestaurantprotocol.org/v1/pt/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://openrestaurantprotocol.org/v1"/>
     </url>
     <url>
         <loc>https://openrestaurantprotocol.org/v1/pt/auth/mcp-oauth/</loc>
-        <lastmod>2026-10-21</lastmod>
+        <lastmod>2026-10-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="pt" href="https://openrestaurantprotocol.org/v1/pt/auth/mcp-oauth/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://openrestaurantprotocol.org/v1auth/mcp-oauth/"/>
     </url>
     <url>
         <loc>https://openrestaurantprotocol.org/v1/pt/auth/oauth-requirements/</loc>
-        <lastmod>2026-10-21</lastmod>
+        <lastmod>2026-10-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="pt" href="https://openrestaurantprotocol.org/v1/pt/auth/oauth-requirements/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://openrestaurantprotocol.org/v1auth/oauth-requirements/"/>
     </url>
     <url>
         <loc>https://openrestaurantprotocol.org/v1/pt/auth/oauth/</loc>
-        <lastmod>2026-10-21</lastmod>
+        <lastmod>2026-10-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="pt" href="https://openrestaurantprotocol.org/v1/pt/auth/oauth/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://openrestaurantprotocol.org/v1auth/oauth/"/>
     </url>
     <url>
         <loc>https://openrestaurantprotocol.org/v1/pt/authz/</loc>
-        <lastmod>2026-10-21</lastmod>
+        <lastmod>2026-10-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="pt" href="https://openrestaurantprotocol.org/v1/pt/authz/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://openrestaurantprotocol.org/v1authz/"/>
     </url>
     <url>
         <loc>https://openrestaurantprotocol.org/v1/pt/authz/merchants/</loc>
-        <lastmod>2026-10-21</lastmod>
+        <lastmod>2026-10-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="pt" href="https://openrestaurantprotocol.org/v1/pt/authz/merchants/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://openrestaurantprotocol.org/v1authz/merchants/"/>
     </url>
     <url>
         <loc>https://openrestaurantprotocol.org/v1/pt/authz/userinfo/</loc>
-        <lastmod>2026-10-21</lastmod>
+        <lastmod>2026-10-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="pt" href="https://openrestaurantprotocol.org/v1/pt/authz/userinfo/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://openrestaurantprotocol.org/v1authz/userinfo/"/>
     </url>
     <url>
         <loc>https://openrestaurantprotocol.org/v1/pt/data-contracts/</loc>
-        <lastmod>2026-10-21</lastmod>
+        <lastmod>2026-10-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="pt" href="https://openrestaurantprotocol.org/v1/pt/data-contracts/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://openrestaurantprotocol.org/v1data-contracts/"/>
     </url>
     <url>
         <loc>https://openrestaurantprotocol.org/v1/pt/integrations/mcp/</loc>
-        <lastmod>2026-10-21</lastmod>
+        <lastmod>2026-10-22</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="pt" href="https://openrestaurantprotocol.org/v1/pt/integrations/mcp/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://openrestaurantprotocol.org/v1integrations/mcp/"/>

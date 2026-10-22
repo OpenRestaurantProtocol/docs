@@ -634,6 +634,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#on-the-authorization-server-merchants-endpoint-get-merchants" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        On the authorization server — merchants endpoint (GET /merchants)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1186,6 +1197,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#on-the-authorization-server-merchants-endpoint-get-merchants" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        On the authorization server — merchants endpoint (GET /merchants)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1336,6 +1358,7 @@
 <li>An <strong>authorization server</strong> (OAuth 2.0 / OIDC) with <strong>RFC 8414</strong> metadata.</li>
 <li>Support for <strong>authorization code + PKCE</strong> and issuing a <strong>refresh token</strong>.</li>
 <li>A <strong>userinfo</strong> endpoint (OIDC) with identity and profile/roles.</li>
+<li>A <strong><code>GET /merchants</code></strong> endpoint with the merchant catalog for the token.</li>
 <li>If there is an <strong>MCP</strong>: protected resource metadata (<strong>RFC 9728</strong>).</li>
 <li>(Optional) <strong>DCR</strong> (RFC 7591) for automatic client registration.</li>
 </ul>
@@ -1392,11 +1415,9 @@
 <li><code>email</code> (or another contact identifier).</li>
 <li>Access profile and roles of the account.</li>
 </ul>
-<p>The platform uses userinfo as the <strong>authorization context</strong>: it is from it that it determines which merchants/resources the user can access. The full contract (request with <code>Authorization: Bearer</code>, response example and responsibilities) is on the <a href="../../authz/userinfo/">Userinfo (OIDC)</a> page.</p>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
-<p>The list of merchants the user can access is domain data, not identity. See <a href="../../authz/merchants/">Merchants</a>.</p>
-</div>
+<p>The <strong>MCP</strong> uses userinfo as the <strong>authorization context</strong> on tool calls (identity + profile/roles). The <strong>platform</strong> uses <code>GET /merchants</code> on connect for store selection and the account business profile — it does not need the full userinfo payload. The full userinfo contract is on the <a href="../../authz/userinfo/">Userinfo (OIDC)</a> page.</p>
+<h3 id="on-the-authorization-server-merchants-endpoint-get-merchants">On the authorization server — merchants endpoint (<code>GET /merchants</code>)<a class="headerlink" href="#on-the-authorization-server-merchants-endpoint-get-merchants" title="Permanent link">&para;</a></h3>
+<p>The list of merchants the user can access is <strong>domain data</strong>, not identity. The authorization server must expose <code>GET /merchants</code> with the rich catalog (name, address, tax id, <code>external_ids</code>, etc.). Full contract: <a href="../../authz/merchants/">Merchants</a>.</p>
 <h2 id="path-1-auto-discovery-recommended">Path 1 — Auto-discovery (recommended)<a class="headerlink" href="#path-1-auto-discovery-recommended" title="Permanent link">&para;</a></h2>
 <p>In this path, your authorization server <strong>publishes metadata</strong> and the platform discovers the endpoints automatically. You don't need to configure endpoints manually.</p>
 <h3 id="1-authorization-server-metadata-rfc-8414-always">1. Authorization server metadata (RFC 8414) — always<a class="headerlink" href="#1-authorization-server-metadata-rfc-8414-always" title="Permanent link">&para;</a></h3>

@@ -1153,7 +1153,7 @@
 </tr>
 <tr>
 <td>Platform</td>
-<td>Agent that consumes the data via MCP</td>
+<td>Agent / UI that consumes data via MCP</td>
 </tr>
 <tr>
 <td>Login (Organization)</td>
@@ -1165,7 +1165,7 @@
 </tr>
 <tr>
 <td>MCP</td>
-<td>Ecosystem MCP server that exposes the tools</td>
+<td>MCP server that exposes the tools (hosted by the organization or a <a href="../../integrations/mcp/">delegated operator</a>)</td>
 </tr>
 <tr>
 <td>DataBridge</td>
@@ -1175,7 +1175,7 @@
 </table>
 <div class="admonition note">
 <p class="admonition-title">Organization</p>
-<p>"Organization" represents any company integrated with the ecosystem. In this flow, the organization acts as a <strong>provider</strong>, exposing its data to the platform. DataBridge is the generic data access layer that runs the queries behind an MCP — either side may operate its own.</p>
+<p>"Organization" represents any company integrated with the ecosystem. In this flow, the organization acts as a <strong>provider</strong>, exposing identity (OAuth / userinfo / merchants) and data. DataBridge is the generic data access layer behind an MCP — the organization or a delegated operator may run it. See <a href="../../integrations/mcp/#who-operates-the-mcp">Who operates the MCP</a>.</p>
 </div>
 <h2 id="how-the-platform-obtains-oauth-before-the-flow">How the platform obtains OAuth before the flow<a class="headerlink" href="#how-the-platform-obtains-oauth-before-the-flow" title="Permanent link">&para;</a></h2>
 <p>Before the authorization flow, the platform needs to discover the authorization server endpoints and the client credentials. There are three scenarios:</p>
@@ -1203,22 +1203,33 @@
 <li><strong>Platform → OAuth:</strong> exchanges the authorization code for tokens using the PKCE <code>code_verifier</code>.</li>
 <li><strong>OAuth → Platform:</strong> returns <code>access_token</code> (JWT) and <code>refresh_token</code>.</li>
 <li><strong>Platform:</strong> stores the connection tokens with the organization.</li>
+<li><strong>Platform → OAuth:</strong> calls <code>GET /merchants</code> with the Bearer (preferred path for store scope).</li>
+<li><strong>OAuth → Platform:</strong> returns the merchant list (rich catalog).</li>
+<li><strong>Platform:</strong> builds the store picker / bind and the account <strong>business profile</strong>.</li>
 <li><strong>Platform → User:</strong> informs that the organization was connected.</li>
 </ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The platform does <strong>not</strong> need to call <code>userinfo</code> in this step. Userinfo is consumed by the MCP on tool calls. See <a href="../../authz/userinfo/">Userinfo</a> and <a href="../../authz/merchants/">Merchants</a>.</p>
+</div>
 <h3 id="2-query-about-organization-data">2. Query about organization data<a class="headerlink" href="#2-query-about-organization-data" title="Permanent link">&para;</a></h3>
 <ol>
 <li><strong>User → Platform:</strong> sends a prompt involving organization data.</li>
-<li><strong>Platform → MCP:</strong> runs a tool — in the example, <code>listar_lojas</code> — with <code>Bearer JWT</code>.</li>
+<li><strong>Platform → MCP:</strong> runs a tool — in the example, <code>list_merchants</code> (<strong>fallback</strong> for rediscovery/refresh; connect stores already came from <code>/merchants</code>) — with <code>Bearer JWT</code>.</li>
 <li><strong>MCP:</strong> validates the JWT (signature, <code>iss</code>, <code>aud</code>, <code>exp</code>).</li>
 <li><strong>MCP → OAuth (Organization):</strong> calls <code>GET /userinfo</code> with the Bearer token to obtain the user's authorization context (identity + permissions).</li>
 <li><strong>OAuth (Organization) → MCP:</strong> returns <code>sub</code>, <code>email</code> and <code>profile_permissions</code>.</li>
 <li><strong>MCP:</strong> applies the authorization logic — determines which merchants/resources the user can access.</li>
-<li><strong>MCP → Platform:</strong> returns the list of authorized merchants.</li>
+<li><strong>MCP → Platform:</strong> returns the tool result (e.g. authorized merchant list).</li>
 </ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The platform does <strong>not</strong> receive the raw userinfo payload. The MCP applies userinfo and returns only the tool result.</p>
+</div>
 <h3 id="3-data-query">3. Data query<a class="headerlink" href="#3-data-query" title="Permanent link">&para;</a></h3>
 <ol>
-<li><strong>Platform → MCP:</strong> runs <code>tool_call buscar_dados(merchant_ids)</code> with <code>Bearer JWT</code>.</li>
-<li><strong>MCP:</strong> validates the JWT (signature, <code>iss</code>, <code>aud</code>, <code>exp</code>) and checks the user's authorization scope.</li>
+<li><strong>Platform → MCP:</strong> runs <code>tool_call fetch_data(merchant_ids)</code> with <code>Bearer JWT</code>.</li>
+<li><strong>MCP:</strong> validates the JWT (signature, <code>iss</code>, <code>aud</code>, <code>exp</code>) and checks the user's authorization scope (via userinfo / known scope).</li>
 <li><strong>MCP → DataBridge:</strong> runs the necessary queries against the organization's data store, filtered by the authorized <code>merchant_ids</code>.</li>
 <li><strong>DataBridge → MCP:</strong> returns the requested data.</li>
 <li><strong>MCP → Platform:</strong> returns the result of the tool execution.</li>
@@ -1229,6 +1240,8 @@
 <li><a href="https://datatracker.ietf.org/doc/html/rfc6749">RFC 6749 — OAuth 2.0</a></li>
 <li><a href="https://datatracker.ietf.org/doc/html/rfc7636">RFC 7636 — Proof Key for Code Exchange (PKCE)</a></li>
 <li><a href="https://datatracker.ietf.org/doc/html/rfc7519">RFC 7519 — JSON Web Token (JWT)</a></li>
+<li><a href="../../authz/">Authorization</a></li>
+<li><a href="../../integrations/mcp/">MCP integration</a></li>
 </ul>
 
 

@@ -885,6 +885,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#papeis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Papéis
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#como-funciona" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -926,21 +937,44 @@
 <h1 id="autorizacao">Autorização<a class="headerlink" href="#autorizacao" title="Permanent link">&para;</a></h1>
 <div class="admonition info">
 <p class="admonition-title">O que esta seção responde</p>
-<p>Como o MCP controla o acesso a recursos (lojas, dados) para cada usuário autenticado.</p>
+<p>Como a <strong>plataforma</strong> e o <strong>MCP</strong> usam os endpoints de autorização da organização depois do OAuth: escopo de lojas, identidade e permissões.</p>
 </div>
+<h2 id="papeis">Papéis<a class="headerlink" href="#papeis" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Papel</th>
+<th>Responsabilidade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Organization (authorization server)</td>
+<td>Expõe <a href="userinfo/">userinfo</a> e <a href="merchants/">lojas</a></td>
+</tr>
+<tr>
+<td>Plataforma</td>
+<td>No connect, chama <code>GET /merchants</code> para seleção de loja e perfil de negócio da conta</td>
+</tr>
+<tr>
+<td>MCP</td>
+<td>Em cada tool call, chama <a href="userinfo/">userinfo</a>, aplica permissões e valida <code>merchant_ids</code> no escopo</td>
+</tr>
+</tbody>
+</table>
+<p>O MCP pode ser hospedado pela própria organização ou por um operador delegado — veja <a href="../integrations/mcp/">Integração via MCP</a>. Em ambos os casos, userinfo e <code>/merchants</code> continuam no authorization server da <strong>Organization</strong>.</p>
 <h2 id="como-funciona">Como funciona<a class="headerlink" href="#como-funciona" title="Permanent link">&para;</a></h2>
-<p>Depois que o usuário está autenticado (via OAuth), ainda é preciso decidir <strong>o que</strong> ele pode acessar. Essa decisão é feita pelo MCP.</p>
-<p>O endpoint de <a href="userinfo/">userinfo</a> é sempre fornecido pela organização (quem opera o authorization server). Quem cria o MCP usa esse endpoint para obter o contexto de autorização do usuário e implementar a lógica de acesso:</p>
 <ol>
-<li>O MCP recebe o token do usuário.</li>
-<li>O MCP chama o <a href="userinfo/">userinfo</a> para obter a identidade e as permissões do usuário.</li>
-<li>O MCP usa esse contexto para decidir quais recursos liberar.</li>
-<li>Quando necessário, o MCP lista as lojas autorizadas via <a href="merchants/">lojas</a>.</li>
+<li>A organização autentica o usuário (OAuth) e emite o token.</li>
+<li>A <strong>plataforma</strong> chama <code>GET /merchants</code> no connect (caminho preferido): monta o picker, faz o bind da(s) loja(s) e monta o perfil comercial da conta (quantas lojas, nomes, CNPJ, <code>external_ids</code>, etc.).</li>
+<li>Em tool calls, o <strong>MCP</strong> chama <a href="userinfo/">userinfo</a>, aplica o perfil/roles e verifica se os <code>merchant_ids</code> pedidos estão no escopo.</li>
+<li>O MCP <strong>deve</strong> expor a tool <code>listar_lojas</code> (<code>list_merchants</code>) como <strong>fallback</strong> para o agente (rediscovery, refresh, multi-turn), implementada via <code>GET /merchants</code> ou equivalente. Isso <strong>não</strong> substitui a chamada da plataforma a <code>/merchants</code> no connect.</li>
 </ol>
+<p>A plataforma <strong>não</strong> precisa do payload completo de userinfo em cada chamada. No máximo um resumo de identidade (<code>sub</code>, <code>name</code>, <code>email</code>) se a UI precisar mostrar quem está conectado.</p>
 <h2 id="endpoints-deste-protocolo">Endpoints deste protocolo<a class="headerlink" href="#endpoints-deste-protocolo" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="userinfo/">Userinfo (OIDC)</a> — contexto de autorização: identidade + permissões do usuário.</li>
-<li><a href="merchants/">Lojas</a> — lista de lojas autorizadas para o token do usuário.</li>
+<li><a href="userinfo/">Userinfo (OIDC)</a> — identidade + permissões; consumidor primário = MCP.</li>
+<li><a href="merchants/">Lojas</a> — catálogo de lojas do token; callers = plataforma (connect) e MCP (authz / tool fallback).</li>
 </ul>
 
 

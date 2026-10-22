@@ -774,6 +774,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#relacao-com-merchants" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relação com /merchants
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#responsabilidades" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1087,6 +1098,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#relacao-com-merchants" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relação com /merchants
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#responsabilidades" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1117,14 +1139,14 @@
 <h1 id="userinfo-oidc">Userinfo (OIDC)<a class="headerlink" href="#userinfo-oidc" title="Permanent link">&para;</a></h1>
 <div class="admonition info">
 <p class="admonition-title">Público</p>
-<p>A organização que provê o authorization server e precisa expor o endpoint de identidade (OpenID Connect) para a plataforma.</p>
-<p>O que esta página responde: o contrato do endpoint de <strong>userinfo</strong>, que retorna a identidade e as permissões do usuário.</p>
+<p>A organização que opera o authorization server e precisa expor o endpoint de identidade (OpenID Connect).</p>
+<p>O que esta página responde: o contrato do endpoint de <strong>userinfo</strong>, que retorna a identidade e as permissões do usuário. O <strong>consumidor primário</strong> é o MCP.</p>
 </div>
 <h2 id="o-que-e">O que é<a class="headerlink" href="#o-que-e" title="Permanent link">&para;</a></h2>
 <p>O <strong>userinfo</strong> é um endpoint definido pelo <strong>OpenID Connect (OIDC)</strong>, a camada de identidade construída sobre o OAuth 2.0. Ele não faz parte dos requisitos de OAuth em si: é o mecanismo pelo qual o <strong>MCP</strong> descobre <strong>quem é o usuário</strong> (<code>sub</code>), seu contato (<code>email</code>) e seu <strong>perfil/roles de acesso</strong>.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>O MCP chama este endpoint para obter o contexto de permissão do usuário antes de decidir quais recursos liberar.</p>
+<p>O MCP chama este endpoint em tool calls para obter o contexto de permissão antes de decidir quais recursos liberar. A plataforma não precisa do payload completo de userinfo; use <a href="../merchants/">Lojas</a> no connect para seleção e perfil de negócio.</p>
 </div>
 <h2 id="request">Request<a class="headerlink" href="#request" title="Permanent link">&para;</a></h2>
 <p>O MCP chama o endpoint com o token do usuário:</p>
@@ -1165,7 +1187,7 @@
 <td><code>merchants</code></td>
 <td>array</td>
 <td>Sim</td>
-<td>Lista de lojas que o usuário pode acessar</td>
+<td>Lista de ids de lojas que o usuário pode acessar</td>
 </tr>
 <tr>
 <td><code>profile_permissions</code></td>
@@ -1176,7 +1198,7 @@
 </tbody>
 </table>
 <h3 id="merchants"><code>merchants</code><a class="headerlink" href="#merchants" title="Permanent link">&para;</a></h3>
-<p>Lista de lojas que o usuário pode acessar. O <code>id</code> de cada item corresponde ao <code>merchant_id</code> do contrato de <a href="../merchants/">Lojas</a>:</p>
+<p>Lista <strong>mínima de ids</strong> de lojas para authz rápida no MCP. O <code>id</code> de cada item corresponde ao <code>merchant_id</code> do contrato de <a href="../merchants/">Lojas</a>:</p>
 <table>
 <thead>
 <tr>
@@ -1195,6 +1217,7 @@
 </tr>
 </tbody>
 </table>
+<p>Para catálogo rico (nome, endereço, CNPJ, <code>external_ids</code>) e UI de seleção, use <code>GET /merchants</code> — veja <a href="#relacao-com-merchants">Relação com <code>/merchants</code></a>.</p>
 <h3 id="profile_permissions"><code>profile_permissions</code><a class="headerlink" href="#profile_permissions" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -1239,6 +1262,28 @@
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
+<h2 id="relacao-com-merchants">Relação com <code>/merchants</code><a class="headerlink" href="#relacao-com-merchants" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Fonte</th>
+<th>Conteúdo</th>
+<th>Uso típico</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>userinfo.merchants</code></td>
+<td>Ids mínimos</td>
+<td>MCP: checagem rápida de escopo na tool</td>
+</tr>
+<tr>
+<td><code>GET /merchants</code></td>
+<td>Catálogo rico</td>
+<td>Plataforma: picker, bind, perfil de negócio; MCP: tool <code>listar_lojas</code> (fallback)</td>
+</tr>
+</tbody>
+</table>
 <h2 id="responsabilidades">Responsabilidades<a class="headerlink" href="#responsabilidades" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -1250,7 +1295,7 @@
 <tbody>
 <tr>
 <td>Expor o endpoint de userinfo</td>
-<td>Sua organização (authorization server / IdP)</td>
+<td>Organization (authorization server / IdP)</td>
 </tr>
 <tr>
 <td>Chamar o userinfo e obter o contexto de permissão</td>
@@ -1259,6 +1304,14 @@
 <tr>
 <td>Determinar o perfil/roles de acesso a partir do userinfo</td>
 <td>MCP</td>
+</tr>
+<tr>
+<td>Consumir o payload completo de userinfo em toda chamada</td>
+<td><strong>Não</strong> é papel da plataforma</td>
+</tr>
+<tr>
+<td>Resumo de identidade na UI (<code>sub</code>, <code>name</code>, <code>email</code>), se necessário</td>
+<td>Plataforma (opcional)</td>
 </tr>
 </tbody>
 </table>
