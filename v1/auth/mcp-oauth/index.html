@@ -706,6 +706,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#implementation-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1153,6 +1164,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#implementation-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1189,7 +1211,12 @@
 <h2 id="what-your-mcp-needs-to-expose">What your MCP needs to expose<a class="headerlink" href="#what-your-mcp-needs-to-expose" title="Permanent link">&para;</a></h2>
 <h3 id="1-protected-resource-metadata-rfc-9728">1. Protected resource metadata (RFC 9728)<a class="headerlink" href="#1-protected-resource-metadata-rfc-9728" title="Permanent link">&para;</a></h3>
 <p>Discovery happens in <strong>two stages</strong>. First the platform discovers the <strong>protected resource</strong> (your MCP/API) via RFC 9728; only then, from the list of authorization servers published there, it fetches the authorization server metadata (RFC 8414). In other words, the protected resource document is the entry point for authentication.</p>
-<p>The protected resource metadata document must be published at <code>/.well-known/oauth-protected-resource</code> with, at minimum:</p>
+<p>The MCP server exposes this document through <strong>one of</strong> the two discovery mechanisms defined by the MCP Authorization specification:</p>
+<ul>
+<li><strong><code>WWW-Authenticate</code> header.</strong> On a tokenless request, return a <code>401 Unauthorized</code> response with a <code>WWW-Authenticate</code> header whose <code>resource_metadata</code> parameter is the URL of the metadata document (<code>WWW-Authenticate: Bearer resource_metadata="https://.../.well-known/oauth-protected-resource"</code>).</li>
+<li><strong>Well-known URI.</strong> Publish the document at the applicable well-known URI <code>/.well-known/oauth-protected-resource</code>. This can be at the host root (<code>https://example.com/.well-known/oauth-protected-resource</code>) or at the path of the MCP endpoint (an MCP at <code>https://example.com/public/mcp</code> hosts metadata at <code>https://example.com/.well-known/oauth-protected-resource/public/mcp</code>).</li>
+</ul>
+<p>The document must contain, at minimum:</p>
 <table>
 <thead>
 <tr>
@@ -1201,18 +1228,22 @@
 <tbody>
 <tr>
 <td><code>resource</code></td>
-<td>Yes</td>
-<td>Canonical identifier of the protected resource (the MCP URL)</td>
+<td>Required (RFC 9728)</td>
+<td>Canonical identifier of the protected resource (the MCP URL, including its path when the MCP is served under a path)</td>
 </tr>
 <tr>
 <td><code>authorization_servers</code></td>
-<td>Yes</td>
+<td>Optional in RFC 9728; <strong>required by the MCP Authorization specification</strong> (at least one entry)</td>
 <td>Non-empty list of the resource's authorization servers</td>
 </tr>
 </tbody>
 </table>
-<p>If the direct endpoint is not available, the platform makes a tokenless request to the MCP. A <code>401</code> response with the <code>WWW-Authenticate: Bearer resource_metadata="..."</code> header is expected and serves as a discovery signal (it is not an integration error). The platform then fetches the indicated URL. If there is neither a direct endpoint nor <code>resource_metadata</code>, auto-discovery is not possible.</p>
-<p>With FastMCP, <code>RemoteAuthProvider</code> publishes this document automatically (see the example at the end of this page).</p>
+<p><strong>Client fallback order.</strong> On the platform side:</p>
+<ol>
+<li>When the <code>WWW-Authenticate</code> header contains a <code>resource_metadata</code> parameter, the platform uses the URL provided in that parameter.</li>
+<li>When it does not, the platform falls back to the well-known URI — first the path-specific URI (<code>https://example.com/.well-known/oauth-protected-resource/public/mcp</code>), then the root URI (<code>https://example.com/.well-known/oauth-protected-resource</code>).</li>
+</ol>
+<p>With FastMCP, <code>RemoteAuthProvider</code> publishes this document automatically — including path-specific discovery when the MCP endpoint is mounted under a path (see the example at the end of this page).</p>
 <h3 id="2-authorization-code-pkce-grant">2. Authorization code + PKCE grant<a class="headerlink" href="#2-authorization-code-pkce-grant" title="Permanent link">&para;</a></h3>
 <p>The authorization flow uses the <strong>authorization code</strong> grant with <strong>PKCE</strong> (not to be confused with client credentials, which is another grant).</p>
 <p>Mandatory requirements on your authorization server:</p>
@@ -1244,7 +1275,7 @@
 <h2 id="examples-by-language">Examples by language<a class="headerlink" href="#examples-by-language" title="Permanent link">&para;</a></h2>
 <p>The examples below are illustrative and focused on the MCP contract: publishing RFC 9728, validating the <code>Authorization: Bearer</code> and responding <code>401</code> correctly.</p>
 <h3 id="python-fastmcp">Python (FastMCP)<a class="headerlink" href="#python-fastmcp" title="Permanent link">&para;</a></h3>
-<p>The MCP server side in Python uses <a href="https://gofastmcp.com">FastMCP</a> with <code>RemoteAuthProvider</code>, which publishes <code>/.well-known/oauth-protected-resource</code> (RFC 9728) automatically:</p>
+<p>The MCP server side in Python uses <a href="https://gofastmcp.com">FastMCP</a> with <code>RemoteAuthProvider</code>. FastMCP publishes the protected resource metadata automatically — at both the root well-known URI and the path-specific URI derived from the MCP endpoint's mount path (RFC 9728 §3.1) — and returns the <code>WWW-Authenticate: Bearer resource_metadata="..."</code> header on <code>401</code> responses. Served at the default mount path <code>/mcp</code>, the server below advertises <code>resource: https://api.yourorganization.com/mcp</code>:</p>
 <div class="language-python highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">fastmcp</span><span class="w"> </span><span class="kn">import</span> <span class="n">FastMCP</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">fastmcp.server.auth</span><span class="w"> </span><span class="kn">import</span> <span class="n">RemoteAuthProvider</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">fastmcp.server.auth.providers.jwt</span><span class="w"> </span><span class="kn">import</span> <span class="n">JWTVerifier</span>
@@ -1263,13 +1294,17 @@
 <span class="p">)</span>
 
 <span class="n">mcp</span> <span class="o">=</span> <span class="n">FastMCP</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"Merchants"</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span><span class="p">)</span>
+<span class="c1"># Served at /mcp by default: resource = https://api.yourorganization.com/mcp,</span>
+<span class="c1"># with metadata at /.well-known/oauth-protected-resource and</span>
+<span class="c1"># /.well-known/oauth-protected-resource/mcp.</span>
 </code></pre></div>
 <h3 id="go-illustrative">Go (illustrative)<a class="headerlink" href="#go-illustrative" title="Permanent link">&para;</a></h3>
-<p>Conceptual example in Go, covering only what the MCP needs to expose and validate (no specific library dependency):</p>
-<div class="language-go highlight"><pre><span></span><code><span class="c1">// 1. Publish the protected resource metadata (RFC 9728)</span>
-<span class="nx">mux</span><span class="p">.</span><span class="nx">HandleFunc</span><span class="p">(</span><span class="s">"/.well-known/oauth-protected-resource"</span><span class="p">,</span><span class="w"> </span><span class="kd">func</span><span class="p">(</span><span class="nx">w</span><span class="w"> </span><span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span><span class="w"> </span><span class="nx">r</span><span class="w"> </span><span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<p>Conceptual example in Go, covering only what the MCP needs to expose and validate (no specific library dependency). The well-known route is registered at the path-specific URI for an MCP served at <code>/mcp</code>:</p>
+<div class="language-go highlight"><pre><span></span><code><span class="c1">// 1. Publish the protected resource metadata (RFC 9728).</span>
+<span class="c1">// The MCP is served at /mcp, so metadata is published at the path-specific URI.</span>
+<span class="nx">mux</span><span class="p">.</span><span class="nx">HandleFunc</span><span class="p">(</span><span class="s">"/.well-known/oauth-protected-resource/mcp"</span><span class="p">,</span><span class="w"> </span><span class="kd">func</span><span class="p">(</span><span class="nx">w</span><span class="w"> </span><span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span><span class="w"> </span><span class="nx">r</span><span class="w"> </span><span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nx">json</span><span class="p">.</span><span class="nx">NewEncoder</span><span class="p">(</span><span class="nx">w</span><span class="p">).</span><span class="nx">Encode</span><span class="p">(</span><span class="kt">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">any</span><span class="p">{</span>
-<span class="w">        </span><span class="s">"resource"</span><span class="p">:</span><span class="w">              </span><span class="s">"https://your-mcp.com"</span><span class="p">,</span>
+<span class="w">        </span><span class="s">"resource"</span><span class="p">:</span><span class="w">              </span><span class="s">"https://your-mcp.com/mcp"</span><span class="p">,</span>
 <span class="w">        </span><span class="s">"authorization_servers"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"https://auth.yourorganization.com"</span><span class="p">},</span>
 <span class="w">    </span><span class="p">})</span>
 <span class="p">})</span>
@@ -1281,7 +1316,8 @@
 
 <span class="w">        </span><span class="nx">claims</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">validateJWT</span><span class="p">(</span><span class="nx">token</span><span class="p">)</span>
 <span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">w</span><span class="p">.</span><span class="nx">Header</span><span class="p">().</span><span class="nx">Set</span><span class="p">(</span><span class="s">"WWW-Authenticate"</span><span class="p">,</span><span class="w"> </span><span class="s">`Bearer resource_metadata="https://your-mcp.com/.well-known/oauth-protected-resource"`</span><span class="p">)</span>
+<span class="w">            </span><span class="c1">// resource_metadata must point to the same well-known URI above.</span>
+<span class="w">            </span><span class="nx">w</span><span class="p">.</span><span class="nx">Header</span><span class="p">().</span><span class="nx">Set</span><span class="p">(</span><span class="s">"WWW-Authenticate"</span><span class="p">,</span><span class="w"> </span><span class="s">`Bearer resource_metadata="https://your-mcp.com/.well-known/oauth-protected-resource/mcp"`</span><span class="p">)</span>
 <span class="w">            </span><span class="nx">http</span><span class="p">.</span><span class="nx">Error</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span><span class="w"> </span><span class="s">"unauthorized"</span><span class="p">,</span><span class="w"> </span><span class="nx">http</span><span class="p">.</span><span class="nx">StatusUnauthorized</span><span class="p">)</span>
 <span class="w">            </span><span class="k">return</span>
 <span class="w">        </span><span class="p">}</span>
@@ -1296,6 +1332,14 @@
 <p>Other languages follow the same contract: publish RFC 9728, validate the <code>Authorization: Bearer</code> and respond <code>401</code> when the token is invalid or expired.</p>
 </div>
 <p>The <code>client_id</code>/<code>client_secret</code> credentials do not come in here. The OAuth client is the platform (see the <a href="../oauth-requirements/">OAuth requirements</a>). The MCP server validates the token via JWKS or, if preferred, via introspection.</p>
+<h2 id="implementation-checklist">Implementation checklist<a class="headerlink" href="#implementation-checklist" title="Permanent link">&para;</a></h2>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> The protected resource metadata is discoverable via the <code>WWW-Authenticate</code> <code>resource_metadata</code> parameter <strong>or</strong> the well-known URI (path-specific or root).</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>resource</code> identifies the MCP server by its canonical URL, including the path when the MCP is served under a path.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>authorization_servers</code> contains at least one authorization server.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Protected endpoints return <code>401</code> with the <code>WWW-Authenticate: Bearer resource_metadata="..."</code> header when the token is missing or invalid.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> When the MCP endpoint has a path component, metadata is also published at the path-specific well-known URI (<code>/.well-known/oauth-protected-resource/&lt;path&gt;</code>), not only at the root.</li>
+</ul>
 
 
 
