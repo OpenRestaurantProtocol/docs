@@ -1360,7 +1360,7 @@
 <li>A <strong>userinfo</strong> endpoint (OIDC) with identity and profile/roles.</li>
 <li>A <strong><code>GET /merchants</code></strong> endpoint with the merchant catalog for the token.</li>
 <li>If there is an <strong>OAuth-protected HTTP MCP</strong>: protected resource metadata (<strong>RFC 9728</strong>) is required.</li>
-<li>(Optional) <strong>DCR</strong> (RFC 7591) for automatic client registration.</li>
+<li>(Recommended) <strong>DCR</strong> (RFC 7591) for automatic client registration.</li>
 </ul>
 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
 <p>Your organization builds and operates an <strong>authorization server</strong> (OAuth 2.0 / OIDC) that authenticates users and issues tokens. The platform acts as a <em>client</em> of that authorization server: it discovers the endpoints, guides the user through the authorization flow, and stores the resulting token. With the token in hand, the <strong>MCP</strong> queries the authorization server's <strong>userinfo</strong> endpoint to discover the identity and access profile of the account.</p>
@@ -1491,8 +1491,8 @@
 </tr>
 <tr>
 <td><code>registration_endpoint</code></td>
-<td>Optional</td>
-<td>Required only if you want to support DCR</td>
+<td>Recommended</td>
+<td>Required only if you want to support DCR — avoids manual credential exchange and manual callback allowlist</td>
 </tr>
 </tbody>
 </table>
