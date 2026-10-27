@@ -14,7 +14,7 @@ Para integrar, você vai precisar de:
 - Um endpoint de **userinfo** (OIDC) com identidade e perfil/roles.
 - Um endpoint **`GET /merchants`** com o catálogo de lojas do token.
 - Se houver um **MCP HTTP protegido por OAuth**: metadados do recurso protegido (**RFC 9728**) são obrigatórios.
-- (Opcional) **DCR** (RFC 7591) para registro automático do client.
+- (Recomendado) **DCR** (RFC 7591) para registro automático do client.
 
 ## Visão geral
 
@@ -91,7 +91,7 @@ Com, no mínimo, os seguintes campos:
 | `grant_types_supported` | Sim | Deve incluir `authorization_code` (e `refresh_token`) |
 | `token_endpoint_auth_methods_supported` | Sim | Ex.: `client_secret_basic`, `client_secret_post`, `none` (para clientes públicos/PKCE) |
 | `code_challenge_methods_supported` | Sim | Deve incluir `S256` (PKCE) |
-| `registration_endpoint` | Opcional | Necessário somente se quiser suportar DCR |
+| `registration_endpoint` | Recomendado | Necessário somente se quiser suportar DCR — evita troca manual de credenciais e cadastro manual da callback |
 
 Exemplo de conteúdo:
 
